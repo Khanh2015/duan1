@@ -1,0 +1,7 @@
+.content-table{
+    margin-top : 40px;
+}
+.content-table th,
+.content-table td {
+    max-width: 200px;
+}

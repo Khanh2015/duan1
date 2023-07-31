@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="./css/home.css" />
+    <link rel="stylesheet" href="./css/category.css" />
+    <link rel="stylesheet" href="./css/list-categoty.css" />
+    <link rel="stylesheet" href="./css/list-product.css" />
+    <link rel="stylesheet" href="./css/product.css" />
+    <link rel="stylesheet" href="./css/user.css" />
+    <title>Admin</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="navbar">
+        <ul>
+          <li>
+            <a href=""><i class="fa-solid fa-house"></i> Trang chủ</a>
+          </li>
+          <li>
+            <a href=""><i class="fa-solid fa-list"></i> Danh mục</a>
+          </li>
+          <li>
+            <a href=""><i class="fa-solid fa-shirt"></i> Sản phẩm</a>
+          </li>
+          <li>
+            <a href=""><i class="fa-solid fa-user"></i> Tài khoản</a>
+          </li>
+          <li>
+            <a href=""><i class="fa-solid fa-comments"></i> Bình luận</a>
+          </li>
+          <li>
+            <a href=""><i class="fa-solid fa-chart-pie"></i> Thống kê</a>
+          </li>
+          <li>
+            <a href=""><i class="fa-solid fa-truck-fast"></i> Đơn hàng</a>
+          </li>
+        </ul>
+      </div>
+      <div class="content">
+        <div class="header">
+          <h1>Sản phẩm</h1>
+          <div class="logo">
+            <img src="../view/img/logo-web.png" alt="" />
+          </div>
+        </div>
+        <div class="main-content">
+          <h1 class="main-content-title">Thêm sản phẩm</h1>
+          <form class="form-input" action="" method="post">
+            <label for="">Danh mục</label><br />
+            <select style="margin-top: 10px" name="" id="">
+              <option value="">Áo đá bóng</option>
+              <option value="">Phụ kiện thể thao</option></select
+            ><br /><br />
+            <label for="product-name">Tên sản phẩm</label> <br />
+            <input
+              id="product-name"
+              type="text"
+              placeholder="Nhập vào tên sản phẩm mới"
+            />
+            <br /><br />
+            <label for="product-img">Ảnh sản phẩm</label> <br />
+            <input class="input-img" id="product-img" type="file" />
+            <br /><br />
+            <label for="product-price">Giá sale</label> <br />
+            <input
+              id="product-price"
+              type="number"
+              placeholder="Nhập vào Giá sale"
+            />
+            <br /><br />
+            <label for="product-sale">Giá gốc</label> <br />
+            <input
+              id="product-sale"
+              type="number"
+              placeholder="Nhập vào Giá gốc (nếu có)"
+            />
+            <br /><br />
+            <label for="">Biến thể sản phẩm</label><br />
+            <table class="variant">
+              <thead>
+                <tr>
+                  <th>Size</th>
+                  <th>Màu sắc</th>
+                  <th>Số lượng</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <select name="size" id="">
+                      <option value="">S (Áo)</option>
+                      <option value="">M (Áo)</option>
+                      <option value="">L (Áo)</option>
+                      <option value="">XL (Áo)</option>
+                      <option value="">XXL (Áo)</option>
+                      <option value="">5 (Găng tay)</option>
+                      <option value="">6 (Găng tay)</option>
+                      <option value="">7 (Găng tay)</option>
+                      <option value="">8 (Găng tay)</option>
+                      <option value="">9 (Găng tay)</option>
+                      <option value="">10 (Găng tay)</option>
+                      <option value="">11 (Găng tay)</option>
+                      <option value="">12 (Găng tay)</option>
+                      <option value="">40 (Giày)</option>
+                      <option value="">41 (Giày)</option>
+                      <option value="">42 (Giày)</option>
+                      <option value="">43 (Giày)</option>
+                      <option value="">44 (Giày)</option>
+                      <option value="">45 (Giày)</option>
+                      <option value="">46 (Giày)</option>
+                      <option value="">47 (Giày)</option>
+                    </select>
+                  </td>
+                  <td>
+                    <select name="color" id="">
+                      <option value="">Đỏ</option>
+                      <option value="">Vàng</option>
+                      <option value="">Xanh lá</option>
+                      <option value="">Xanh da trời</option>
+                      <option value="">Đen</option>
+                      <option value="">Trắng</option>
+                      <option value="">Tím</option>
+                      <option value="">Cam</option>
+                      <option value="">Hồng</option>
+                      <option value="">Xám</option>
+                    </select>
+                  </td>
+                  <td>
+                    <input
+                      class="variant-quantity"
+                      type="number"
+                      name=""
+                      id=""
+                      placeholder="Nhập số lượng"
+                    />
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="new-variant">Thêm biến thể mới</div>
+            <br />
+            <label for="product-desc">Mô tả</label> <br />
+            <textarea
+              name=""
+              id="product-desc"
+              cols="67"
+              rows="15"
+              placeholder="Nhập vào mô tả sản phẩm"
+            ></textarea>
+            <br /><br />
+            <button class="submit-btn" type="submit">Thêm mới</button>
+            <button class="reset-btn" type="reset">Nhập lại</button>
+            <a href=""><button class="list-btn">Danh sách</button></a>
+          </form>
+        </div>
+      </div>
+    </div>
+    <script src="./js/new-variant.js"></script>
+  </body>
+</html>

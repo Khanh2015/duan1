@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="./css/home.css" />
+    <link rel="stylesheet" href="./css/category.css" />
+    <link rel="stylesheet" href="./css/list-categoty.css" />
+    <title>Admin</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="navbar">
+        <ul>
+          <li>
+            <a href="#"><i class="fa-solid fa-house"></i> Trang chủ</a>
+          </li>
+          <li>
+            <a href="#"><i class="fa-solid fa-list"></i> Danh mục</a>
+          </li>
+          <li>
+            <a href=""><i class="fa-solid fa-shirt"></i> Sản phẩm</a>
+          </li>
+          <li>
+            <a href=""><i class="fa-solid fa-user"></i> Tài khoản</a>
+          </li>
+          <li>
+            <a href=""><i class="fa-solid fa-comments"></i> Bình luận</a>
+          </li>
+          <li>
+            <a href=""><i class="fa-solid fa-chart-pie"></i> Thống kê</a>
+          </li>
+          <li>
+            <a href=""><i class="fa-solid fa-truck-fast"></i> Đơn hàng</a>
+          </li>
+        </ul>
+      </div>
+      <div class="content">
+        <div class="header">
+          <h1>Danh mục</h1>
+          <div class="logo">
+            <img src="../view/img/logo-web.png" alt="" />
+          </div>
+        </div>
+        <div class="main-content">
+          <h1 class="main-content-title">Danh sách danh mục sản phẩm</h1>
+          <div class="table-category-wapper">
+            <table class="list-category">
+              <thead>
+                <tr>
+                  <th>ID danh mục</th>
+                  <th>Tên danh mục</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>Áo đá bóng</td>
+                  <td>
+                    <a href="" class="edit-btn"
+                      ><i class="fa-regular fa-pen-to-square"></i> Sửa</a
+                    >
+                    <a href="" class="delete-btn"
+                      ><i class="fa-regular fa-trash-can"></i> Xoá</a
+                    >
+                  </td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>Phụ kiện thể thao</td>
+                  <td>
+                    <a href="" class="edit-btn"
+                      ><i class="fa-regular fa-pen-to-square"></i> Sửa</a
+                    >
+                    <a href="" class="delete-btn"
+                      ><i class="fa-regular fa-trash-can"></i> Xoá</a
+                    >
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <a href="" class="submit-btn">Thêm mới</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="./js/nav-active.js"></script>
+  </body>
+</html>

@@ -1,0 +1,46 @@
+.table-product-wapper {
+    margin: 0;
+}
+.filter-product {
+    text-align: center;
+    margin: 20px 0;
+}
+.filter-product button,
+.filter-product input,
+.filter-product select {
+    border-radius: 5px;
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+}
+.filter-product button {
+    padding: 10px 20px;
+    background-image: linear-gradient(to left bottom, #478CCC, #5545C5, #A043ED, #FF44D0);
+    color: #fff;
+    transition: all 0.25s ease;
+    margin-left: 10px;
+}
+.filter-product button:hover {
+    transform: scale(1.2);
+}
+.list-product td img {
+    width: 100px;
+}
+.list-product .product-name,
+.list-product .product-sizes,
+.list-product .product-colors {
+    max-width: 120px;
+    word-wrap: break-word;
+}
+.comeback-list {
+    margin-left: 10px;
+    border-radius: 5px;
+    padding: 12px 16px;
+    display: inline-block;
+    font-weight: 600;
+    background: orangered;
+    color: #fff;
+    transition: all 0.25s ease;
+}
+.comeback-list:hover {
+    transform: scale(1.1);
+}

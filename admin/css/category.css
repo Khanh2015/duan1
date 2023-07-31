@@ -1,0 +1,32 @@
+.form-input {
+    margin: 0 200px;
+    padding: 50px;
+    border-radius: 10px;
+    background: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+}
+.form-input textarea,
+.form-input select,
+.form-input input {
+    margin-top: 10px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 70%;
+}
+.table-product-wapper .list-btn,
+.form-input button {
+    margin-right: 10px;
+    padding: 12px 16px;
+    border-radius: 5px;
+    border: none;
+    font-weight: 600;
+    color: #fff;
+    font-size: 16px;
+    transition: all 0.25s ease;
+}
+.table-product-wapper .list-btn:hover,
+.form-input button:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}

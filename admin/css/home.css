@@ -1,0 +1,100 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+li {
+    list-style: none;
+}
+a {
+    text-decoration: none;
+    color: #000;
+}
+img {
+    width: 100%;
+}
+.navbar {
+    background: #1D2939;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 250px;
+}
+.navbar ul {
+    padding: 20px;
+}
+.navbar ul li {
+    margin: 5px 0;
+    border-radius: 5px;
+    overflow: hidden;
+    padding-left: 20px;
+    background: linear-gradient(to right, #1CAF9A, #1CAF9A) no-repeat;
+    background-size: 0 100%;
+    transition: background-size 0.5s ease;
+}
+.navbar ul li:hover {
+    background-size: 100% 100%;
+}
+.navbar ul li a {
+    color: #8F939E;
+    display: block;
+    transition: 0.2s;
+    line-height: 50px;
+}
+.navbar ul li a i {
+    margin-right: 10px;
+}
+.navbar ul li:hover a {
+    color: #fff;
+} 
+.content {
+    margin-left: 250px;
+    background: #E4E7EA;
+    min-height: 100vh;
+}
+.content .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 30px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    clip-path: inset(0px -10px -10px -10px);
+}
+.header .logo {
+    width: 150px;
+}
+.main-content {
+    margin-top: 50px;
+}
+.main-content-title {
+    text-align: center;
+    margin-bottom: 50px;
+    color: rgb(254, 32, 32);
+}
+.submit-btn {
+    background: green;
+}
+.reset-btn {
+    background: darkgray;
+}
+.list-btn {
+    background: orange;
+}
+.delete-btn {
+    background: red;
+}
+.edit-btn {
+    background: blue;
+}
+.navbar .active {
+    background-size: 100% 100%;
+}
+.navbar .active a {
+    color: #fff;
+}
+.added-successfully {
+    font-size: 18px;
+    color: red;
+    text-align: center;
+}

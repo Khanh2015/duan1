@@ -1,0 +1,51 @@
+.table-category-wapper {
+    margin: 50px;
+    padding: 30px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+}
+.list-category {
+    width: 100%;
+    text-align: center;
+    border-collapse: collapse;
+    background: #fff;
+}
+.list-category th,
+.list-category td {
+    border: 1px solid #ccc;
+    padding: 20px 15px;
+}
+.list-category thead tr {
+    background: gray;
+}
+.list-category + .submit-btn {
+    margin-top: 50px;
+    border-radius: 5px;
+    padding: 12px 16px;
+    display: inline-block;
+    font-weight: 600;
+    color: #fff;
+    transition: all 0.25s ease;
+}
+.list-category .edit-btn,
+.list-category .delete-btn {
+    display: inline-block;
+    padding: 12px 18px;
+    color: #fff;
+    font-weight: 600;
+    border-radius: 5px;
+    border: 2px solid #fff;
+    transition: 0.25s;
+}
+.list-category .edit-btn:hover {
+    border: 2px solid blue;
+    background: #fff;
+    color: blue;
+}
+.list-category .delete-btn:hover {
+    border: 2px solid red;
+    background: #fff;
+    color: red;
+}
+.table-category-wapper .submit-btn:hover {
+    transform: scale(1.1);
+}
