@@ -288,6 +288,17 @@ header .logo {
 .product h4:hover {
     color: red;
 }
+.product .variant-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+}
+.product .variant-wrapper p {
+    transition: 0.15s;
+    font-weight: 600;
+    font-size: 14px;
+}
 .product .price {
     display: flex;
     justify-content: space-between;
@@ -296,8 +307,11 @@ header .logo {
     font-size: 14px;
 }
 .product .init-price {
+    transition: all 0.15s linear;
     color: red;
     font-weight: 600;
+}
+.product .sale {
     transition: all 0.15s linear;
 }
 .product form {

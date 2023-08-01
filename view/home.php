@@ -54,6 +54,10 @@
           <a href="">
             <h4>Tên sản phẩm</h4>
           </a>
+          <div class="variant-wrapper">
+            <p class="size">Size: XXL</p>
+            <p class="color">Màu: Xanh lá cây</p>
+          </div>
           <div class="price">
             <p class="init-price">Giá sale</p>
             <p class="sale"><del>Giá gốc</del></p>
@@ -70,6 +74,10 @@
           <a href="">
             <h4>Tên sản phẩm</h4>
           </a>
+          <div class="variant-wrapper">
+            <p class="size">Size: XXL</p>
+            <p class="color">Màu: Xanh lá cây</p>
+          </div>
           <div class="price">
             <p class="init-price">Giá sale</p>
             <p class="sale"><del>Giá gốc</del></p>
@@ -86,6 +94,10 @@
           <a href="">
             <h4>Tên sản phẩm</h4>
           </a>
+          <div class="variant-wrapper">
+            <p class="size">Size: XXL</p>
+            <p class="color">Màu: Xanh lá cây</p>
+          </div>
           <div class="price">
             <p class="init-price">Giá sale</p>
             <p class="sale"><del>Giá gốc</del></p>
@@ -102,6 +114,10 @@
           <a href="">
             <h4>Tên sản phẩm</h4>
           </a>
+          <div class="variant-wrapper">
+            <p class="size">Size: XXL</p>
+            <p class="color">Màu: Xanh lá cây</p>
+          </div>
           <div class="price">
             <p class="init-price">Giá sale</p>
             <p class="sale"><del>Giá gốc</del></p>
@@ -118,6 +134,10 @@
           <a href="">
             <h4>Tên sản phẩm</h4>
           </a>
+          <div class="variant-wrapper">
+            <p class="size">Size: XXL</p>
+            <p class="color">Màu: Xanh lá cây</p>
+          </div>
           <div class="price">
             <p class="init-price">Giá sale</p>
             <p class="sale"><del>Giá gốc</del></p>
@@ -134,6 +154,10 @@
           <a href="">
             <h4>Tên sản phẩm</h4>
           </a>
+          <div class="variant-wrapper">
+            <p class="size">Size: XXL</p>
+            <p class="color">Màu: Xanh lá cây</p>
+          </div>
           <div class="price">
             <p class="init-price">Giá sale</p>
             <p class="sale"><del>Giá gốc</del></p>
@@ -150,6 +174,10 @@
           <a href="">
             <h4>Tên sản phẩm</h4>
           </a>
+          <div class="variant-wrapper">
+            <p class="size">Size: XXL</p>
+            <p class="color">Màu: Xanh lá cây</p>
+          </div>
           <div class="price">
             <p class="init-price">Giá sale</p>
             <p class="sale"><del>Giá gốc</del></p>
@@ -166,6 +194,10 @@
           <a href="">
             <h4>Tên sản phẩm</h4>
           </a>
+          <div class="variant-wrapper">
+            <p class="size">Size: XXL</p>
+            <p class="color">Màu: Xanh lá cây</p>
+          </div>
           <div class="price">
             <p class="init-price">Giá sale</p>
             <p class="sale"><del>Giá gốc</del></p>
@@ -182,6 +214,10 @@
           <a href="">
             <h4>Tên sản phẩm</h4>
           </a>
+          <div class="variant-wrapper">
+            <p class="size">Size: XXL</p>
+            <p class="color">Màu: Xanh lá cây</p>
+          </div>
           <div class="price">
             <p class="init-price">Giá sale</p>
             <p class="sale"><del>Giá gốc</del></p>
@@ -198,6 +234,10 @@
           <a href="">
             <h4>Tên sản phẩm</h4>
           </a>
+          <div class="variant-wrapper">
+            <p class="size">Size: XXL</p>
+            <p class="color">Màu: Xanh lá cây</p>
+          </div>
           <div class="price">
             <p class="init-price">Giá sale</p>
             <p class="sale"><del>Giá gốc</del></p>
@@ -241,6 +281,10 @@
         <a href="">
           <h4>Tên sản phẩm</h4>
         </a>
+        <div class="variant-wrapper">
+          <p class="size">Size: XXL</p>
+          <p class="color">Màu: Xanh lá cây</p>
+        </div>
         <div class="price">
           <p class="init-price">Giá sale</p>
           <p class="sale"><del>Giá gốc</del></p>
@@ -256,6 +300,10 @@
         <a href="">
           <h4>Tên sản phẩm</h4>
         </a>
+        <div class="variant-wrapper">
+          <p class="size">Size: XXL</p>
+          <p class="color">Màu: Xanh lá cây</p>
+        </div>
         <div class="price">
           <p class="init-price">Giá sale</p>
           <p class="sale"><del>Giá gốc</del></p>
@@ -271,6 +319,10 @@
         <a href="">
           <h4>Tên sản phẩm</h4>
         </a>
+        <div class="variant-wrapper">
+          <p class="size">Size: XXL</p>
+          <p class="color">Màu: Xanh lá cây</p>
+        </div>
         <div class="price">
           <p class="init-price">Giá sale</p>
           <p class="sale"><del>Giá gốc</del></p>
@@ -286,6 +338,10 @@
         <a href="">
           <h4>Tên sản phẩm</h4>
         </a>
+        <div class="variant-wrapper">
+          <p class="size">Size: XXL</p>
+          <p class="color">Màu: Xanh lá cây</p>
+        </div>
         <div class="price">
           <p class="init-price">Giá sale</p>
           <p class="sale"><del>Giá gốc</del></p>
@@ -301,6 +357,10 @@
         <a href="">
           <h4>Tên sản phẩm</h4>
         </a>
+        <div class="variant-wrapper">
+          <p class="size">Size: XXL</p>
+          <p class="color">Màu: Xanh lá cây</p>
+        </div>
         <div class="price">
           <p class="init-price">Giá sale</p>
           <p class="sale"><del>Giá gốc</del></p>
@@ -316,6 +376,10 @@
         <a href="">
           <h4>Tên sản phẩm</h4>
         </a>
+        <div class="variant-wrapper">
+          <p class="size">Size: XXL</p>
+          <p class="color">Màu: Xanh lá cây</p>
+        </div>
         <div class="price">
           <p class="init-price">Giá sale</p>
           <p class="sale"><del>Giá gốc</del></p>
@@ -331,6 +395,10 @@
         <a href="">
           <h4>Tên sản phẩm</h4>
         </a>
+        <div class="variant-wrapper">
+          <p class="size">Size: XXL</p>
+          <p class="color">Màu: Xanh lá cây</p>
+        </div>
         <div class="price">
           <p class="init-price">Giá sale</p>
           <p class="sale"><del>Giá gốc</del></p>
@@ -346,6 +414,10 @@
         <a href="">
           <h4>Tên sản phẩm</h4>
         </a>
+        <div class="variant-wrapper">
+          <p class="size">Size: XXL</p>
+          <p class="color">Màu: Xanh lá cây</p>
+        </div>
         <div class="price">
           <p class="init-price">Giá sale</p>
           <p class="sale"><del>Giá gốc</del></p>
@@ -361,6 +433,10 @@
         <a href="">
           <h4>Tên sản phẩm</h4>
         </a>
+        <div class="variant-wrapper">
+          <p class="size">Size: XXL</p>
+          <p class="color">Màu: Xanh lá cây</p>
+        </div>
         <div class="price">
           <p class="init-price">Giá sale</p>
           <p class="sale"><del>Giá gốc</del></p>
@@ -376,6 +452,10 @@
         <a href="">
           <h4>Tên sản phẩm</h4>
         </a>
+        <div class="variant-wrapper">
+          <p class="size">Size: XXL</p>
+          <p class="color">Màu: Xanh lá cây</p>
+        </div>
         <div class="price">
           <p class="init-price">Giá sale</p>
           <p class="sale"><del>Giá gốc</del></p>
@@ -391,6 +471,10 @@
         <a href="">
           <h4>Tên sản phẩm</h4>
         </a>
+        <div class="variant-wrapper">
+          <p class="size">Size: XXL</p>
+          <p class="color">Màu: Xanh lá cây</p>
+        </div>
         <div class="price">
           <p class="init-price">Giá sale</p>
           <p class="sale"><del>Giá gốc</del></p>
@@ -406,6 +490,10 @@
         <a href="">
           <h4>Tên sản phẩm</h4>
         </a>
+        <div class="variant-wrapper">
+          <p class="size">Size: XXL</p>
+          <p class="color">Màu: Xanh lá cây</p>
+        </div>
         <div class="price">
           <p class="init-price">Giá sale</p>
           <p class="sale"><del>Giá gốc</del></p>
