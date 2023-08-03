@@ -1,7 +1,13 @@
 <?php
+session_start();
+if (!isset($_SESSION['taikhoan']) || $_SESSION['taikhoan']['chucvu'] != 1) {
+    include "./404.php";
+    exit;
+}
 include "../model/pdo.php";
 include "../model/danhmuc.php";
 include "../model/sanpham.php";
+include "../model/taikhoan.php";
 include "header.php";
 if (isset($_GET["act"])) {
     $act = $_GET["act"];
@@ -124,6 +130,52 @@ if (isset($_GET["act"])) {
             }
             $danhsachdanhmuc = loadall_danhmuc();
             include "./sanpham/list.php";
+            break;
+        case 'danhsachtaikhoan':
+            if (isset($_SESSION["taikhoan"])) {
+                $danhsachtaikhoan = loadall_taikhoan_noadmin($_SESSION["taikhoan"]["id"]);
+            }
+            include "./taikhoan/list.php";
+            break;
+        case 'xoataikhoan':
+            if (isset($_GET["id"])) {
+                delete_taikhoan($_GET["id"]);
+            }
+            $danhsachtaikhoan = loadall_taikhoan_noadmin($_SESSION["taikhoan"]["id"]);
+            include "./taikhoan/list.php";
+            break;
+        case 'suataikhoan':
+            if (isset($_GET["id"])) {
+                $taikhoan = loadone_taikhoan($_GET["id"]);
+            }
+            include "./taikhoan/update.php";
+            break;
+        case 'updatetaikhoan':
+            if (isset($_POST["capnhat"])) {
+                $check = true;
+                $id = $_POST["id"];
+                $email = $_POST["email"];
+                $diachi = $_POST["diachi"];
+                $sdt = $_POST["sdt"];
+                $matkhau = $_POST["matkhau"];
+                $matkhau2 = $_POST["matkhau2"];
+                $tentaikhoan = $_POST["tentaikhoan"];
+                $chucvu = $_POST["chucvu"];
+                $checktaikhoan = check_trung_tentaikhoan($tentaikhoan, $id);
+                if (!empty($checktaikhoan)) {
+                    $check = false;
+                    $thongbaotentaikhoan = "Tên tài khoản đã tồn tại ❌, mời chọn tên tài khoản mới hoặc sử dụng lại tên cũ";
+                }
+                if ($matkhau != $matkhau2) {
+                    $check = false;
+                    $thongbaomatkhau = "Mật khẩu khẩu không khớp ❌";
+                }
+                if ($check) {
+                    update_taikhoan_admin($id, $tentaikhoan, $matkhau, $email, $diachi, $sdt, $chucvu);
+                    $thongbaothanhcong = "Bạn đã cập nhật tài khoản thành công 🎉";
+                }
+            }
+            include "./taikhoan/update.php";
             break;
         default:
             include "home.php";

@@ -54,3 +54,9 @@
 .table-category-wapper .submit-btn:hover {
     transform: scale(1.1);
 }
+.list-account
+.list-account td:nth-child(4),
+.list-account td:nth-child(5),
+.list-account td:nth-child(6) {
+    max-width: 150px;
+}

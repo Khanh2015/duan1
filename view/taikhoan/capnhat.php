@@ -19,7 +19,7 @@ if (isset($_SESSION["taikhoan"]) && is_array($_SESSION["taikhoan"])) {
         <label for="update-address">Địa chỉ</label>
         <input id="update-address" type="text" name="diachi" placeholder="Nhập vào địa chỉ..." value="<?php if (isset($diachi)) echo $diachi ?>">
         <label for="update-phone">Số điện thoại</label>
-        <input id="update-phone" type="number" name="sdt" placeholder="Nhập vào số điện thoại..." value="<?php if (isset($sdt)) echo $sdt ?>">
+        <input id="update-phone" type="number" name="sdt" placeholder="Nhập vào số điện thoại..." value="<?php if (isset($sdt)) echo $sdt ?>" min="0">
         <label for="update-password">Mật khẩu</label>
         <input id="update-password" type="password" name="matkhau" placeholder="Nhập vào mật khẩu..." value="<?php if (isset($matkhau)) echo $matkhau ?>" required>
         <label for="update-repassword">Xác nhận lại mật khẩu</label>

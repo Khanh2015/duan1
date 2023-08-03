@@ -32,9 +32,35 @@ function update_taikhoan($id, $tentaikhoan, $matkhau, $email, $diachi, $sdt)
     pdo_execute($sql);
 }
 
+function update_taikhoan_admin($id, $tentaikhoan, $matkhau, $email, $diachi, $sdt, $chucvu)
+{
+    $sql = "UPDATE `taikhoan` SET `tentaikhoan`='$tentaikhoan',`matkhau`='$matkhau',`email`='$email',`diachi`='$diachi',`sdt`='$sdt', `chucvu`='$chucvu' WHERE `id` = '$id'";
+    pdo_execute($sql);
+}
+
 function quenmatkhau($email)
 {
     $sql = "SELECT * FROM `taikhoan` WHERE `email` = '$email'";
     $danhsachtaikhoan = pdo_query($sql);
     return $danhsachtaikhoan;
+}
+
+function loadall_taikhoan_noadmin($id)
+{
+    $sql = "SELECT * FROM `taikhoan` WHERE `id` != '$id'";
+    $danhsachtaikhoan = pdo_query($sql);
+    return $danhsachtaikhoan;
+}
+
+function delete_taikhoan($id)
+{
+    $sql = "DELETE FROM taikhoan WHERE `taikhoan`.`id` = '$id'";
+    pdo_execute($sql);
+}
+
+function loadone_taikhoan($id)
+{
+    $sql = "SELECT * FROM `taikhoan` WHERE `id` = '$id'";
+    $taikhoan = pdo_query_one($sql);
+    return $taikhoan;
 }
