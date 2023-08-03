@@ -47,10 +47,9 @@
                     </li>
                     <li><a href="index.php?act=gioithieu">Giới thiệu</a></li>
                     <li><a href="index.php?act=lienhe">Liên hệ</a></li>
-                    <!-- <?php if (isset($_SESSION["taikhoan"])) {
-                                echo '<li><a href="admin/index.php">Đăng nhập Admin</a></li>';
-                            } ?> -->
-                    <li><a href="admin/index.php">Đăng nhập Admin</a></li>
+                    <?php if (isset($_SESSION["taikhoan"]) && $_SESSION["taikhoan"]["chucvu"] == 1) {
+                        echo '<li><a href="admin/index.php">Đăng nhập Admin</a></li>';
+                    } ?>
                 </ul>
             </nav>
             <div class="nav-right">

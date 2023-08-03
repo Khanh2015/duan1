@@ -164,7 +164,8 @@ if (isset($_GET["act"])) {
             break;
         case 'dangxuat':
             session_unset();
-            header("location: index.php");
+            echo '<script>window.location.href = "index.php";</script>';
+            exit;
             break;
         default:
             include "./view/home.php";
