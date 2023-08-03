@@ -19,6 +19,20 @@ function loadone_sanpham($id)
     return $sanpham;
 }
 
+function top10_sanpham()
+{
+    $sql = "SELECT * FROM sanpham ORDER BY luotxem DESC LIMIT 10";
+    $top10 = pdo_query($sql);
+    return $top10;
+}
+
+function loadall_sanpham_home()
+{
+    $sql = "SELECT * FROM sanpham ORDER BY giasale DESC LIMIT 10";
+    $danhsachsanpham = pdo_query($sql);
+    return $danhsachsanpham;
+}
+
 function delete_sanpham($id)
 {
     $sql = "DELETE FROM sanpham WHERE `sanpham`.`id` = $id";
@@ -27,7 +41,11 @@ function delete_sanpham($id)
 
 function update_sanpham($id, $iddanhmuc, $ten, $anh, $giasale, $giagoc, $size, $color, $soluong, $mota)
 {
-    $sql = "UPDATE `sanpham` SET `tensanpham`='$ten',`giagoc`='$giagoc',`giasale`='$giasale',`anhsanpham`='$anh',`mota`='$mota',`iddanhmuc`='$iddanhmuc',`size`='$size',`color`='$color',`soluong`='$soluong' WHERE `sanpham`.`id` = $id";
+    $sql = "UPDATE `sanpham` SET `tensanpham`='$ten',`giagoc`='$giagoc',`giasale`='$giasale',`mota`='$mota',`iddanhmuc`='$iddanhmuc',`size`='$size',`color`='$color',`soluong`='$soluong'";
+    if (!empty($anh)) {
+        $sql .= ",`anhsanpham`='$anh'";
+    }
+    $sql .= " WHERE `sanpham`.`id` = $id";
     pdo_execute($sql);
 }
 
@@ -45,4 +63,47 @@ function filter_sanpham($keyword, $iddanhmuc)
     }
     $danhsachsanpham = pdo_query($sql);
     return $danhsachsanpham;
+}
+
+function timkiemsanpham($keyword, $start_limit, $end_limit)
+{
+    $sql = "SELECT sanpham.id, sanpham.tensanpham, sanpham.giagoc, sanpham.giasale, sanpham.anhsanpham, sanpham.mota, sanpham.luotxem, sanpham.size, sanpham.color, sanpham.soluong FROM sanpham WHERE tensanpham LIKE '%" . $keyword . "%' LIMIT $start_limit, $end_limit";
+    $danhsachsanpham = pdo_query($sql);
+    return $danhsachsanpham;
+}
+
+function count_loadall_danhsachtimkiem($keyword)
+{
+    $sql = "SELECT COUNT(*) FROM sanpham WHERE tensanpham LIKE '%" . $keyword . "%'";
+    $result = pdo_query_value($sql);
+    return $result;
+}
+
+function loadall_sanpham_danhmuc($iddanhmuc, $start_limit, $end_limit)
+{
+
+    $sql = "SELECT sanpham.id, sanpham.tensanpham, sanpham.giagoc, sanpham.giasale, sanpham.anhsanpham, sanpham.mota, sanpham.luotxem, sanpham.size, sanpham.color, sanpham.soluong FROM sanpham INNER JOIN danhmuc ON sanpham.iddanhmuc = danhmuc.id WHERE sanpham.iddanhmuc =  $iddanhmuc LIMIT $start_limit, $end_limit";
+    $danhsachsanpham = pdo_query($sql);
+    return $danhsachsanpham;
+}
+
+function count_loadall_sanpham_danhmuc($iddanhmuc)
+{
+    $sql = "SELECT COUNT(*) FROM sanpham INNER JOIN danhmuc ON sanpham.iddanhmuc = danhmuc.id WHERE sanpham.iddanhmuc = $iddanhmuc";
+    $result = pdo_query_value($sql);
+    return $result;
+}
+
+function loadall_danhsachsanpham($start_limit, $end_limit)
+{
+    $sql = "SELECT  sanpham.id, sanpham.tensanpham, sanpham.giagoc, sanpham.giasale, sanpham.anhsanpham, sanpham.mota, sanpham.luotxem, sanpham.size, sanpham.color, sanpham.soluong FROM sanpham LIMIT $start_limit, $end_limit";
+    $danhsachsanpham = pdo_query($sql);
+    return $danhsachsanpham;
+}
+
+function count_loadall_danhsachsanpham()
+{
+    $sql = "SELECT COUNT(*) FROM sanpham";
+    $result = pdo_query_value($sql);
+    return $result;
 }

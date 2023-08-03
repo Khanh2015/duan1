@@ -98,17 +98,20 @@ if (isset($_GET["act"])) {
                 $color = $_POST["color"];
                 $soluong = $_POST["soluong"];
                 $mota = $_POST["mota"];
-                $anh = $_FILES['anh']['name'];
-                $allowed_extensions = array('png', 'jpg');
-                $ext = pathinfo($anh, PATHINFO_EXTENSION);
-                if (!in_array($ext, $allowed_extensions)) {
-                    $thongbaoanh = "Ảnh phải ở dạng .png hoặc .jpg";
-                } else {
-                    $target_file = "../upload/" . basename($anh);
-                    move_uploaded_file($_FILES["anh"]["tmp_name"], $target_file);
-                    update_sanpham($id, $iddanhmuc, $ten, $anh, $giasale, $giagoc, $size, $color, $soluong, $mota);
-                    $thongbao = "Cập nhật sản phẩm thành công 🎉";
+                $anh = '';
+                if (!empty($_FILES['anh']['name'])) {
+                    $anh = $_FILES['anh']['name'];
+                    $allowed_extensions = array('png', 'jpg');
+                    $ext = pathinfo($anh, PATHINFO_EXTENSION);
+                    if (!in_array($ext, $allowed_extensions)) {
+                        $thongbaoanh = "Ảnh phải ở dạng .png hoặc .jpg";
+                    } else {
+                        $target_file = "../upload/" . basename($anh);
+                        move_uploaded_file($_FILES["anh"]["tmp_name"], $target_file);
+                    }
                 }
+                update_sanpham($id, $iddanhmuc, $ten, $anh, $giasale, $giagoc, $size, $color, $soluong, $mota);
+                $thongbao = "Cập nhật sản phẩm thành công 🎉";
             }
             $danhsachdanhmuc = loadall_danhmuc();
             include "./sanpham/update.php";

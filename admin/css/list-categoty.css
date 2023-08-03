@@ -14,6 +14,11 @@
     border: 1px solid #ccc;
     padding: 20px 15px;
 }
+.list-category td:nth-child(2),
+.list-category td:nth-child(7)
+ {
+    max-width: 200px;
+}
 .list-category thead tr {
     background: gray;
 }

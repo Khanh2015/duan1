@@ -35,7 +35,8 @@ if (isset($sanpham)) {
             <input name="ten" id="product-name" type="text" placeholder="Nhập vào tên sản phẩm mới" required value="<?php if (isset($tensanpham)) echo $tensanpham ?>" />
             <br /><br />
             <label for="product-img">Ảnh sản phẩm</label> <br />
-            <input name="anh" class="input-img" id="product-img" type="file" required /><br>
+            <input name="anh" class="input-img" id="product-img" type="file" /><br>
+            <p style="font-size: 14px; color: red; font-style: italic; margin-top: 10px;">Nếu không chọn ảnh mới thì ảnh sản phẩm sẽ được giữ nguyên</p>
             <img style="width: 150px; margin-top: 20px;" src="<?php if (isset($anhsanpham)) echo "../upload/" . $anhsanpham ?>" alt="">
 
             <br />
@@ -87,6 +88,7 @@ if (isset($sanpham)) {
                 <option <?php if ($color == "Tím") echo "selected" ?> value="Tím">Tím</option>
                 <option <?php if ($color == "Cam") echo "selected" ?> value="Cam">Cam</option>
                 <option <?php if ($color == "Hồng") echo "selected" ?> value="Hồng">Hồng</option>
+                <option <?php if ($color == "Nâu") echo "selected" ?> value="Nâu">Nâu</option>
                 <option <?php if ($color == "Xám") echo "selected" ?> value="Xám">Xám</option>
             </select>
             <br><br>

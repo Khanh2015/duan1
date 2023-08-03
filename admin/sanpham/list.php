@@ -63,8 +63,8 @@ if (isset($iddm)) {
                                 <td>
                                     <img src="../upload/<?php echo $anhsanpham ?>" alt="" />
                                 </td>
-                                <td><?php echo $giasale ?></td>
-                                <td><?php echo $giagoc ?></td>
+                                <td><?php echo $giasale ?>đ</td>
+                                <td><?php echo $giagoc ?>đ</td>
                                 <td><?php echo $size ?></td>
                                 <td><?php echo $color ?></td>
                                 <td><?php echo $soluong ?></td>

@@ -19,11 +19,17 @@
         <div class="menu-footer">
             <h3 class="footer-title-margin">MENU</h3>
             <div class="footer-menu-wapper">
-                <a href="">Trang chủ</a>
-                <a href="">Áo đá bóng</a>
-                <a href="">Phụ kiện thể thao</a>
-                <a href="">Giới thiệu</a>
-                <a href="">Liên hệ</a>
+                <a href="index.php?act=home">Trang chủ</a>
+                <?php
+                if (isset($danhsachdanhmuc)) {
+                    foreach ($danhsachdanhmuc as $danhmuc) {
+                        extract($danhmuc);
+                        echo '<a href="index.php?act=locdanhmuc&iddanhmuc=' . $id . '">' . $tendanhmuc . '</a>';
+                    }
+                }
+                ?>
+                <a href="index.php?act=gioithieu">Giới thiệu</a>
+                <a href="index.php?act=lienhe">Liên hệ</a>
             </div>
         </div>
 
@@ -144,11 +150,10 @@
         },
     });
 </script>
-<script src="./javascript/pagination.js"></script>
-<script src="./javascript/rangeFilter.js"></script>
-<script src="./javascript/in-decrease-detail.js"></script>
-<script src="./javascript/in-decrease.js"></script>
-<script src="./javascript/register.js"></script>
+<script src="./view/javascript/rangeFilter.js"></script>
+<script src="./view/javascript/in-decrease-detail.js"></script>
+<script src="./view/javascript/in-decrease.js"></script>
+<script src="./view/javascript/countdown.js"></script>
 </body>
 
 </html>

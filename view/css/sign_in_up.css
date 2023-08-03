@@ -1,0 +1,55 @@
+.sign-in-container {
+    margin-top: 150px;
+    margin-bottom: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.sign-in-container .sign-in-content {
+    width: 700px;
+    padding: 50px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+.sign-in-content input {
+    width: 100%;
+    padding: 14px;
+    border-radius: 5px;
+    border: 2px solid #ccc;
+    outline: none;
+    font-size: 16px;
+}
+.sign-in-content .sign-in-submit {
+    width: 100%;
+    padding: 18px;
+    border-radius: 5px;
+    background: red;
+    border: none;
+    color: white;
+    font-size: 20px;
+    font-weight: 600;
+    transition: all 0.25s linear;
+}
+.sign-in-content .sign-in-submit:hover {
+    transform: scale(1.1);
+}
+.text-red {
+    color: rgb(228, 30, 30);
+}
+.text-red:hover {
+    opacity: 0.8;
+}
+.sign-in-container .update-account-content {
+    gap: 10px;
+    align-items: flex-start;
+}
+.sign-in-container .forgot-password-table td,
+.sign-in-container .forgot-password-table th {
+    border: 1px solid #ccc;
+    padding: 10px 20px;
+}

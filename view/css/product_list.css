@@ -1,3 +1,6 @@
+.list-product-wrapper {
+    grid-template-columns: repeat(4, 1fr);
+}
 .product-list-content {
     margin: 150px;
     display: grid;
@@ -13,11 +16,11 @@
     width: 40px;
     margin: 4px;
     padding: 4px;
-    border: 1px solid #ccc;
+    border: 2px solid #ccc;
     cursor: pointer;
 }
 .filter-container input[type="radio"]:checked + label {
-    background-color: #eee;
+    background-color: rgb(204, 204, 204);
 }
 .filter-container .color-label {
     width: 20px;
@@ -68,6 +71,12 @@
 }
 .filter-container #color-black + label {
     background-color: black;
+}
+.filter-container #color-brown + label {
+    background-color: brown;
+}
+.filter-container #color-orange + label {
+    background-color: orange;
 }
 .filter-container input[type="range"] {
     -webkit-appearance: none;
@@ -153,35 +162,5 @@
 }
 .product-list-wapper .product-list-title {
     text-align: center;
-    margin-bottom: 50px;
-}
-.product-list-wapper .listPage{
-    margin-top: 30px;
-    padding:10px;
-    text-align: center;
-    list-style: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-}
-.product-list-wapper .listPage li{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #ffffffBD;
-    padding: 10px;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    border: 1px solid #ccc;
-    cursor: pointer;
-    transition: 0.25s;
-}
-.product-list-wapper .listPage li:hover {
-    background-color: #e2d6fd;
-}
-.product-list-wapper .listPage .active{
-    background-color: #B192EF;
-    color:#fff;
+    margin-bottom: 40px;
 }

@@ -7,6 +7,21 @@
     color: black;
     font-family: Arial, Helvetica, sans-serif;
 }
+h1, h2, h3, h4 {
+    font-weight: 600 !important;
+}
+h1 {
+    font-size: 32px !important;
+}
+h2 {
+    font-size: 24px !important;
+}
+h3 {
+    font-size: 18.72px !important;
+}
+h4 {
+    font-size: 16px !important;
+}
 img {
     display: block;
     width: 100%;
@@ -25,6 +40,7 @@ header {
     padding: 0 150px;
     background: #fff;
     position: fixed;
+    top: 400px;
     top: 0;
     left: 0;
     right: 0;
@@ -189,7 +205,7 @@ header .logo {
     color: #fff;
     display: inline-block;
     background: rgba(0, 0, 0, 0.3);
-    padding: 0 24px 9px 26px;
+    padding: 0 30px 9px 32px;
     border-radius: 50%;
 }
 .banner .owl-nav .owl-next:hover span,
@@ -239,7 +255,6 @@ header .logo {
     margin-top: 100px;
 }
 .top10-title {
-    margin-bottom: 50px;
     text-align: center;
 }
 .top-10 .owl-nav {
@@ -274,16 +289,19 @@ header .logo {
     overflow: hidden;
 }
 .product img {
-    height: 400px;
-    object-fit: cover;
+    height: 270px;
+    object-fit: contain;
     transition: 0.25s;
 }
 .product img:hover {
     opacity: 0.8;
 }
 .product h4 {
+    padding: 0 8px;
     transition: 0.25s;
-    font-size: 20px;
+    font-size: 18px;
+    text-align: center;
+    height: 47px;
 }
 .product h4:hover {
     color: red;
@@ -295,7 +313,6 @@ header .logo {
     gap: 12px;
 }
 .product .variant-wrapper p {
-    transition: 0.15s;
     font-weight: 600;
     font-size: 14px;
 }
@@ -307,7 +324,6 @@ header .logo {
     font-size: 14px;
 }
 .product .init-price {
-    transition: all 0.15s linear;
     color: red;
     font-weight: 600;
 }
@@ -327,8 +343,7 @@ header .logo {
     color: #fff;
     transition: all 0.15s linear;
 }
-.product form button:hover,
-.product p:hover {
+.product form button:hover {
     transform: scale(1.1);
 }
 .category {
@@ -399,11 +414,13 @@ header .logo {
 }
 .products {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     gap: 30px;
 }
 .products-list .see-more {
-    margin-top: 50px;
+    margin-top: 40px;
+    display: block;
+    text-align: center;
     background: #fff;
     padding: 10px 20px;
     border: 2px solid red;
@@ -486,7 +503,7 @@ footer {
 }
 .footer-top button {
     position: absolute;
-    padding: 8px 0px;
+    height: 57px;
     font-size: 32px;
     width: 20%;
     border-top-right-radius: 20px;

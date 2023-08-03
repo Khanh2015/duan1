@@ -48,206 +48,36 @@
   <div class="top10-products">
     <h1 class="top10-title">Top 10 sản phẩm yêu thích nhất</h1>
     <div class="owl-carousel owl-theme top-10">
-      <div class="item">
-        <div class="product">
-          <a href=""><img src="./view/img/áo Mu đỏ.jpg" alt="" /></a>
-          <a href="">
-            <h4>Tên sản phẩm</h4>
-          </a>
-          <div class="variant-wrapper">
-            <p class="size">Size: XXL</p>
-            <p class="color">Màu: Xanh lá cây</p>
+      <?php
+      if (isset($top10)) {
+        foreach ($top10 as $sanpham) {
+          $link = "index.php?act=chitietsanpham&id=" . $sanpham["id"];
+          extract($sanpham);
+      ?>
+          <div class="item">
+            <div class="product">
+              <a href="<?php echo $link ?>"><img src="./upload/<?php echo $anhsanpham ?>" alt="" /></a>
+              <a href="<?php echo $link ?>">
+                <h4><?php echo $tensanpham ?></h4>
+              </a>
+              <div class="variant-wrapper">
+                <p class="size">Size: <?php echo $size ?></p>
+                <p class="color">Màu: <?php echo $color ?></p>
+              </div>
+              <div class="price">
+                <p class="init-price"><?php echo $giasale ?>đ</p>
+                <p class="sale"><del><?php echo $giagoc ?>đ</del></p>
+              </div>
+              <form action="" method="post">
+                <input type="hidden" name="" />
+                <button type="submit">Thêm vào giỏ hàng</button>
+              </form>
+            </div>
           </div>
-          <div class="price">
-            <p class="init-price">Giá sale</p>
-            <p class="sale"><del>Giá gốc</del></p>
-          </div>
-          <form action="" method="post">
-            <input type="hidden" name="" />
-            <button type="submit">Thêm vào giỏ hàng</button>
-          </form>
-        </div>
-      </div>
-      <div class="item">
-        <div class="product">
-          <a href=""><img src="./view/img/áo Mu đỏ.jpg" alt="" /></a>
-          <a href="">
-            <h4>Tên sản phẩm</h4>
-          </a>
-          <div class="variant-wrapper">
-            <p class="size">Size: XXL</p>
-            <p class="color">Màu: Xanh lá cây</p>
-          </div>
-          <div class="price">
-            <p class="init-price">Giá sale</p>
-            <p class="sale"><del>Giá gốc</del></p>
-          </div>
-          <form action="" method="post">
-            <input type="hidden" name="" />
-            <button type="submit">Thêm vào giỏ hàng</button>
-          </form>
-        </div>
-      </div>
-      <div class="item">
-        <div class="product">
-          <a href=""><img src="./view/img/áo Mu đỏ.jpg" alt="" /></a>
-          <a href="">
-            <h4>Tên sản phẩm</h4>
-          </a>
-          <div class="variant-wrapper">
-            <p class="size">Size: XXL</p>
-            <p class="color">Màu: Xanh lá cây</p>
-          </div>
-          <div class="price">
-            <p class="init-price">Giá sale</p>
-            <p class="sale"><del>Giá gốc</del></p>
-          </div>
-          <form action="" method="post">
-            <input type="hidden" name="" />
-            <button type="submit">Thêm vào giỏ hàng</button>
-          </form>
-        </div>
-      </div>
-      <div class="item">
-        <div class="product">
-          <a href=""><img src="./view/img/áo Mu đỏ.jpg" alt="" /></a>
-          <a href="">
-            <h4>Tên sản phẩm</h4>
-          </a>
-          <div class="variant-wrapper">
-            <p class="size">Size: XXL</p>
-            <p class="color">Màu: Xanh lá cây</p>
-          </div>
-          <div class="price">
-            <p class="init-price">Giá sale</p>
-            <p class="sale"><del>Giá gốc</del></p>
-          </div>
-          <form action="" method="post">
-            <input type="hidden" name="" />
-            <button type="submit">Thêm vào giỏ hàng</button>
-          </form>
-        </div>
-      </div>
-      <div class="item">
-        <div class="product">
-          <a href=""><img src="./view/img/áo Mu đỏ.jpg" alt="" /></a>
-          <a href="">
-            <h4>Tên sản phẩm</h4>
-          </a>
-          <div class="variant-wrapper">
-            <p class="size">Size: XXL</p>
-            <p class="color">Màu: Xanh lá cây</p>
-          </div>
-          <div class="price">
-            <p class="init-price">Giá sale</p>
-            <p class="sale"><del>Giá gốc</del></p>
-          </div>
-          <form action="" method="post">
-            <input type="hidden" name="" />
-            <button type="submit">Thêm vào giỏ hàng</button>
-          </form>
-        </div>
-      </div>
-      <div class="item">
-        <div class="product">
-          <a href=""><img src="./view/img/áo Mu đỏ.jpg" alt="" /></a>
-          <a href="">
-            <h4>Tên sản phẩm</h4>
-          </a>
-          <div class="variant-wrapper">
-            <p class="size">Size: XXL</p>
-            <p class="color">Màu: Xanh lá cây</p>
-          </div>
-          <div class="price">
-            <p class="init-price">Giá sale</p>
-            <p class="sale"><del>Giá gốc</del></p>
-          </div>
-          <form action="" method="post">
-            <input type="hidden" name="" />
-            <button type="submit">Thêm vào giỏ hàng</button>
-          </form>
-        </div>
-      </div>
-      <div class="item">
-        <div class="product">
-          <a href=""><img src="./view/img/áo Mu đỏ.jpg" alt="" /></a>
-          <a href="">
-            <h4>Tên sản phẩm</h4>
-          </a>
-          <div class="variant-wrapper">
-            <p class="size">Size: XXL</p>
-            <p class="color">Màu: Xanh lá cây</p>
-          </div>
-          <div class="price">
-            <p class="init-price">Giá sale</p>
-            <p class="sale"><del>Giá gốc</del></p>
-          </div>
-          <form action="" method="post">
-            <input type="hidden" name="" />
-            <button type="submit">Thêm vào giỏ hàng</button>
-          </form>
-        </div>
-      </div>
-      <div class="item">
-        <div class="product">
-          <a href=""><img src="./view/img/áo Mu đỏ.jpg" alt="" /></a>
-          <a href="">
-            <h4>Tên sản phẩm</h4>
-          </a>
-          <div class="variant-wrapper">
-            <p class="size">Size: XXL</p>
-            <p class="color">Màu: Xanh lá cây</p>
-          </div>
-          <div class="price">
-            <p class="init-price">Giá sale</p>
-            <p class="sale"><del>Giá gốc</del></p>
-          </div>
-          <form action="" method="post">
-            <input type="hidden" name="" />
-            <button type="submit">Thêm vào giỏ hàng</button>
-          </form>
-        </div>
-      </div>
-      <div class="item">
-        <div class="product">
-          <a href=""><img src="./view/img/áo Mu đỏ.jpg" alt="" /></a>
-          <a href="">
-            <h4>Tên sản phẩm</h4>
-          </a>
-          <div class="variant-wrapper">
-            <p class="size">Size: XXL</p>
-            <p class="color">Màu: Xanh lá cây</p>
-          </div>
-          <div class="price">
-            <p class="init-price">Giá sale</p>
-            <p class="sale"><del>Giá gốc</del></p>
-          </div>
-          <form action="" method="post">
-            <input type="hidden" name="" />
-            <button type="submit">Thêm vào giỏ hàng</button>
-          </form>
-        </div>
-      </div>
-      <div class="item">
-        <div class="product">
-          <a href=""><img src="./view/img/áo Mu đỏ.jpg" alt="" /></a>
-          <a href="">
-            <h4>Tên sản phẩm</h4>
-          </a>
-          <div class="variant-wrapper">
-            <p class="size">Size: XXL</p>
-            <p class="color">Màu: Xanh lá cây</p>
-          </div>
-          <div class="price">
-            <p class="init-price">Giá sale</p>
-            <p class="sale"><del>Giá gốc</del></p>
-          </div>
-          <form action="" method="post">
-            <input type="hidden" name="" />
-            <button type="submit">Thêm vào giỏ hàng</button>
-          </form>
-        </div>
-      </div>
+      <?php
+        }
+      }
+      ?>
     </div>
   </div>
 
@@ -257,7 +87,7 @@
       <div class="category-title">
         <h2>PHỤ KIỆN THỂ THAO</h2>
         <p>Giày đá bóng, găng tay bắt bóng, tất thể thao...</p>
-        <a href="">Xem thêm...</a>
+        <a href="index.php?act=locdanhmuc&iddanhmuc=2">Xem thêm...</a>
       </div>
       <img src="./view/img/categori-sneaker.png" alt="" />
     </div>
@@ -266,7 +96,7 @@
       <div class="category-title">
         <h2>ÁO ĐÁ BÓNG</h2>
         <p>Barcelona, Real Madrid, Tottenham, <br> Paris Saint-Germain, Chelsea, Liverpool, <br> Manchester City, Manchester United,...</p>
-        <a href="">Xem thêm...</a>
+        <a href="index.php?act=locdanhmuc&iddanhmuc=1">Xem thêm...</a>
       </div>
       <img src="./view/img/categori-aodabong.png" alt="" />
     </div>
@@ -276,235 +106,36 @@
   <div class="products-list">
     <h1 class="products-list-title">Danh sách sản phẩm</h1>
     <div class="products">
-      <div class="product">
-        <a href=""><img src="./view/img/áo Mu đỏ.jpg" alt="" /></a>
-        <a href="">
-          <h4>Tên sản phẩm</h4>
-        </a>
-        <div class="variant-wrapper">
-          <p class="size">Size: XXL</p>
-          <p class="color">Màu: Xanh lá cây</p>
-        </div>
-        <div class="price">
-          <p class="init-price">Giá sale</p>
-          <p class="sale"><del>Giá gốc</del></p>
-        </div>
-        <form action="" method="post">
-          <input type="hidden" name="" />
-          <button type="submit">Thêm vào giỏ hàng</button>
-        </form>
-      </div>
-
-      <div class="product">
-        <a href=""><img src="./view/img/áo Mu đỏ.jpg" alt="" /></a>
-        <a href="">
-          <h4>Tên sản phẩm</h4>
-        </a>
-        <div class="variant-wrapper">
-          <p class="size">Size: XXL</p>
-          <p class="color">Màu: Xanh lá cây</p>
-        </div>
-        <div class="price">
-          <p class="init-price">Giá sale</p>
-          <p class="sale"><del>Giá gốc</del></p>
-        </div>
-        <form action="">
-          <input type="hidden" name="" />
-          <button type="submit">Thêm vào giỏ hàng</button>
-        </form>
-      </div>
-
-      <div class="product">
-        <a href=""><img src="./view/img/áo Mu đỏ.jpg" alt="" /></a>
-        <a href="">
-          <h4>Tên sản phẩm</h4>
-        </a>
-        <div class="variant-wrapper">
-          <p class="size">Size: XXL</p>
-          <p class="color">Màu: Xanh lá cây</p>
-        </div>
-        <div class="price">
-          <p class="init-price">Giá sale</p>
-          <p class="sale"><del>Giá gốc</del></p>
-        </div>
-        <form action="">
-          <input type="hidden" name="" />
-          <button type="submit">Thêm vào giỏ hàng</button>
-        </form>
-      </div>
-
-      <div class="product">
-        <a href=""><img src="./view/img/áo Mu đỏ.jpg" alt="" /></a>
-        <a href="">
-          <h4>Tên sản phẩm</h4>
-        </a>
-        <div class="variant-wrapper">
-          <p class="size">Size: XXL</p>
-          <p class="color">Màu: Xanh lá cây</p>
-        </div>
-        <div class="price">
-          <p class="init-price">Giá sale</p>
-          <p class="sale"><del>Giá gốc</del></p>
-        </div>
-        <form action="">
-          <input type="hidden" name="" />
-          <button type="submit">Thêm vào giỏ hàng</button>
-        </form>
-      </div>
-
-      <div class="product">
-        <a href=""><img src="./view/img/áo Mu đỏ.jpg" alt="" /></a>
-        <a href="">
-          <h4>Tên sản phẩm</h4>
-        </a>
-        <div class="variant-wrapper">
-          <p class="size">Size: XXL</p>
-          <p class="color">Màu: Xanh lá cây</p>
-        </div>
-        <div class="price">
-          <p class="init-price">Giá sale</p>
-          <p class="sale"><del>Giá gốc</del></p>
-        </div>
-        <form action="">
-          <input type="hidden" name="" />
-          <button type="submit">Thêm vào giỏ hàng</button>
-        </form>
-      </div>
-
-      <div class="product">
-        <a href=""><img src="./view/img/áo Mu đỏ.jpg" alt="" /></a>
-        <a href="">
-          <h4>Tên sản phẩm</h4>
-        </a>
-        <div class="variant-wrapper">
-          <p class="size">Size: XXL</p>
-          <p class="color">Màu: Xanh lá cây</p>
-        </div>
-        <div class="price">
-          <p class="init-price">Giá sale</p>
-          <p class="sale"><del>Giá gốc</del></p>
-        </div>
-        <form action="">
-          <input type="hidden" name="" />
-          <button type="submit">Thêm vào giỏ hàng</button>
-        </form>
-      </div>
-
-      <div class="product">
-        <a href=""><img src="./view/img/áo Mu đỏ.jpg" alt="" /></a>
-        <a href="">
-          <h4>Tên sản phẩm</h4>
-        </a>
-        <div class="variant-wrapper">
-          <p class="size">Size: XXL</p>
-          <p class="color">Màu: Xanh lá cây</p>
-        </div>
-        <div class="price">
-          <p class="init-price">Giá sale</p>
-          <p class="sale"><del>Giá gốc</del></p>
-        </div>
-        <form action="">
-          <input type="hidden" name="" />
-          <button type="submit">Thêm vào giỏ hàng</button>
-        </form>
-      </div>
-
-      <div class="product">
-        <a href=""><img src="./view/img/áo Mu đỏ.jpg" alt="" /></a>
-        <a href="">
-          <h4>Tên sản phẩm</h4>
-        </a>
-        <div class="variant-wrapper">
-          <p class="size">Size: XXL</p>
-          <p class="color">Màu: Xanh lá cây</p>
-        </div>
-        <div class="price">
-          <p class="init-price">Giá sale</p>
-          <p class="sale"><del>Giá gốc</del></p>
-        </div>
-        <form action="">
-          <input type="hidden" name="" />
-          <button type="submit">Thêm vào giỏ hàng</button>
-        </form>
-      </div>
-
-      <div class="product">
-        <a href=""><img src="./view/img/áo Mu đỏ.jpg" alt="" /></a>
-        <a href="">
-          <h4>Tên sản phẩm</h4>
-        </a>
-        <div class="variant-wrapper">
-          <p class="size">Size: XXL</p>
-          <p class="color">Màu: Xanh lá cây</p>
-        </div>
-        <div class="price">
-          <p class="init-price">Giá sale</p>
-          <p class="sale"><del>Giá gốc</del></p>
-        </div>
-        <form action="">
-          <input type="hidden" name="" />
-          <button type="submit">Thêm vào giỏ hàng</button>
-        </form>
-      </div>
-
-      <div class="product">
-        <a href=""><img src="./view/img/áo Mu đỏ.jpg" alt="" /></a>
-        <a href="">
-          <h4>Tên sản phẩm</h4>
-        </a>
-        <div class="variant-wrapper">
-          <p class="size">Size: XXL</p>
-          <p class="color">Màu: Xanh lá cây</p>
-        </div>
-        <div class="price">
-          <p class="init-price">Giá sale</p>
-          <p class="sale"><del>Giá gốc</del></p>
-        </div>
-        <form action="">
-          <input type="hidden" name="" />
-          <button type="submit">Thêm vào giỏ hàng</button>
-        </form>
-      </div>
-
-      <div class="product">
-        <a href=""><img src="./view/img/áo Mu đỏ.jpg" alt="" /></a>
-        <a href="">
-          <h4>Tên sản phẩm</h4>
-        </a>
-        <div class="variant-wrapper">
-          <p class="size">Size: XXL</p>
-          <p class="color">Màu: Xanh lá cây</p>
-        </div>
-        <div class="price">
-          <p class="init-price">Giá sale</p>
-          <p class="sale"><del>Giá gốc</del></p>
-        </div>
-        <form action="">
-          <input type="hidden" name="" />
-          <button type="submit">Thêm vào giỏ hàng</button>
-        </form>
-      </div>
-
-      <div class="product">
-        <a href=""><img src="./view/img/áo Mu đỏ.jpg" alt="" /></a>
-        <a href="">
-          <h4>Tên sản phẩm</h4>
-        </a>
-        <div class="variant-wrapper">
-          <p class="size">Size: XXL</p>
-          <p class="color">Màu: Xanh lá cây</p>
-        </div>
-        <div class="price">
-          <p class="init-price">Giá sale</p>
-          <p class="sale"><del>Giá gốc</del></p>
-        </div>
-        <form action="">
-          <input type="hidden" name="" />
-          <button type="submit">Thêm vào giỏ hàng</button>
-        </form>
-      </div>
+      <?php
+      if (isset($danhsachsanpham)) {
+        foreach ($danhsachsanpham as $sanpham) {
+          $link = "index.php?act=chitietsanpham&id=" . $sanpham["id"];
+          extract($sanpham);
+      ?>
+          <div class="product">
+            <a href="<?php echo $link ?>"><img src="./upload/<?php echo $anhsanpham ?>" alt="" /></a>
+            <a href="<?php echo $link ?>">
+              <h4><?php echo $tensanpham ?></h4>
+            </a>
+            <div class="variant-wrapper">
+              <p class="size">Size: <?php echo $size ?></p>
+              <p class="color">Màu: <?php echo $color ?></p>
+            </div>
+            <div class="price">
+              <p class="init-price"><?php echo $giasale ?>đ</p>
+              <p class="sale"><del><?php echo $giagoc ?>đ</del></p>
+            </div>
+            <form action="" method="post">
+              <input type="hidden" name="" />
+              <button type="submit">Thêm vào giỏ hàng</button>
+            </form>
+          </div>
+      <?php
+        }
+      }
+      ?>
     </div>
-    <a href="" class="see-more">Xem tất cả</a>
+    <a href="index.php?act=danhsachsanpham" class="see-more">Xem tất cả</a>
   </div>
 </div>
 
@@ -525,13 +156,13 @@
 <!-- slide logo -->
 <div class="slide-logo-wapper">
   <div class="owl-carousel owl-theme slide-logo">
-    <div class="item"><a href=""><img src="./view/img/Logo-barca.png" alt=""></a></div>
-    <div class="item"><a href=""><img src="./view/img/Logo-chelsea.png" alt=""></a></div>
-    <div class="item"><a href=""><img src="./view/img/Logo-liverpool.png" alt=""></a></div>
-    <div class="item"><a href=""><img src="./view/img/Logo-man-city.png" alt=""></a></div>
-    <div class="item"><a href=""><img src="./view/img/Logo-mu.png" alt=""></a></div>
-    <div class="item"><a href=""><img src="./view/img/Logo-psg.png" alt=""></a></div>
-    <div class="item"><a href=""><img src="./view/img/Logo-real.png" alt=""></a></div>
-    <div class="item"><a href=""><img src="./view/img/Logo-tottenham.png" alt=""></a></div>
+    <div class="item"><a href="index.php?act=danhsachaobarce"><img src="./view/img/Logo-barca.png" alt=""></a></div>
+    <div class="item"><a href="index.php?act=danhsachaochel"><img src="./view/img/Logo-chelsea.png" alt=""></a></div>
+    <div class="item"><a href="index.php?act=danhsachaoliver"><img src="./view/img/Logo-liverpool.png" alt=""></a></div>
+    <div class="item"><a href="index.php?act=danhsachaomc"><img src="./view/img/Logo-man-city.png" alt=""></a></div>
+    <div class="item"><a href="index.php?act=danhsachaomu"><img src="./view/img/Logo-mu.png" alt=""></a></div>
+    <div class="item"><a href="index.php?act=danhsachaoparis"><img src="./view/img/Logo-psg.png" alt=""></a></div>
+    <div class="item"><a href="index.php?act=danhsachaoreal"><img src="./view/img/Logo-real.png" alt=""></a></div>
+    <div class="item"><a href="index.php?act=danhsachaotot"><img src="./view/img/Logo-tottenham.png" alt=""></a></div>
   </div>
 </div>

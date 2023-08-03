@@ -78,6 +78,7 @@
                 <option value="Tím">Tím</option>
                 <option value="Cam">Cam</option>
                 <option value="Hồng">Hồng</option>
+                <option value="Nâu">Nâu</option>
                 <option value="Xám">Xám</option>
             </select>
             <br><br>
