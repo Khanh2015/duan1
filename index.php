@@ -167,6 +167,14 @@ if (isset($_GET["act"])) {
             echo '<script>window.location.href = "index.php";</script>';
             exit;
             break;
+        case 'chitietsanpham':
+            if (isset($_GET['id'])) {
+                $id = $_GET["id"];
+                $sanpham = loadone_sanpham_tendanhmuc($id);
+                $danhsachcungloai = loadall_sanphamcungdanhmuc($sanpham["iddanhmuc"], $id);
+            }
+            include "./view/chitietsanpham.php";
+            break;
         default:
             include "./view/home.php";
             break;

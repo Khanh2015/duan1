@@ -156,13 +156,13 @@
 <!-- slide logo -->
 <div class="slide-logo-wapper">
   <div class="owl-carousel owl-theme slide-logo">
-    <div class="item"><a href="index.php?act=danhsachaobarce"><img src="./view/img/Logo-barca.png" alt=""></a></div>
-    <div class="item"><a href="index.php?act=danhsachaochel"><img src="./view/img/Logo-chelsea.png" alt=""></a></div>
-    <div class="item"><a href="index.php?act=danhsachaoliver"><img src="./view/img/Logo-liverpool.png" alt=""></a></div>
-    <div class="item"><a href="index.php?act=danhsachaomc"><img src="./view/img/Logo-man-city.png" alt=""></a></div>
-    <div class="item"><a href="index.php?act=danhsachaomu"><img src="./view/img/Logo-mu.png" alt=""></a></div>
-    <div class="item"><a href="index.php?act=danhsachaoparis"><img src="./view/img/Logo-psg.png" alt=""></a></div>
-    <div class="item"><a href="index.php?act=danhsachaoreal"><img src="./view/img/Logo-real.png" alt=""></a></div>
-    <div class="item"><a href="index.php?act=danhsachaotot"><img src="./view/img/Logo-tottenham.png" alt=""></a></div>
+    <div class="item"><a href="index.php?act=locdanhmuc&iddanhmuc=1"><img src="./view/img/Logo-barca.png" alt=""></a></div>
+    <div class="item"><a href="index.php?act=locdanhmuc&iddanhmuc=1"><img src="./view/img/Logo-chelsea.png" alt=""></a></div>
+    <div class="item"><a href="index.php?act=locdanhmuc&iddanhmuc=1"><img src="./view/img/Logo-liverpool.png" alt=""></a></div>
+    <div class="item"><a href="index.php?act=locdanhmuc&iddanhmuc=1"><img src="./view/img/Logo-man-city.png" alt=""></a></div>
+    <div class="item"><a href="index.php?act=locdanhmuc&iddanhmuc=1"><img src="./view/img/Logo-mu.png" alt=""></a></div>
+    <div class="item"><a href="index.php?act=locdanhmuc&iddanhmuc=1"><img src="./view/img/Logo-psg.png" alt=""></a></div>
+    <div class="item"><a href="index.php?act=locdanhmuc&iddanhmuc=1"><img src="./view/img/Logo-real.png" alt=""></a></div>
+    <div class="item"><a href="index.php?act=locdanhmuc&iddanhmuc=1"><img src="./view/img/Logo-tottenham.png" alt=""></a></div>
   </div>
 </div>

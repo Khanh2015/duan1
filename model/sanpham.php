@@ -107,3 +107,17 @@ function count_loadall_danhsachsanpham()
     $result = pdo_query_value($sql);
     return $result;
 }
+
+function loadone_sanpham_tendanhmuc($id)
+{
+    $sql = "SELECT sanpham.*, danhmuc.tendanhmuc FROM sanpham INNER JOIN danhmuc ON sanpham.iddanhmuc = danhmuc.id WHERE sanpham.id = '$id'";
+    $sanpham = pdo_query_one($sql);
+    return $sanpham;
+}
+
+function loadall_sanphamcungdanhmuc($iddanhmuc, $id)
+{
+    $sql = "SELECT * FROM sanpham WHERE iddanhmuc = '$iddanhmuc' AND id != '$id' LIMIT 5";
+    $danhsachsanpham = pdo_query($sql);
+    return $danhsachsanpham;
+}

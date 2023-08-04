@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.green.min.css" integrity="sha512-C8Movfk6DU/H5PzarG0+Dv9MA9IZzvmQpO/3cIlGIflmtY3vIud07myMu4M/NTPJl8jmZtt/4mC9bAioMZBBdA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="./dist/output.css" rel="stylesheet">
     <link rel="stylesheet" href="./view/css/cart.css">
     <link rel="stylesheet" href="./view/css/index.css">
     <link rel="stylesheet" href="./view/css/order.css">
@@ -47,6 +48,10 @@
                     </li>
                     <li><a href="index.php?act=gioithieu">Giới thiệu</a></li>
                     <li><a href="index.php?act=lienhe">Liên hệ</a></li>
+                    <?php if (!isset($_SESSION["taikhoan"])) {
+                        echo '<li><a href="index.php?act=lienhe">Hỏi đáp</a></li>';
+                    }
+                    ?>
                     <?php if (isset($_SESSION["taikhoan"]) && $_SESSION["taikhoan"]["chucvu"] == 1) {
                         echo '<li><a href="admin/index.php">Đăng nhập Admin</a></li>';
                     } ?>
