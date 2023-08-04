@@ -45,9 +45,9 @@ function quenmatkhau($email)
     return $danhsachtaikhoan;
 }
 
-function loadall_taikhoan_noadmin($id)
+function loadall_taikhoan()
 {
-    $sql = "SELECT * FROM `taikhoan` WHERE `id` != '$id'";
+    $sql = "SELECT * FROM `taikhoan`";
     $danhsachtaikhoan = pdo_query($sql);
     return $danhsachtaikhoan;
 }

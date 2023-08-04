@@ -63,8 +63,8 @@ if (isset($iddm)) {
                                 <td>
                                     <img src="../upload/<?php echo $anhsanpham ?>" alt="" />
                                 </td>
-                                <td><?php echo $giasale ?>đ</td>
-                                <td><?php echo $giagoc ?>đ</td>
+                                <td><?php echo number_format($giasale, 0, ",", ".") ?>đ</td>
+                                <td><?php echo number_format($giagoc, 0, ",", ".") ?>đ</td>
                                 <td><?php echo $size ?></td>
                                 <td><?php echo $color ?></td>
                                 <td><?php echo $soluong ?></td>
@@ -82,6 +82,9 @@ if (isset($iddm)) {
                     ?>
                 </tbody>
             </table>
+            <!-- <?php
+                    require_once "./pagination.php"
+                    ?> -->
             <a href="index.php?act=themsanpham" class="submit-btn">Thêm mới</a>
             <a href="index.php?act=danhsachsanpham"><button type="button" class="list-btn">Danh sách</button></a>
         </div>

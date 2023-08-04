@@ -29,7 +29,7 @@ if (isset($_GET["act"])) {
             } else {
                 $page = $_GET['page'];
             }
-            $sopluongbanghimoitrang = 4;
+            $sopluongbanghimoitrang = 12;
             $tongsoluongbanghi = count_loadall_danhsachsanpham();
             $totalPage = ceil($tongsoluongbanghi / $sopluongbanghimoitrang);
             $start_limit = ($page - 1) * $sopluongbanghimoitrang;

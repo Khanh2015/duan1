@@ -39,7 +39,13 @@
                                 <td><?php if (isset($chucvu)) echo $chucvu ?></td>
                                 <td>
                                     <a href="<?php echo $suataikhoan ?>" class="edit-btn"><i class="fa-regular fa-pen-to-square"></i> Sửa</a>
-                                    <a href="<?php echo $xoataikhoan ?>" class="delete-btn"><i class="fa-regular fa-trash-can"></i> Xoá</a>
+                                    <?php
+                                    if ($taikhoan["id"] != $_SESSION["taikhoan"]["id"]) {
+                                    ?>
+                                        <a href="<?php echo $xoataikhoan ?>" class="delete-btn"><i class="fa-regular fa-trash-can"></i> Xoá</a>
+                                    <?php
+                                    }
+                                    ?>
                                 </td>
                             </tr>
                     <?php

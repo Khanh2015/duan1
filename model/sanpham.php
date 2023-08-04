@@ -7,7 +7,7 @@ function insert_sanpham($iddanhmuc, $ten, $anh, $giasale, $giagoc, $size, $color
 
 function loadall_sanpham()
 {
-    $sql = "SELECT * FROM `sanpham` WHERE 1";
+    $sql = "SELECT * FROM `sanpham` ORDER BY id DESC";
     $danhsachsanpham = pdo_query($sql);
     return $danhsachsanpham;
 }

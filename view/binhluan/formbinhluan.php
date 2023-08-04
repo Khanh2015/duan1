@@ -19,7 +19,7 @@ $danhsachbinhluan = loadall_binhluan_tentaikhoan($idsanpham);
 
     <div class="my-6">
         <h1 class="mt-20 text-[#f8303a] font-semibold">Bình luận:</h1>
-        <div class=" border-gray-400 rounded-md border-[1px] border-solid overflow-hidden">
+        <div class=" border-gray-400 rounded-md border-[1px] border-solid overflow-hidden min-h-[200px] flex flex-col justify-between">
             <?php
             if (isset($danhsachbinhluan)) {
                 foreach ($danhsachbinhluan as $binhluan) {

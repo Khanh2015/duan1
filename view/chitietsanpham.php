@@ -23,8 +23,8 @@ if (isset($sanpham)) {
                     <!-- gia san pham -->
                     <span class="flex my-6">
 
-                        <p class="text-[#FF324D] font-semibold text-2xl max-w-[110px] bg-white "><?php if (isset($giasale)) echo $sanpham['giasale'] ?>đ</p>
-                        <del class="text-gray-500 font-mono mx-2"><?php if (isset($giagoc)) echo $sanpham['giagoc'] ?>đ</del>
+                        <p class="text-[#FF324D] font-semibold text-2xl max-w-[110px] bg-white "><?php if (isset($giasale)) echo number_format($sanpham['giasale'], 0, ",", ".") ?>đ</p>
+                        <del class="text-gray-500 font-mono mx-2"><?php if (isset($giagoc)) echo number_format($sanpham['giagoc'], 0, ",", ".") ?>đ</del>
                         <!-- tính % giảm giá
                         <input class="text-[#388E3C] font-mono  max-w-[80px] bg-white" type="text" disabled name="" id="" value="35% Off"> -->
                         <!-- đánh giá bao nhiêu sao
@@ -42,7 +42,7 @@ if (isset($sanpham)) {
                     <div class="text-2xl my-6">
                         <ul>
                             <li class="font-semibold "><i class="fa-solid fa-user-shield mr-[5px]" style="color: #eb0017;"></i>
-                                Cam kết bảo hàn chính hãng 1 năm</li>
+                                Cam kết bảo hàng chính hãng 1 năm</li>
                             <li class="font-semibold "><i class="fa-brands fa-instalod mr-[8px]" style="color: #eb0017;;"></i>
                                 Hoàn trả hàng trong 7 ngày
                             </li>
@@ -187,8 +187,8 @@ if (isset($sanpham)) {
                         <p class="color">Màu: <?php echo $color ?></p>
                     </div>
                     <div class="price">
-                        <p class="init-price"><?php echo $giasale ?>đ</p>
-                        <p class="sale"><del><?php echo $giagoc ?>đ</del></p>
+                        <p class="init-price"><?php echo number_format($giasale, 0, ",", ".") ?>đ</p>
+                        <p class="sale"><del><?php echo number_format($giagoc, 0, ",", ".") ?>đ</del></p>
                     </div>
                     <form action="" method="post">
                         <input type="hidden" name="" />
@@ -202,15 +202,15 @@ if (isset($sanpham)) {
     </div>
 </div>
 <script>
-    var image = document.getElementById('product-image');
+    // var image = document.getElementById('product-image');
 
-    image.addEventListener('mouseenter', function() {
-        image.classList.add('scale-110');
-    });
+    // image.addEventListener('mouseenter', function() {
+    //     image.classList.add('scale-110');
+    // });
 
-    image.addEventListener('mouseleave', function() {
-        image.classList.remove('scale-110');
-    });
+    // image.addEventListener('mouseleave', function() {
+    //     image.classList.remove('scale-110');
+    // });
 
 
     var number = 0; // Initial number

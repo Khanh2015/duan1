@@ -22,10 +22,16 @@
                     <a href="index.php"><i class="fa-solid fa-house"></i> Trang chủ</a>
                 </li>
                 <li>
-                    <a href="index.php?act=themdanhmuc"><i class="fa-solid fa-list"></i> Danh mục</a>
+                    <a href="index.php?act=danhsachdanhmuc"><i class="fa-solid fa-list"></i>Danh sách danh mục</a>
                 </li>
                 <li>
-                    <a href="index.php?act=themsanpham"><i class="fa-solid fa-shirt"></i> Sản phẩm</a>
+                    <a href="index.php?act=themdanhmuc"><i class="fa-solid fa-folder-plus"></i>Thêm danh mục</a>
+                </li>
+                <li>
+                    <a href="index.php?act=danhsachsanpham"><i class="fa-solid fa-shirt"></i>Danh sách sản phẩm</a>
+                </li>
+                <li>
+                    <a href="index.php?act=themsanpham"><i class="fa-regular fa-square-plus"></i>Thêm sản phẩm</a>
                 </li>
                 <li>
                     <a href="index.php?act=danhsachtaikhoan"><i class="fa-solid fa-user"></i> Tài khoản</a>

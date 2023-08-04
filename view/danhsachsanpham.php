@@ -105,8 +105,8 @@
                                 <p class="color">Màu: <?php echo $color ?></p>
                             </div>
                             <div class="price">
-                                <p class="init-price"><?php echo $giasale ?>đ</p>
-                                <p class="sale"><del><?php echo $giagoc ?>đ</del></p>
+                                <p class="init-price"><?php echo number_format($giasale, 0, ",", ".") ?>đ</p>
+                                <p class="sale"><del><?php echo number_format($giagoc, 0, ",", ".") ?>đ</del></p>
                             </div>
                             <form action="" method="post">
                                 <input type="hidden" name="" />

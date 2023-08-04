@@ -8,6 +8,7 @@ include "../model/pdo.php";
 include "../model/danhmuc.php";
 include "../model/sanpham.php";
 include "../model/taikhoan.php";
+include "../model/binhluan.php";
 include "header.php";
 if (isset($_GET["act"])) {
     $act = $_GET["act"];
@@ -79,6 +80,22 @@ if (isset($_GET["act"])) {
             $danhsachsanpham = loadall_sanpham();
             include "./sanpham/list.php";
             break;
+            // case 'danhsachsanpham':
+            //     $danhsachdanhmuc = loadall_danhmuc();
+            //     if (!isset($_GET['page'])) {
+            //         $page = 1;
+            //     } else {
+            //         $page = $_GET['page'];
+            //     }
+            //     $sopluongbanghimoitrang = 5;
+            //     $tongsoluongbanghi = count_loadall_danhsachsanpham();
+            //     $totalPage = ceil($tongsoluongbanghi / $sopluongbanghimoitrang);
+            //     $start_limit = ($page - 1) * $sopluongbanghimoitrang;
+            //     $end_limit = $sopluongbanghimoitrang;
+            //     $danhsachsanpham = loadall_danhsachsanpham($start_limit, $end_limit);
+            //     $act = 'danhsachsanpham';
+            //     include "./sanpham/list.php";
+            //     break;
         case 'xoasanpham':
             if (isset($_GET["id"])) {
                 delete_sanpham($_GET["id"]);
@@ -133,7 +150,7 @@ if (isset($_GET["act"])) {
             break;
         case 'danhsachtaikhoan':
             if (isset($_SESSION["taikhoan"])) {
-                $danhsachtaikhoan = loadall_taikhoan_noadmin($_SESSION["taikhoan"]["id"]);
+                $danhsachtaikhoan = loadall_taikhoan();
             }
             include "./taikhoan/list.php";
             break;
@@ -141,7 +158,7 @@ if (isset($_GET["act"])) {
             if (isset($_GET["id"])) {
                 delete_taikhoan($_GET["id"]);
             }
-            $danhsachtaikhoan = loadall_taikhoan_noadmin($_SESSION["taikhoan"]["id"]);
+            $danhsachtaikhoan = loadall_taikhoan();
             include "./taikhoan/list.php";
             break;
         case 'suataikhoan':
@@ -176,6 +193,32 @@ if (isset($_GET["act"])) {
                 }
             }
             include "./taikhoan/update.php";
+            break;
+        case 'danhsachbinhluan':
+            $danhsachbinhluan = loadall_binhluan();
+            include "./binhluan/list.php";
+            break;
+        case 'xoabinhluan':
+            if (isset($_GET["id"])) {
+                delete_binhluan($_GET["id"]);
+            }
+            $danhsachbinhluan = loadall_binhluan();
+            include "./binhluan/list.php";
+            break;
+        case 'suabinhluan':
+            if (isset($_GET["id"])) {
+                $binhluan = loadone_binhluan($_GET["id"]);
+            }
+            include "./binhluan/update.php";
+            break;
+        case 'updatebinhluan':
+            if (isset($_POST["capnhat"])) {
+                $id = $_POST["id"];
+                $noidung = $_POST["noidung"];
+                update_binhluan($id, $noidung);
+                $thongbao = "Cập nhật thành công, mời bạn kiểm tra lại danh sách 👏";
+            }
+            include "./binhluan/update.php";
             break;
         default:
             include "home.php";

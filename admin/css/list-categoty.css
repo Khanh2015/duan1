@@ -17,7 +17,8 @@
 .list-category td:nth-child(2),
 .list-category td:nth-child(7)
  {
-    max-width: 200px;
+    max-width: 190px;
+    word-wrap: break-word;
 }
 .list-category thead tr {
     background: gray;
