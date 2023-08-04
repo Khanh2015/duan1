@@ -83,23 +83,37 @@
 
   <!-- category -->
   <div class="category">
-    <div class="sneaker-category">
-      <div class="category-title">
-        <h2>PHỤ KIỆN THỂ THAO</h2>
-        <p>Giày đá bóng, găng tay bắt bóng, tất thể thao...</p>
-        <a href="index.php?act=locdanhmuc&iddanhmuc=2">Xem thêm...</a>
-      </div>
-      <img src="./view/img/categori-sneaker.png" alt="" />
-    </div>
 
     <div class="soccer-jersey-category">
       <div class="category-title">
         <h2>ÁO ĐÁ BÓNG</h2>
-        <p>Barcelona, Real Madrid, Tottenham, <br> Paris Saint-Germain, Chelsea, Liverpool, <br> Manchester City, Manchester United,...</p>
+        <p>Barcelona,<br> Real Madrid,<br> Tottenham, <br> Paris Saint-Germain,<br> Chelsea, Liverpool, <br> Manchester City,<br> Manchester United,...</p>
         <a href="index.php?act=locdanhmuc&iddanhmuc=1">Xem thêm...</a>
       </div>
-      <img src="./view/img/categori-aodabong.png" alt="" />
+      <img src="./view/img/áo_mu_đỏ.png" alt="" />
     </div>
+
+    <div class="">
+      <div class="sneaker-category">
+        <div class="category-title">
+          <h2>Giày đá bóng</h2>
+          <p>Giày đá bóng NIKE, giày đá bóng ADIDAS, giày đá bóng PUMA,...</p>
+          <a href="index.php?act=locdanhmuc&iddanhmuc=2">Xem thêm...</a>
+        </div>
+        <img src="./view/img/categori-sneaker.png" alt="" />
+      </div>
+
+      <div class="sneaker-category gloves-category">
+        <div class="category-title">
+          <h2>Găng tay bắt bóng</h2>
+          <p>Găng tay bắt bóng NIKE, Găng tay bắt bóng ADIDAS, Găng tay bắt bóng PUMA,...</p>
+          <a href="index.php?act=locdanhmuc&iddanhmuc=3">Xem thêm...</a>
+        </div>
+        <img src="./view/img/danhmucgangtay.png" alt="" />
+      </div>
+    </div>
+
+
   </div>
 
   <!-- Products list -->

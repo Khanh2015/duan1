@@ -51,7 +51,7 @@ if (isset($_GET["act"])) {
             } else {
                 $page = $_GET['page'];
             }
-            $sopluongbanghimoitrang = 4;
+            $sopluongbanghimoitrang = 8;
             $tongsoluongbanghi = count_loadall_danhsachtimkiem($keyword);
             $totalPage = ceil($tongsoluongbanghi / $sopluongbanghimoitrang);
             $start_limit = ($page - 1) * $sopluongbanghimoitrang;
@@ -69,7 +69,7 @@ if (isset($_GET["act"])) {
             } else {
                 $page = $_GET['page'];
             }
-            $sopluongbanghimoitrang = 4;
+            $sopluongbanghimoitrang = 8;
             $tongsoluongbanghi = count_loadall_sanpham_danhmuc($_GET["iddanhmuc"]);
             $totalPage = ceil($tongsoluongbanghi / $sopluongbanghimoitrang);
             $start_limit = ($page - 1) * $sopluongbanghimoitrang;
@@ -80,8 +80,10 @@ if (isset($_GET["act"])) {
                     $title = 'ÁO ĐÁ BÓNG';
                     break;
                 case 2:
-                    $title = 'PHỤ KIỆN THỂ THAO';
-
+                    $title = 'GIÀY ĐÁ BÓNG';
+                    break;
+                case 3:
+                    $title = 'GĂNG TAY BẮT BÓNG';
                     break;
             }
             $danhsachsanpham = loadall_sanpham_danhmuc($_GET["iddanhmuc"], $start_limit, $end_limit);

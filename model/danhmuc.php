@@ -7,7 +7,7 @@ function insert_danhmuc($tendanhmuc)
 
 function loadall_danhmuc()
 {
-    $sql = "SELECT * FROM danhmuc WHERE id != 3";
+    $sql = "SELECT * FROM danhmuc WHERE id != 4";
     $danhsachdanhmuc = pdo_query($sql);
     return $danhsachdanhmuc;
 }
@@ -21,7 +21,7 @@ function loadone_danhmuc($id)
 
 function delete_danhmuc($id)
 {
-    $sql = "UPDATE sanpham SET iddanhmuc = '3' WHERE iddanhmuc = $id";
+    $sql = "UPDATE sanpham SET iddanhmuc = '4' WHERE iddanhmuc = $id";
     pdo_execute($sql);
     $sql = "DELETE FROM danhmuc WHERE danhmuc.id = $id";
     pdo_execute($sql);
