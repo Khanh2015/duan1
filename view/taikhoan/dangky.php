@@ -10,6 +10,9 @@
         if (isset($thongbaotentaikhoan)) echo '<p style="color: red; width: 100%;">' . $thongbaotentaikhoan . '</p>';
         ?>
         <input type="email" name="email" placeholder="Nhập vào email..." value="<?php if (isset($email)) echo $email ?>" required>
+        <?php
+        if (isset($thongbaoemail)) echo '<p style="color: red; width: 100%;">' . $thongbaoemail . '</p>';
+        ?>
         <input type="password" name="matkhau" placeholder="Nhập vào mật khẩu..." required>
         <input type="password" name="matkhau2" placeholder="Xác nhận lại mật khẩu" required>
         <?php

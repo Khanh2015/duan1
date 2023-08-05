@@ -12,6 +12,13 @@ function check_tentaikhoan($tentaikhoan)
     return $danhsachtentaikhoan;
 }
 
+function check_email($email)
+{
+    $sql = "SELECT * FROM `taikhoan` WHERE `email` = '$email'";
+    $danhsachemail = pdo_query($sql);
+    return $danhsachemail;
+}
+
 function check_dangnhap($tentaikhoan, $matkhau)
 {
     $sql = "SELECT * FROM `taikhoan` WHERE `tentaikhoan` = '$tentaikhoan' AND `matkhau` = '$matkhau'";
@@ -41,8 +48,8 @@ function update_taikhoan_admin($id, $tentaikhoan, $matkhau, $email, $diachi, $sd
 function quenmatkhau($email)
 {
     $sql = "SELECT * FROM `taikhoan` WHERE `email` = '$email'";
-    $danhsachtaikhoan = pdo_query($sql);
-    return $danhsachtaikhoan;
+    $taikhoan = pdo_query_one($sql);
+    return $taikhoan;
 }
 
 function loadall_taikhoan()

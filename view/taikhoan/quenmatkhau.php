@@ -3,8 +3,9 @@
         <h1>QUÊN MẬT KHẨU</h1>
         <input type="email" name="email" placeholder="Nhập vào email đã đăng ký tài khoản...">
         <?php
-        if (isset($danhsachtaikhoan)) {
-            if (is_array($danhsachtaikhoan) && !empty($danhsachtaikhoan)) {
+        if (isset($taikhoan)) {
+            if (!empty($taikhoan)) {
+                extract($taikhoan);
         ?>
                 <h3>Mật khẩu của email: <?php echo '<span class="text-red">' . $email . '</span>' ?></h3>
                 <table class="forgot-password-table">
@@ -15,17 +16,10 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php
-                        foreach ($danhsachtaikhoan as $taikhoan) {
-                            extract($taikhoan);
-                            echo '
-                            <tr>
-                            <td>' . $tentaikhoan . '</td>
-                            <td>' . $matkhau . '</td>
+                        <tr>
+                            <td><?php echo $tentaikhoan ?></td>
+                            <td><?php echo $matkhau ?></td>
                         </tr>
-                            ';
-                        }
-                        ?>
 
                 <?php
             } else {

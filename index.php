@@ -99,6 +99,11 @@ if (isset($_GET["act"])) {
                 $matkhau2 = $_POST["matkhau2"];
                 $tentaikhoan = $_POST["tentaikhoan"];
                 $checktaikhoan = check_tentaikhoan($tentaikhoan);
+                $checkemail = check_email($email);
+                if (!empty($checkemail)) {
+                    $check = false;
+                    $thongbaoemail = "Email đã được đăng ký bởi 1 tài khoản khác ❌";
+                }
                 if (!empty($checktaikhoan)) {
                     $check = false;
                     $thongbaotentaikhoan = "Tên tài khoản đã tồn tại ❌";
@@ -123,7 +128,7 @@ if (isset($_GET["act"])) {
                 $checktaikhoan = check_dangnhap($tentaikhoan, $matkhau);
                 if (is_array($checktaikhoan)) {
                     $_SESSION['taikhoan'] = $checktaikhoan;
-                    $thongbaothanhcong = "Đăng nhập thành công 🎉";
+                    echo '<script>window.location.href = "index.php";</script>';
                 } else {
                     $thongbaoloi = "Tài khoản không tồn tại ❌, vui lòng kiểm tra lại hoặc đăng ký tài khoản mới";
                 }
@@ -160,7 +165,7 @@ if (isset($_GET["act"])) {
         case 'quenmatkhau':
             if (isset($_POST["quenmatkhau"])) {
                 $email = $_POST["email"];
-                $danhsachtaikhoan = quenmatkhau($email);
+                $taikhoan = quenmatkhau($email);
             }
             include "./view/taikhoan/quenmatkhau.php";
             break;

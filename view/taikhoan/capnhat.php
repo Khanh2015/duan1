@@ -9,13 +9,10 @@ if (isset($_SESSION["taikhoan"]) && is_array($_SESSION["taikhoan"])) {
         <?php
         if (isset($thongbaothanhcong)) echo '<h3 id="thongbaothanhcong" style="color: red; width: 100%; text-align: center;">' . $thongbaothanhcong . '</h3> <h3 style="color: red; width: 100%; text-align: center;" id="countdown"></h3>';
         ?>
-        <label for="update-name">Tên tài khoản</label>
-        <input id="update-name" type="text" name="tentaikhoan" placeholder="Nhập vào tên tài khoản..." value="<?php if (isset($tentaikhoan)) echo $tentaikhoan ?>" required>
-        <?php
-        if (isset($thongbaotentaikhoan)) echo '<p style="color: red; width: 100%;">' . $thongbaotentaikhoan . '</p>';
-        ?>
-        <label for="update-email">Email</label>
-        <input id="update-email" type="email" name="email" placeholder="Nhập vào email..." value="<?php if (isset($email)) echo $email ?>" required>
+        <label for="update-name">Tên tài khoản (Không được phép chỉnh sửa)</label>
+        <input style="color: #C0C0C0;" class="uneditable" id="update-name" type="text" name="tentaikhoan" placeholder="Nhập vào tên tài khoản..." value="<?php if (isset($tentaikhoan)) echo $tentaikhoan ?>" disabled>
+        <label for="update-email">Email (Không được phép chỉnh sửa)</label>
+        <input style="color: #C0C0C0;" class="uneditable" id="update-email" type="email" name="email" placeholder="Nhập vào email..." value="<?php if (isset($email)) echo $email ?>" disabled>
         <label for="update-address">Địa chỉ</label>
         <input id="update-address" type="text" name="diachi" placeholder="Nhập vào địa chỉ..." value="<?php if (isset($diachi)) echo $diachi ?>">
         <label for="update-phone">Số điện thoại</label>
