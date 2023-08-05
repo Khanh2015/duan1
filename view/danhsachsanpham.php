@@ -100,10 +100,6 @@
                             <a href="<?php echo $link ?>">
                                 <h4><?php echo $tensanpham ?></h4>
                             </a>
-                            <div class="variant-wrapper">
-                                <p class="size">Size: <?php echo $size ?></p>
-                                <p class="color">Màu: <?php echo $color ?></p>
-                            </div>
                             <div class="price">
                                 <p class="init-price"><?php echo number_format($giasale, 0, ",", ".") ?>đ</p>
                                 <p class="sale"><del><?php echo number_format($giagoc, 0, ",", ".") ?>đ</del></p>

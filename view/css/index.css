@@ -306,16 +306,6 @@ header .logo {
 .product h4:hover {
     color: red;
 }
-.product .variant-wrapper {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 12px;
-}
-.product .variant-wrapper p {
-    font-weight: 600;
-    font-size: 14px;
-}
 .product .price {
     display: flex;
     justify-content: space-between;

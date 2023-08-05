@@ -1,6 +1,75 @@
 .hovershirt {
     display: none;
 }   
-/* label:hover + .hovershirt {
-    display: block;
-} */
+.chitietsanpham-color input[type="radio"] {
+    display: none;
+}
+.chitietsanpham-color .color-label,
+.chitietsanpham-color .size-label {
+    display: inline-block;
+    text-align: center;
+    width: 40px;
+    margin: 4px;
+    padding: 4px;
+    border: 2px solid #ccc;
+    cursor: pointer;
+}
+.chitietsanpham-color input[type="radio"]:checked + label {
+    background-color: rgb(204, 204, 204);
+}
+.chitietsanpham-color .color-label {
+    width: 30px;
+    height: 30px;
+    border: none;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
+    text-indent: -9999px;
+    position: relative;
+}
+.chitietsanpham-color .color-label::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    background-color: white;
+    border: 2px solid black;
+    opacity: 0;
+}
+.chitietsanpham-color input[type="radio"]:checked + .color-label::after {
+    opacity: 1;
+}
+.chitietsanpham-color #color-blue + label {
+    background-color: blue;
+}
+.chitietsanpham-color #color-red + label {
+    background-color: red;
+}
+.chitietsanpham-color #color-purple + label {
+    background-color: purple;
+}
+.chitietsanpham-color #color-yellow + label {
+    background-color: yellow;
+}
+.chitietsanpham-color #color-green + label {
+    background-color: green;
+}
+.chitietsanpham-color #color-pink + label {
+    background-color: pink;
+}
+.chitietsanpham-color #color-gray + label {
+    background-color: gray;
+}
+.chitietsanpham-color #color-white + label {
+    background-color: white;
+}
+.chitietsanpham-color #color-black + label {
+    background-color: black;
+}
+.chitietsanpham-color #color-brown + label {
+    background-color: brown;
+}
+.chitietsanpham-color #color-orange + label {
+    background-color: orange;
+}

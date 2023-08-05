@@ -1,6 +1,8 @@
 <?php
 if (isset($sanpham)) {
     extract($sanpham);
+    $selectedSizes = explode(',', $size);
+    $selectedColors = explode(',', $color);
 }
 ?>
 <!-- chi tiết sản phẩm  -->
@@ -25,8 +27,8 @@ if (isset($sanpham)) {
 
                         <p class="text-[#FF324D] font-semibold text-2xl max-w-[110px] bg-white "><?php if (isset($giasale)) echo number_format($sanpham['giasale'], 0, ",", ".") ?>đ</p>
                         <del class="text-gray-500 font-mono mx-2"><?php if (isset($giagoc)) echo number_format($sanpham['giagoc'], 0, ",", ".") ?>đ</del>
-                        <!-- tính % giảm giá
-                        <input class="text-[#388E3C] font-mono  max-w-[80px] bg-white" type="text" disabled name="" id="" value="35% Off"> -->
+                        <!-- tính % giảm giá -->
+                        <span class="text-[#388E3C] font-mono  max-w-[80px] bg-white"><?= intval(round((($giagoc - $giasale) / $giagoc) * 100)) ?>% OFF</span>
                         <!-- đánh giá bao nhiêu sao
                         <span class="ml-20"><i class="fa-solid fa-star" style="color: #f5db38;"></i>
                             <i class="fa-solid fa-star" style="color: #f5db38;"></i>
@@ -51,93 +53,114 @@ if (isset($sanpham)) {
                     </div>
 
                     <!--LUA CHON COLOR -->
-                    <div class="my-4 text-2xl">
+                    <div class="chitietsanpham-color my-4 text-2xl">
                         <span class="font-semibold text-gray-700 text-xl mr-2">Color :</span>
                         <?php
-                        $color = $sanpham['color'];
-                        switch ($color) {
-                            case 'Đỏ':
-                        ?>
-                                <!-- input lấy thông tin sp màu đỏ để gửi dữ liệu để đặt hàng them id hoạc name sau -->
-                                <input type="text" hidden value="Đỏ">
-                                <!-- input lấy thông tin sp màu đỏ để gửi dữ liệu để đặt hàng -->
-                                <span><i class="fa-solid fa-droplet fa-beat" style="color: #f7021b;"></i></span>
-                            <?php
-                                break;
-                            case 'Đen':
-                            ?>
-                                <input type="text" hidden value="Đen">
-                                <span><i class="fa-solid fa-droplet fa-beat" style="color: #000000;"></i></span>
-                            <?php
-                                break;
-                            case 'Xám':
-                            ?>
-                                <input type="text" hidden value="Xám">
-                                <span><i class="fa-solid fa-droplet fa-beat" style="color: gray;"></i></span>
-                            <?php
-                                break;
-                            case 'Nâu':
-                            ?>
-                                <input type="text" hidden value="Nâu">
-                                <span><i class="fa-solid fa-droplet fa-beat" style="color: brown;"></i></span>
-                            <?php
-                                break;
-                            case 'Xanh dương':
-                            ?>
-                                <input type="text" hidden value="Xanh Dương">
-                                <span><i class="fa-solid fa-droplet fa-beat" style="color: #12aff3;"></i></span>
-                            <?php
-                                break;
-                            case 'Xanh lá':
-                            ?>
-                                <input type="text" hidden value="Xanh lá">
-                                <span><i class="fa-solid fa-droplet fa-beat" style="color: green;"></i></span>
-                            <?php
-                                break;
-                            case 'Vàng':
-                            ?>
-                                <input type="text" hidden value="Vàng">
-                                <span><i class="fa-solid fa-droplet fa-beat" style="color: #fafe06;"></i></span>
-                            <?php
-                                break;
-                            case 'Trắng':
-                            ?>
-                                <input type="text" hidden value="Trắng">
-                                <span><i class="fa-solid fa-droplet fa-beat" style="color: #dcdfe4;"></i></span>
-                            <?php
-                                break;
-                            case 'Tím':
-                            ?>
-                                <input type="text" hidden value="Tím">
-                                <span><i class="fa-solid fa-droplet fa-beat" style="color: #e30fff;"></i></span>
-                            <?php
-                                break;
-                            case 'Cam':
-                            ?>
-                                <input type="text" hidden value="Cam">
-                                <span><i class="fa-solid fa-droplet fa-beat" style="color: #ff9b0f;"></i></span>
-                            <?php
-                                break;
-                            case 'Hồng':
-                            ?>
-                                <input type="text" hidden value="Hồng">
-                                <span><i class="fa-solid fa-droplet fa-beat" style="color: #f613ba;"></i></span>
-                                <?php
-                                break;
-                                ?>
-                        <?php
+                        if (isset($selectedColors)) {
+                            foreach ($selectedColors as $color) {
+                                switch ($color) {
+                                    case 'Đỏ':
+                                        echo '<input type="radio" id="color-red" name="color" value="Đỏ" />
+                                        <label class="color-label" for="color-red">Đỏ</label>';
+                                        break;
+                                    case 'Vàng':
+                                        echo '<input type="radio" id="color-yellow" name="color" value="Vàng" />
+                                            <label class="color-label" for="color-yellow">Vàng</label>';
+                                        break;
+                                    case 'Xanh lá':
+                                        echo '<input type="radio" id="color-green" name="color" value="Xanh lá" />
+                                            <label class="color-label" for="color-green">Xanh lá</label>';
+                                        break;
+                                    case 'Xanh dương':
+                                        echo '<input type="radio" id="color-blue" name="color" value="Xanh dương" />
+                                            <label class="color-label" for="color-blue">Xanh dương</label>';
+                                        break;
+                                    case 'Đen':
+                                        echo '<input type="radio" id="color-black" name="color" value="Đen" />
+                                            <label class="color-label" for="color-black">Đen</label>';
+                                        break;
+                                    case 'Trắng':
+                                        echo '<input type="radio" id="color-white" name="color" value="Trắng" />
+                                            <label class="color-label" for="color-white">Trắng</label>';
+                                        break;
+                                    case 'Tím':
+                                        echo '<input type="radio" id="color-purple" name="color" value="Tím" />
+                                            <label class="color-label" for="color-purple">Tím</label>';
+                                        break;
+                                    case 'Cam':
+                                        echo '<input type="radio" id="color-orange" name="color" value="Cam" />
+                                            <label class="color-label" for="color-orange">Cam</label>';
+                                        break;
+                                    case 'Hồng':
+                                        echo '<input type="radio" id="color-pink" name="color" value="Hồng" />
+                                            <label class="color-label" for="color-pink">Hồng</label>';
+                                        break;
+                                    case 'Nâu':
+                                        echo '<input type="radio" id="color-brown" name="color" value="Nâu" />
+                                            <label class="color-label" for="color-brown">Nâu</label>';
+                                        break;
+                                    case 'Xám':
+                                        echo '<input type="radio" id="color-gray" name="color" value="Xám" />
+                                            <label class="color-label" for="color-gray">Xám</label>';
+                                        break;
+                                }
+                            }
                         }
                         ?>
                     </div>
                     <!-- LUA CHON SIZE -->
-                    <div class="text-2xl"> <span class="font-semibold text-gray-700 text-xl mr-5">Size:</span> <span class="bg-white font-bold"><?php echo $sanpham['size'] ?></span></div>
+                    <div class="chitietsanpham-color"> <span class="font-semibold text-gray-700 text-xl mr-5">Size:</span> <span class="bg-white font-bold">
+
+                            <?php
+                            if ($iddanhmuc == 1 || $iddanhmuc == 2 || $iddanhmuc == 3) {
+                            ?>
+                                <?php
+                                if (isset($selectedSizes)) {
+                                    foreach ($selectedSizes as $size) {
+                                        echo '
+                                        <input type="radio" id="size-' . $size . '" name="size" value="' . $size . '" />
+                                        <label class="size-label shirt-size" for="size-' . $size . '">' . $size . '</label>
+                                        ';
+                                    }
+                                }
+                                ?>
+                            <?php
+                            } else {
+                            ?>
+                                <?php
+                                if (isset($selectedSizes)) {
+                                    foreach ($selectedSizes as $size) {
+                                        switch ($size) {
+                                            case 'Nhỏ':
+                                                echo '<input type="radio" id="size-nho" name="size" value="Nhỏ" />
+                                                <label class="size-label other-size" for="size-nho">Nhỏ</label>';
+                                                break;
+                                            case 'Vừa':
+                                                echo '<input type="radio" id="size-vua" name="size" value="Vừa" />
+                                                <label class="size-label other-size" for="size-vua">Vừa</label>';
+                                                break;
+                                            case 'Lớn':
+                                                echo '<input type="radio" id="size-lon" name="size" value="Lớn" />
+                                                <label class="size-label other-size" for="size-lon">Lớn</label>';
+                                                break;
+                                        }
+                                    }
+                                }
+                                ?>
+                            <?php
+                            }
+                            ?>
+                        </span></div>
                     <br>
                     <hr>
                     <!--THEM SO LUONG -->
-                    <div class="my-5">
-                        <button class="bg-gray-100 rounded-[50%] w-8 p-1 font-black text-l" onclick="decrement()"><i class="fa-solid fa-caret-down" style="color: #f8303a;"></i></button>
-                        <span class="border-solid border-[1px] border-gray-300 rounded-sm px-5 p-2" id="number-display">1</span>
-                        <button class="bg-gray-100 rounded-[50%] w-8 p-1 font-black text-l" onclick="increment()"><i class="fa-solid fa-caret-up" style="color: #f8303a;"></i></button>
+                    <div class="my-5 flex items-center gap-3">
+                        <div class="flex items-center gap-1">
+                            <span class="decrease-btn-detail bg-gray-200 rounded-[50%] w-8 h-8 flex items-center justify-center font-black text-l"><i class="fa-solid fa-caret-down text-xl" style="color: #f8303a;"></i></span>
+                            <input type="number" class="border-solid text-center border-[1px] border-gray-300 rounded-sm w-[80px] pl-[18px] py-2 h-10" id="number-display" value="1" max="<?php if (isset($soluong)) echo $soluong ?>">
+                            <span class="increase-btn-detail bg-gray-200 rounded-[50%] w-8 h-8 flex items-center justify-center font-black text-l"><i class="fa-solid fa-caret-up text-xl" style="color: #f8303a;"></i></span>
+                        </div>
+
 
                         <!-- Add to cart       -->
                         <input class=" duration-[0.2s] text-xl bg-[#ff324d] px-2 py-5 ml-2 rounded-md text-white hover:bg-white hover:text-[#ff324d] border-solid border-[#ff324d] border-[2px]" type="submit" name="themvaogiohang" value="Thêm vào giỏ hàng">
@@ -149,7 +172,8 @@ if (isset($sanpham)) {
             </div>
 
             <hr>
-            <ul class="my-4 text-2xl mt-12">
+            <ul class="my-4 text-2xl mt-3">
+                <li>Số lượng: <?php if (isset($soluong)) echo $soluong ?></li>
                 <li class="">Mã sản phẩm: NHOM2-<?php if (isset($sanpham["id"])) echo $sanpham["id"] ?></li>
                 <li>Danh mục: <?php if (isset($tendanhmuc)) echo $tendanhmuc ?></li>
             </ul>
@@ -182,10 +206,6 @@ if (isset($sanpham)) {
                     <a href="<?php echo $link ?>">
                         <h4><?php echo $tensanpham ?></h4>
                     </a>
-                    <div class="variant-wrapper">
-                        <p class="size">Size: <?php echo $size ?></p>
-                        <p class="color">Màu: <?php echo $color ?></p>
-                    </div>
                     <div class="price">
                         <p class="init-price"><?php echo number_format($giasale, 0, ",", ".") ?>đ</p>
                         <p class="sale"><del><?php echo number_format($giagoc, 0, ",", ".") ?>đ</del></p>
@@ -202,32 +222,22 @@ if (isset($sanpham)) {
     </div>
 </div>
 <script>
-    // var image = document.getElementById('product-image');
+    const decreaseBtnDetail = document.querySelector(".decrease-btn-detail");
+    const increaseBtnDetal = document.querySelector(".increase-btn-detail");
+    const numberDisplay = document.querySelector("#number-display");
+    console.log(decreaseBtnDetail, increaseBtnDetal, numberDisplay);
 
-    // image.addEventListener('mouseenter', function() {
-    //     image.classList.add('scale-110');
-    // });
+    let numberValue = 1;
 
-    // image.addEventListener('mouseleave', function() {
-    //     image.classList.remove('scale-110');
-    // });
-
-
-    var number = 0; // Initial number
-
-    function increment() {
-        number += 1; // Increment the number by 1
-        updateNumber();
-    }
-
-    function decrement() {
-        if (number > 1) {
-            number -= 1; // Decrement the number by 1, if it's greater than 0
-            updateNumber();
+    decreaseBtnDetail.addEventListener("click", () => {
+        if (numberDisplay.value > 1) {
+            numberValue--;
+            numberDisplay.value = numberValue;
         }
-    }
+    })
 
-    function updateNumber() {
-        document.getElementById('number-display').textContent = number; // Update the number display
-    }
+    increaseBtnDetal.addEventListener("click", () => {
+        numberValue++;
+        numberDisplay.value = numberValue;
+    })
 </script>
