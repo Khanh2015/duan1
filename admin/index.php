@@ -50,6 +50,33 @@ if (isset($_GET["act"])) {
             }
             include "./danhmuc/update.php";
             break;
+            // case 'themsanpham':
+            //     $danhsachdanhmuc = loadall_danhmuc();
+            //     if (isset($_POST["themmoi"])) {
+            //         $iddanhmuc = $_POST["iddanhmuc"];
+            //         $ten = $_POST["ten"];
+            //         $giasale = $_POST["giasale"];
+            //         $giagoc = $_POST["giagoc"];
+            //         $size = $_POST["size"];
+            //         $color = $_POST["color"];
+            //         $sizeString = implode(',', $size);
+            //         $colorString = implode(',', $color);
+            //         $soluong = $_POST["soluong"];
+            //         $mota = $_POST["mota"];
+            //         $anh = $_FILES['anh']['name'];
+            //         $allowed_extensions = array('png', 'jpg');
+            //         $ext = pathinfo($anh, PATHINFO_EXTENSION);
+            //         if (!in_array($ext, $allowed_extensions)) {
+            //             $thongbaoanh = "Ảnh phải ở dạng .png hoặc .jpg";
+            //         } else {
+            //             $target_file = "../upload/" . basename($anh);
+            //             move_uploaded_file($_FILES["anh"]["tmp_name"], $target_file);
+            //             insert_sanpham($iddanhmuc, $ten, $anh, $giasale, $giagoc, $sizeString, $colorString, $soluong, $mota);
+            //             $thongbao = "Thêm sản phẩm thành công 🎉";
+            //         }
+            //     }
+            //     include "./sanpham/add.php";
+            //     break;
         case 'themsanpham':
             $danhsachdanhmuc = loadall_danhmuc();
             if (isset($_POST["themmoi"])) {
@@ -57,8 +84,6 @@ if (isset($_GET["act"])) {
                 $ten = $_POST["ten"];
                 $giasale = $_POST["giasale"];
                 $giagoc = $_POST["giagoc"];
-                $size = $_POST["size"];
-                $color = $_POST["color"];
                 $soluong = $_POST["soluong"];
                 $mota = $_POST["mota"];
                 $anh = $_FILES['anh']['name'];
@@ -69,7 +94,17 @@ if (isset($_GET["act"])) {
                 } else {
                     $target_file = "../upload/" . basename($anh);
                     move_uploaded_file($_FILES["anh"]["tmp_name"], $target_file);
-                    insert_sanpham($iddanhmuc, $ten, $anh, $giasale, $giagoc, $size, $color, $soluong, $mota);
+                    $sizeString = "";
+                    if (isset($_POST["size"])) {
+                        $selectedSizes = $_POST["size"];
+                        $sizeString = implode(',', $selectedSizes);
+                    }
+                    $colorString = "";
+                    if (isset($_POST["color"])) {
+                        $selectedColors = $_POST["color"];
+                        $colorString = implode(',', $selectedColors);
+                    }
+                    insert_sanpham($iddanhmuc, $ten, $anh, $giasale, $giagoc, $sizeString, $colorString, $soluong, $mota);
                     $thongbao = "Thêm sản phẩm thành công 🎉";
                 }
             }
@@ -117,8 +152,6 @@ if (isset($_GET["act"])) {
                 $ten = $_POST["ten"];
                 $giasale = $_POST["giasale"];
                 $giagoc = $_POST["giagoc"];
-                $size = $_POST["size"];
-                $color = $_POST["color"];
                 $soluong = $_POST["soluong"];
                 $mota = $_POST["mota"];
                 $anh = '';
@@ -133,7 +166,17 @@ if (isset($_GET["act"])) {
                         move_uploaded_file($_FILES["anh"]["tmp_name"], $target_file);
                     }
                 }
-                update_sanpham($id, $iddanhmuc, $ten, $anh, $giasale, $giagoc, $size, $color, $soluong, $mota);
+                $sizeString = "";
+                if (isset($_POST["size"])) {
+                    $selectedSizes = $_POST["size"];
+                    $sizeString = implode(',', $selectedSizes);
+                }
+                $colorString = "";
+                if (isset($_POST["color"])) {
+                    $selectedColors = $_POST["color"];
+                    $colorString = implode(',', $selectedColors);
+                }
+                update_sanpham($id, $iddanhmuc, $ten, $anh, $giasale, $giagoc, $sizeString, $colorString, $soluong, $mota);
                 $thongbao = "Cập nhật sản phẩm thành công 🎉";
             }
             $danhsachdanhmuc = loadall_danhmuc();

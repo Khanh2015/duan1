@@ -11,7 +11,7 @@
             <table class="list-product list-category list-account">
                 <thead>
                     <tr>
-                        <th>ID</th>
+                        <th>STT</th>
                         <th>Tên tài khoản</th>
                         <th>Mật khẩu</th>
                         <th>Email</th>
@@ -24,13 +24,15 @@
                 <tbody>
                     <?php
                     if (isset($danhsachtaikhoan)) {
+                        $stt = 0;
                         foreach ($danhsachtaikhoan as $taikhoan) {
                             extract($taikhoan);
                             $suataikhoan = 'index.php?act=suataikhoan&id=' . $taikhoan["id"];
                             $xoataikhoan = 'index.php?act=xoataikhoan&id=' . $taikhoan["id"];
+                            $stt++;
                     ?>
                             <tr>
-                                <td><?php if (isset($id)) echo $id ?></td>
+                                <td><?php echo $stt ?></td>
                                 <td><?php if (isset($tentaikhoan)) echo $tentaikhoan ?></td>
                                 <td><?php if (isset($matkhau)) echo $matkhau ?></td>
                                 <td><?php if (isset($email)) echo $email ?></td>

@@ -11,7 +11,7 @@
             <table class="list-product list-category">
                 <thead>
                     <tr>
-                        <th>ID</th>
+                        <th>STT</th>
                         <th>Nội dung</th>
                         <th>Tên tài khoản</th>
                         <th>Tên sản phẩm</th>
@@ -22,13 +22,15 @@
                 <tbody>
                     <?php
                     if (isset($danhsachbinhluan) && !empty($danhsachbinhluan)) {
+                        $stt = 0;
                         foreach ($danhsachbinhluan as $binhluan) {
                             extract($binhluan);
                             $suabinhluan = "index.php?act=suabinhluan&id=" . $binhluan["id"];
                             $xoabinhluan = "index.php?act=xoabinhluan&id=" . $binhluan["id"];
+                            $stt++;
                     ?>
                             <tr>
-                                <td><?php echo $binhluan["id"] ?></td>
+                                <td><?php echo $stt ?></td>
                                 <td><?php echo $noidung ?></td>
                                 <td><?php echo $tentaikhoan ?></td>
                                 <td><?php echo $tensanpham ?></td>

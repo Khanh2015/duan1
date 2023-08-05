@@ -34,10 +34,10 @@ if (isset($iddm)) {
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </button>
             </form>
-            <table class="list-product list-category">
+            <table class="list-category list-product">
                 <thead>
                     <tr>
-                        <th>ID</th>
+                        <th>STT</th>
                         <th>Tên</th>
                         <th>Ảnh</th>
                         <th>Giá sale</th>
@@ -52,13 +52,15 @@ if (isset($iddm)) {
                 <tbody>
                     <?php
                     if (isset($danhsachsanpham) && !empty($danhsachsanpham)) {
+                        $stt = 0;
                         foreach ($danhsachsanpham as $sanpham) {
                             extract($sanpham);
                             $suasanpham = "index.php?act=suasanpham&id=" . $id;
                             $xoasanpham = "index.php?act=xoasanpham&id=" . $id;
+                            $stt++;
                     ?>
                             <tr>
-                                <td><?php echo $sanpham["id"] ?></td>
+                                <td><?= $stt ?></td>
                                 <td><?php echo $tensanpham ?></td>
                                 <td>
                                     <img src="../upload/<?php echo $anhsanpham ?>" alt="" />

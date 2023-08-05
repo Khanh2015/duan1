@@ -31,6 +31,14 @@
     max-width: 120px;
     word-wrap: break-word;
 }
+.list-product td:nth-child(3),
+.list-product td:nth-child(4),
+.list-product td:nth-child(6),
+.list-product td:nth-child(7)
+ {
+    max-width: 220px;
+    word-wrap: break-word;
+}
 .comeback-list {
     margin-left: 10px;
     border-radius: 5px;

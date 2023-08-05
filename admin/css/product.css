@@ -1,11 +1,83 @@
-.form-input textarea {
+.form-input-product textarea {
     margin-top: 10px;
     border-radius: 5px;
     border: 1px solid #ccc;
     padding: 10px 20px;
 }
-.form-input .input-img {
+.form-input-product .input-img {
     border: none;
     padding: 0;
     border-radius: 0px;
+}
+.form-input-product input[type="checkbox"] {
+    display: none;
+}
+.form-input-product .color-label,
+.form-input-product .size-label {
+    display: inline-block;
+    text-align: center;
+    width: 40px;
+    margin: 4px;
+    padding: 4px;
+    border: 2px solid #ccc;
+    cursor: pointer;
+}
+.form-input-product input[type="checkbox"]:checked + label {
+    background-color: rgb(204, 204, 204);
+}
+.form-input-product .color-label {
+    width: 40px;
+    height: 40px;
+    border: none;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+    text-indent: -9999px;
+    position: relative;
+}
+.form-input-product .color-label::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    background-color: white;
+    border: 2px solid black;
+    opacity: 0;
+}
+.form-input-product input[type="checkbox"]:checked + .color-label::after {
+    opacity: 1;
+}
+.form-input-product #color-blue + label {
+    background-color: blue;
+}
+.form-input-product #color-red + label {
+    background-color: red;
+}
+.form-input-product #color-purple + label {
+    background-color: purple;
+}
+.form-input-product #color-yellow + label {
+    background-color: yellow;
+}
+.form-input-product #color-green + label {
+    background-color: green;
+}
+.form-input-product #color-pink + label {
+    background-color: pink;
+}
+.form-input-product #color-gray + label {
+    background-color: gray;
+}
+.form-input-product #color-white + label {
+    background-color: white;
+}
+.form-input-product #color-black + label {
+    background-color: black;
+}
+.form-input-product #color-brown + label {
+    background-color: brown;
+}
+.form-input-product #color-orange + label {
+    background-color: orange;
 }
