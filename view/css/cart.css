@@ -34,6 +34,7 @@
     height: 4px;
     width: 220px;
     background: #ccc;
+    transform: translateY(-2px);
 }
 .dot-line-active {
     background: #000;
@@ -123,10 +124,10 @@
 .cart-total-info .free-ship i {
     color: rgb(104, 149, 37);
 }
-.cart-total-info .submit-total-cart {
+.cart-total-info .submit-btn {
+    display: block;
+    text-align: center;
     margin-top: 50px;
-}
-.cart-total-info .submit-total-cart .submit-btn {
     width: 100%;
     padding: 14px 0;
     font-weight: 600;
@@ -138,7 +139,7 @@
     border-bottom-right-radius: 20px;
     transition: 0.25s;
 }
-.cart-total-info .submit-total-cart .submit-btn:hover {
+.cart-total-info .submit-btn:hover {
     background: #fff;
     color: #000;
     cursor: pointer;

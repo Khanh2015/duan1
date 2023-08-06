@@ -320,10 +320,8 @@ header .logo {
 .product .sale {
     transition: all 0.15s linear;
 }
-.product form {
+.product .xemchitiet {
     margin-bottom: 12px;
-}
-.product form button {
     padding: 10px;
     border-radius: 10px;
     border: 1px solid #ccc;
@@ -333,7 +331,7 @@ header .logo {
     color: #fff;
     transition: all 0.15s linear;
 }
-.product form button:hover {
+.product .xemchitiet:hover {
     transform: scale(1.1);
 }
 .category {

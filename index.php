@@ -4,6 +4,11 @@ include "./model/pdo.php";
 include "./model/sanpham.php";
 include "./model/danhmuc.php";
 include "./model/taikhoan.php";
+include "./model/giohang.php";
+// $_SESSION["mycart"] = [];
+if (!isset($_SESSION["mycart"])) {
+    $_SESSION["mycart"] = [];
+}
 $keyword = null;
 $top10 = top10_sanpham();
 $danhsachsanpham = loadall_sanpham_home();
@@ -181,6 +186,108 @@ if (isset($_GET["act"])) {
                 $danhsachcungloai = loadall_sanphamcungdanhmuc($sanpham["iddanhmuc"], $id);
             }
             include "./view/chitietsanpham.php";
+            break;
+        case 'themvaogiohang':
+            if (isset($_POST["themvaogiohang"])) {
+                $id = $_POST["idsanpham"];
+                $tensanpham = $_POST["tensanpham"];
+                $giagoc = $_POST["giagoc"];
+                $giasale = $_POST["giasale"];
+                $anhsanpham = $_POST["anhsanpham"];
+                $mota = $_POST["mota"];
+                $size = $_POST["size"];
+                $color = $_POST["color"];
+                $soluongmua = $_POST["soluongmua"];
+                $soluongkho = $_POST["soluongkho"];
+                $thanhtien = $soluongmua * $giasale;
+                $tongtiengiam = $soluongmua * $giagoc - $soluongmua * $giasale;
+                $tongtiengoc = $soluongmua * $giagoc;
+                $sanphamdathem = [
+                    $id, $tensanpham, $giagoc, $giasale, $anhsanpham, $mota, $size, $color,
+                    $soluongmua, $soluongkho, $thanhtien, $tongtiengiam, $tongtiengoc
+                ];
+                array_push($_SESSION["mycart"], $sanphamdathem);
+                $_SESSION["soluongtronggiohang"] = count($_SESSION["mycart"]);
+                echo '<div class="fixed z-10 inset-0 flex items-center justify-center bg-black bg-opacity-50">
+                <div class="bg-[#D5DAF0] translate-y-[40px] p-4 rounded shadow flex flex-col justify-center items-center gap-5">
+                  <p class="text-2xl font-semibold mt-8">Thêm vào giỏ hàng thành công!</p>
+                  <img class="" src="./view/img/add to cart done.jpg" />
+                </div>
+              </div>';
+                include "./view/giohang.php";
+                echo '<script>
+                setTimeout(function() {
+                  window.location.href = "index.php?act=xemgiohang";
+                }, 1500);
+              </script>';
+            } else {
+                echo '<script>window.location.href = "index.php?act=xemgiohang";</script>';
+            }
+            break;
+        case 'xoagiohang':
+            if (isset($_GET["id"])) {
+                array_splice($_SESSION["mycart"], $_GET["id"], 1);
+            } else {
+                $_SESSION["mycart"] = [];
+            }
+            include "./view/giohang.php";
+            echo '<script>window.location.href = "index.php?act=xemgiohang";</script>';
+            break;
+        case 'xemgiohang':
+            include "./view/giohang.php";
+            break;
+        case 'xacnhandonhang':
+            include "./view/xacnhandonhang.php";
+            break;
+        case 'dathangthanhcong':
+            if (isset($_POST["dongydathang"])) {
+                if (isset($_SESSION["taikhoan"])) {
+                    $idtaikhoan = $_SESSION["taikhoan"]["id"];
+                } else {
+                    $idtaikhoan = 0;
+                }
+                $tentaikhoan = $_POST["tentaikhoan"];
+                $email = $_POST["email"];
+                $sdt = $_POST["sdt"];
+                $diachi = $_POST["diachi"];
+                $pttt = 1;
+                $tongthanhtien = 0;
+                $tongsoluongsanpham = 0;
+                date_default_timezone_set('Asia/Ho_Chi_Minh');
+                $ngaydathang = date('h:i:sa d/m/Y');
+                foreach ($_SESSION["mycart"] as $item) {
+                    $thanhtien = $item[8] * $item[3];
+                    $tongthanhtien += $thanhtien;
+                    $tongsoluongsanpham += $item[8];
+                    $soluongmoi = $item[9] - $item[8];
+                    update_soluongsanpham($item[0], $soluongmoi);
+                }
+                if ($tongthanhtien < 500000) {
+                    $tongthanhtien += 50000;
+                }
+                $iddonhang = insert_donhang($idtaikhoan, $tentaikhoan, $diachi, $sdt, $email, $pttt, $ngaydathang, $tongthanhtien, $tongsoluongsanpham);
+
+                foreach ($_SESSION["mycart"] as $item) {
+                    insert_giohang($_SESSION["taikhoan"]["id"], $item[0], $item[4], $item[1], $item[2], $item[3], $item[6], $item[7], $item[8], $item[10], $iddonhang);
+                }
+                $_SESSION["mycart"] = [];
+                $_SESSION["soluongtronggiohang"] = count($_SESSION["mycart"]);
+                $billdonhang = loadone_bill($iddonhang);
+            }
+            include "./view/dathangthanhcong.php";
+            break;
+        case 'donhangcuatoi':
+            if (isset($_SESSION["taikhoan"])) {
+                $danhsachdonhang = loadall_bill($_SESSION["taikhoan"]["id"]);
+            }
+            include "./view/donhangcuatoi.php";
+            break;
+        case 'chitietdonhang':
+            if (isset($_GET["id"])) {
+                $iddonhang = $_GET["id"];
+                $danhsachsanpham = loadall_sanphamtheobill($iddonhang);
+            }
+            include "./view/chitietdonhang.php";
             break;
         default:
             include "./view/home.php";

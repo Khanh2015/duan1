@@ -9,6 +9,7 @@ include "../model/danhmuc.php";
 include "../model/sanpham.php";
 include "../model/taikhoan.php";
 include "../model/binhluan.php";
+include "../model/giohang.php";
 include "header.php";
 if (isset($_GET["act"])) {
     $act = $_GET["act"];
@@ -50,33 +51,6 @@ if (isset($_GET["act"])) {
             }
             include "./danhmuc/update.php";
             break;
-            // case 'themsanpham':
-            //     $danhsachdanhmuc = loadall_danhmuc();
-            //     if (isset($_POST["themmoi"])) {
-            //         $iddanhmuc = $_POST["iddanhmuc"];
-            //         $ten = $_POST["ten"];
-            //         $giasale = $_POST["giasale"];
-            //         $giagoc = $_POST["giagoc"];
-            //         $size = $_POST["size"];
-            //         $color = $_POST["color"];
-            //         $sizeString = implode(',', $size);
-            //         $colorString = implode(',', $color);
-            //         $soluong = $_POST["soluong"];
-            //         $mota = $_POST["mota"];
-            //         $anh = $_FILES['anh']['name'];
-            //         $allowed_extensions = array('png', 'jpg');
-            //         $ext = pathinfo($anh, PATHINFO_EXTENSION);
-            //         if (!in_array($ext, $allowed_extensions)) {
-            //             $thongbaoanh = "Ảnh phải ở dạng .png hoặc .jpg";
-            //         } else {
-            //             $target_file = "../upload/" . basename($anh);
-            //             move_uploaded_file($_FILES["anh"]["tmp_name"], $target_file);
-            //             insert_sanpham($iddanhmuc, $ten, $anh, $giasale, $giagoc, $sizeString, $colorString, $soluong, $mota);
-            //             $thongbao = "Thêm sản phẩm thành công 🎉";
-            //         }
-            //     }
-            //     include "./sanpham/add.php";
-            //     break;
         case 'themsanpham':
             $danhsachdanhmuc = loadall_danhmuc();
             if (isset($_POST["themmoi"])) {
@@ -115,22 +89,6 @@ if (isset($_GET["act"])) {
             $danhsachsanpham = loadall_sanpham();
             include "./sanpham/list.php";
             break;
-            // case 'danhsachsanpham':
-            //     $danhsachdanhmuc = loadall_danhmuc();
-            //     if (!isset($_GET['page'])) {
-            //         $page = 1;
-            //     } else {
-            //         $page = $_GET['page'];
-            //     }
-            //     $sopluongbanghimoitrang = 5;
-            //     $tongsoluongbanghi = count_loadall_danhsachsanpham();
-            //     $totalPage = ceil($tongsoluongbanghi / $sopluongbanghimoitrang);
-            //     $start_limit = ($page - 1) * $sopluongbanghimoitrang;
-            //     $end_limit = $sopluongbanghimoitrang;
-            //     $danhsachsanpham = loadall_danhsachsanpham($start_limit, $end_limit);
-            //     $act = 'danhsachsanpham';
-            //     include "./sanpham/list.php";
-            //     break;
         case 'xoasanpham':
             if (isset($_GET["id"])) {
                 delete_sanpham($_GET["id"]);
@@ -262,6 +220,45 @@ if (isset($_GET["act"])) {
                 $thongbao = "Cập nhật thành công, mời bạn kiểm tra lại danh sách 👏";
             }
             include "./binhluan/update.php";
+            break;
+        case 'danhsachdonhang':
+            $danhsachdonhang = loadall_donhang();
+            include "./donhang/list.php";
+            break;
+        case 'xoadonhang':
+            if (isset($_GET["id"])) {
+                delete_donhang($_GET["id"]);
+            }
+            $danhsachdonhang = loadall_donhang();
+            include "./donhang/list.php";
+            break;
+        case 'suadonhang':
+            if (isset($_GET["id"])) {
+                $donhang = loadone_bill($_GET["id"]);
+            }
+            include "./donhang/update.php";
+            break;
+        case 'updatedonhang':
+            if (isset($_POST["capnhat"])) {
+                $id = $_POST["id"];
+                $tentaikhoan = $_POST["tentaikhoan"];
+                $sdt = $_POST["sdt"];
+                $email = $_POST["email"];
+                $diachi = $_POST["diachi"];
+                $ngaydathang = $_POST["ngaydathang"];
+                $tongsoluongsanpham = $_POST["tongsoluongsanpham"];
+                $tongtien = $_POST["tongtien"];
+                $pttt = $_POST["pttt"];
+                $trangthai = $_POST["trangthai"];
+
+                update_donhang($id, $tentaikhoan, $sdt, $email, $diachi, $ngaydathang, $tongsoluongsanpham, $tongtien, $pttt, $trangthai);
+                $thongbao = "Cập nhật thành công, mời bạn kiểm tra lại danh sách 👏";
+            }
+            include "./donhang/update.php";
+            break;
+        case 'thongke':
+            $danhsachthongke = load_thongke();
+            include "./thongke/list.php";
             break;
         default:
             include "home.php";

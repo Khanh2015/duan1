@@ -64,10 +64,7 @@
                 <p class="init-price"><?php echo number_format($giasale, 0, ",", ".") ?>đ</p>
                 <p class="sale"><del><?php echo number_format($giagoc, 0, ",", ".") ?>đ</del></p>
               </div>
-              <form action="" method="post">
-                <input type="hidden" name="" />
-                <button type="submit">Thêm vào giỏ hàng</button>
-              </form>
+              <a href="<?= $link ?>" class="xemchitiet">Xem chi tiết</a>
             </div>
           </div>
       <?php
@@ -131,10 +128,7 @@
               <p class="init-price"><?php echo number_format($giasale, 0, ",", ".") ?>đ</p>
               <p class="sale"><del><?php echo number_format($giagoc, 0, ",", ".") ?>đ</del></p>
             </div>
-            <form action="" method="post">
-              <input type="hidden" name="" />
-              <button type="submit">Thêm vào giỏ hàng</button>
-            </form>
+            <a href="<?= $link ?>" class="xemchitiet">Xem chi tiết</a>
           </div>
       <?php
         }

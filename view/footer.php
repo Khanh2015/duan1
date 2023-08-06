@@ -154,6 +154,7 @@
 <script src="./view/javascript/in-decrease-detail.js"></script>
 <script src="./view/javascript/in-decrease.js"></script>
 <script src="./view/javascript/countdown.js"></script>
+<script src="./view/javascript/confirm-delete.js"></script>
 </body>
 
 </html>

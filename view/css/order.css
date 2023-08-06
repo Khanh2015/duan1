@@ -51,13 +51,20 @@
     margin-top: 10px;
 }
 .infomation button {
-    padding: 10px 20px;
+    width: 423px;
+    text-align: center;
+    position: absolute;
+    top: 330px;
+    right: 0;
+    padding: 14px 0;
     border-top-left-radius: 12px;
     border-bottom-right-radius: 12px;
     background: #000;
     color: #fff;
-    border: 1px solid #000;
+    border: 2px solid #000;
     transition: 0.25s;
+    font-size: 20px;
+    font-weight: 600;
 }
 .infomation button:hover {
     color: #000;

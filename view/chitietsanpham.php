@@ -19,7 +19,7 @@ if (isset($sanpham)) {
         <!-- phần tên , giá , mô tả, kichs cỡ , chọn size và add đặt hàng  -->
         <div class="">
             <div class="product_price my-3">
-                <form action="" method="post">
+                <form class="form-chitietsanpham" action="index.php?act=themvaogiohang" method="post">
                     <!-- ten san pham -->
                     <h2 class="bg-white font-semibold text-3xl"> <?php if (isset($tensanpham)) echo $sanpham['tensanpham'] ?></h2>
                     <!-- gia san pham -->
@@ -157,13 +157,21 @@ if (isset($sanpham)) {
                     <div class="my-5 flex items-center gap-3">
                         <div class="flex items-center gap-1">
                             <span class="decrease-btn-detail bg-gray-200 rounded-[50%] w-8 h-8 flex items-center justify-center font-black text-l"><i class="fa-solid fa-caret-down text-xl" style="color: #f8303a;"></i></span>
-                            <input type="number" class="border-solid text-center border-[1px] border-gray-300 rounded-sm w-[80px] pl-[18px] py-2 h-10" id="number-display" value="1" max="<?php if (isset($soluong)) echo $soluong ?>">
+                            <input type="number" class="border-solid text-center border-[1px] border-gray-300 rounded-sm w-[80px] pl-[16px] py-2 h-10" id="number-display" name="soluongmua" value="1" max="<?php if (isset($soluong)) echo $soluong ?>">
                             <span class="increase-btn-detail bg-gray-200 rounded-[50%] w-8 h-8 flex items-center justify-center font-black text-l"><i class="fa-solid fa-caret-up text-xl" style="color: #f8303a;"></i></span>
                         </div>
 
-
+                        <input type="hidden" name="idsanpham" value="<?= $sanpham["id"] ?>">
+                        <input type="hidden" name="tensanpham" value="<?= $tensanpham ?>">
+                        <input type="hidden" name="giagoc" value="<?= $giagoc ?>">
+                        <input type="hidden" name="giasale" value="<?= $giasale ?>">
+                        <input type="hidden" name="anhsanpham" value="<?= $anhsanpham ?>">
+                        <input type="hidden" name="mota" value="<?= $mota ?>">
+                        <input type="hidden" name="luotxem" value="<?= $luotxem ?>">
+                        <input type="hidden" name="iddanhmuc" value="<?= $iddanhmuc ?>">
+                        <input type="hidden" name="soluongkho" value="<?= $soluong ?>">
                         <!-- Add to cart       -->
-                        <input class=" duration-[0.2s] text-xl bg-[#ff324d] px-2 py-5 ml-2 rounded-md text-white hover:bg-white hover:text-[#ff324d] border-solid border-[#ff324d] border-[2px]" type="submit" name="themvaogiohang" value="Thêm vào giỏ hàng">
+                        <input <?php if ($soluong === 0) echo 'disabled'; ?> class=" duration-[0.2s] text-xl bg-[#ff324d] px-2 py-5 ml-2 rounded-md text-white hover:bg-white hover:text-[#ff324d] border-solid border-[#ff324d] border-[2px]" type="submit" name="themvaogiohang" value="Thêm vào giỏ hàng">
                         <input class=" duration-[0.2s] text-xl bg-[#fff] px-12 py-5 ml-2 rounded-md text-[#ff324d] hover:bg-[#ff324d] hover:text-[#fff] border-solid border-[#ff324d] border-[2px]" type="submit" name="muangay" value="Mua ngay">
                     </div>
 
@@ -210,10 +218,7 @@ if (isset($sanpham)) {
                         <p class="init-price"><?php echo number_format($giasale, 0, ",", ".") ?>đ</p>
                         <p class="sale"><del><?php echo number_format($giagoc, 0, ",", ".") ?>đ</del></p>
                     </div>
-                    <form action="" method="post">
-                        <input type="hidden" name="" />
-                        <button type="submit">Thêm vào giỏ hàng</button>
-                    </form>
+                    <a href="<?= $link ?>" class="xemchitiet">Xem chi tiết</a>
                 </div>
         <?php
             }
@@ -225,9 +230,8 @@ if (isset($sanpham)) {
     const decreaseBtnDetail = document.querySelector(".decrease-btn-detail");
     const increaseBtnDetal = document.querySelector(".increase-btn-detail");
     const numberDisplay = document.querySelector("#number-display");
-    console.log(decreaseBtnDetail, increaseBtnDetal, numberDisplay);
 
-    let numberValue = 1;
+    let numberValue = numberDisplay.value;
 
     decreaseBtnDetail.addEventListener("click", () => {
         if (numberDisplay.value > 1) {
@@ -240,4 +244,27 @@ if (isset($sanpham)) {
         numberValue++;
         numberDisplay.value = numberValue;
     })
+
+    const sizeRadios = document.querySelectorAll('input[name="size"]');
+    const colorRadios = document.querySelectorAll('input[name="color"]');
+    console.log(sizeRadios);
+    console.log(colorRadios);
+
+    function isOneChecked(radios) {
+        for (let i = 0; i < radios.length; i++) {
+            if (radios[i].checked) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    function onFormSubmit(event) {
+        if (!isOneChecked(sizeRadios) || !isOneChecked(colorRadios)) {
+            event.preventDefault();
+            alert('Bạn phải chọn 1 một size và một màu sắc để có thể thêm vào giỏ hàng!');
+        }
+    }
+
+    document.querySelector('.form-chitietsanpham').addEventListener('submit', onFormSubmit);
 </script>

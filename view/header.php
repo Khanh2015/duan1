@@ -48,6 +48,7 @@
                     </li>
                     <li><a href="index.php?act=gioithieu">Giới thiệu</a></li>
                     <li><a href="index.php?act=lienhe">Liên hệ</a></li>
+                    <li><a href="index.php?act=donhangcuatoi">Đơn hàng của tôi</a></li>
                     <?php if (!isset($_SESSION["taikhoan"])) {
                         echo '<li><a href="index.php?act=lienhe">Hỏi đáp</a></li>';
                     }
@@ -65,8 +66,8 @@
                     </button>
                 </form>
                 <div class="cart">
-                    <a href="index.php?act=home">
-                        <i class="fa-solid fa-cart-shopping cart-icon"><span>99</span></i>
+                    <a href="index.php?act=xemgiohang">
+                        <i class="fa-solid fa-cart-shopping cart-icon"><span><?php echo isset($_SESSION["soluongtronggiohang"]) ? $_SESSION["soluongtronggiohang"] : 0; ?></span></i>
                     </a>
                 </div>
                 <div class="account">
