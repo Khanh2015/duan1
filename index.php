@@ -202,24 +202,52 @@ if (isset($_GET["act"])) {
                 $thanhtien = $soluongmua * $giasale;
                 $tongtiengiam = $soluongmua * $giagoc - $soluongmua * $giasale;
                 $tongtiengoc = $soluongmua * $giagoc;
-                $sanphamdathem = [
-                    $id, $tensanpham, $giagoc, $giasale, $anhsanpham, $mota, $size, $color,
-                    $soluongmua, $soluongkho, $thanhtien, $tongtiengiam, $tongtiengoc
-                ];
-                array_push($_SESSION["mycart"], $sanphamdathem);
-                $_SESSION["soluongtronggiohang"] = count($_SESSION["mycart"]);
-                echo '<div class="fixed z-10 inset-0 flex items-center justify-center bg-black bg-opacity-50">
-                <div class="bg-[#D5DAF0] translate-y-[40px] p-4 rounded shadow flex flex-col justify-center items-center gap-5">
-                  <p class="text-2xl font-semibold mt-8">Thêm vào giỏ hàng thành công!</p>
-                  <img class="" src="./view/img/add to cart done.jpg" />
-                </div>
-              </div>';
-                include "./view/giohang.php";
-                echo '<script>
-                setTimeout(function() {
-                  window.location.href = "index.php?act=xemgiohang";
-                }, 1500);
-              </script>';
+
+                $found = false;
+                foreach ($_SESSION["mycart"] as &$item) {
+                    if ($item[0] == $id && $item[6] == $size && $item[7] == $color) {
+                        $item[8] += $soluongmua;
+                        $item[10] = $item[8] * $giasale;
+                        $item[11] = ($item[8] * $giagoc) - ($item[8] * $giasale);
+                        $item[12] = ($item[8] * $giagoc);
+                        $found = true;
+                        break;
+                    }
+                }
+                unset($item);
+                if (!$found) {
+                    $sanphamdathem = [
+                        $id, $tensanpham, $giagoc, $giasale, $anhsanpham, $mota, $size, $color,
+                        $soluongmua, $soluongkho, $thanhtien, $tongtiengiam, $tongtiengoc
+                    ];
+                    array_push($_SESSION["mycart"], $sanphamdathem);
+                    $_SESSION["soluongtronggiohang"] = count($_SESSION["mycart"]);
+                    echo '<div class="fixed z-10 inset-0 flex items-center justify-center bg-black bg-opacity-50">
+                            <div class="bg-[#D5DAF0] translate-y-[40px] p-20 rounded shadow flex flex-col justify-center items-center gap-5">
+                                <p class="text-2xl font-semibold">Thêm vào giỏ hàng thành công!</p>
+                                <img class="w-[150px] mt-10" src="./view/img/done.png" />
+                            </div>
+                          </div>';
+                    include "./view/giohang.php";
+                    echo '<script>
+                            setTimeout(function() {
+                                window.location.href = "index.php?act=xemgiohang";
+                            }, 1000);
+                          </script>';
+                } else {
+                    echo '<div class="fixed z-10 inset-0 flex items-center justify-center bg-black bg-opacity-50">
+                            <div class="bg-[#D5DAF0] translate-y-[40px] p-20 rounded shadow flex flex-col justify-center items-center gap-5">
+                                <p class="text-2xl font-semibold">Thêm vào giỏ hàng thành công!</p>
+                                <img class="w-[150px] mt-10" src="./view/img/done.png" />
+                            </div>
+                          </div>';
+                    include "./view/giohang.php";
+                    echo '<script>
+                            setTimeout(function() {
+                                window.location.href = "index.php?act=xemgiohang";
+                            }, 1000);
+                          </script>';
+                }
             } else {
                 echo '<script>window.location.href = "index.php?act=xemgiohang";</script>';
             }
@@ -288,6 +316,13 @@ if (isset($_GET["act"])) {
                 $danhsachsanpham = loadall_sanphamtheobill($iddonhang);
             }
             include "./view/chitietdonhang.php";
+            break;
+        case 'huydonhang':
+            if (isset($_GET["id"])) {
+                delete_donhang($_GET["id"]);
+            }
+            $danhsachdonhang = loadall_bill($_SESSION["taikhoan"]["id"]);
+            include "./view/donhangcuatoi.php";
             break;
         default:
             include "./view/home.php";

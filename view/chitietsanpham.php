@@ -11,7 +11,7 @@ if (isset($sanpham)) {
         <!-- phan anh san pham -->
         <div class="">
             <!-- chỗ dữ liệu ảnh từng sản phẩm khi ấn xem chi tiết sản phẩm -->
-            <div class="relative border-solid border-[1px] border-gray-300 p-5  "><img src="./upload/<?php if (isset($anhsanpham)) echo $sanpham['anhsanpham'] ?>" alt="Ảnh sản phẩm" class="w-100% transition-transform duration-500 transform" id="product-image">
+            <div class="relative border-solid border-[1px] border-gray-300 p-5  "><img src="./upload/<?php if (isset($anhsanpham)) echo $sanpham['anhsanpham'] ?>" alt="Ảnh sản phẩm" class="w-100% transition-transform duration-500 hover:scale-110" id="product-image">
             </div>
         </div>
 

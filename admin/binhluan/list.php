@@ -43,7 +43,7 @@
                     <?php
                         }
                     } else {
-                        echo '<p class="added-successfully">Hông coá bình luận nào cạ 😭</p><br>';
+                        echo '<p class="added-successfully">Không có bình luận nào</p><br>';
                     }
                     ?>
                 </tbody>

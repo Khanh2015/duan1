@@ -73,16 +73,16 @@
                                 </td>
                                 <td><?php echo $ngaydathang ?></td>
                                 <td><?php echo $tongsoluongsanpham ?></td>
-                                <td><?php echo $tongtien ?></td>
+                                <td><?php echo number_format($tongtien, 0, ",", ".") ?>đ</td>
                                 <td>
                                     <a href="<?php echo $suadonhang ?>" class="edit-btn"><i class="fa-regular fa-pen-to-square"></i> Sửa</a>
-                                    <a href="<?php echo $xoadonhang ?>" class="delete-btn"><i class="fa-regular fa-trash-can"></i> Xoá</a>
+                                    <!-- <a href="<?php echo $xoadonhang ?>" class="delete-btn"><i class="fa-regular fa-trash-can"></i> Xoá</a> -->
                                 </td>
                             </tr>
                     <?php
                         }
                     } else {
-                        echo '<p class="added-successfully">Hông coá đơn hàng nào cạ 😭</p><br>';
+                        echo '<p class="added-successfully">Không có sản phẩm nào ❌</p><br>';
                     }
                     ?>
                 </tbody>

@@ -225,13 +225,13 @@ if (isset($_GET["act"])) {
             $danhsachdonhang = loadall_donhang();
             include "./donhang/list.php";
             break;
-        case 'xoadonhang':
-            if (isset($_GET["id"])) {
-                delete_donhang($_GET["id"]);
-            }
-            $danhsachdonhang = loadall_donhang();
-            include "./donhang/list.php";
-            break;
+            // case 'xoadonhang':
+            //     if (isset($_GET["id"])) {
+            //         delete_donhang($_GET["id"]);
+            //     }
+            //     $danhsachdonhang = loadall_donhang();
+            //     include "./donhang/list.php";
+            //     break;
         case 'suadonhang':
             if (isset($_GET["id"])) {
                 $donhang = loadone_bill($_GET["id"]);

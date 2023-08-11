@@ -79,7 +79,7 @@ if (isset($iddm)) {
                     <?php
                         }
                     } else {
-                        echo '<p class="added-successfully">Hông coá sản phẩm nào cạ 😭</p><br>';
+                        echo '<p class="added-successfully">Không có sản phẩm nào cả</p><br>';
                     }
                     ?>
                 </tbody>

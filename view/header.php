@@ -34,7 +34,7 @@
                 <ul>
                     <li><a href="index.php?act=home">Trang chủ</a></li>
                     <li>
-                        <a href="index.php?act=home">Danh sách danh mục <i class="fa-solid fa-chevron-down"></i></a>
+                        <a href="index.php?act=danhsachsanpham">Danh sách <i class="fa-solid fa-chevron-down"></i></a>
                         <ul class="subnav">
                             <?php
                             if (isset($danhsachdanhmuc)) {

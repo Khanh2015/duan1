@@ -7,3 +7,11 @@ deletes.forEach((item) => {
     }
   });
 });
+
+const huydonhangBtn = document.querySelector(".huydonhang");
+huydonhangBtn.addEventListener("click", (e) => {
+  const kq = confirm("Bạn có muốn huỷ đơn hàng này không?");
+  if (!kq) {
+    e.preventDefault();
+  }
+});
