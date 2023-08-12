@@ -6,12 +6,23 @@ if (isset($billdonhang))
     <div class="flex flex-col justify-center items-center">
         <img class="w-[120px]" src="./view/img/done.png" alt="">
         <h1 class="text-[#25AE88] mt-4">Đặt hàng thành công</h1>
+        <?php
+        if (!isset($billdonhang)) {
+            echo '<p class="text-red-500 font-semibold text-lg">Đơn hàng của bạn sẽ được giao đến trong 2-4 ngày tới, vui lòng chú ý điện thoại để nhận hàng</p>';
+        }
+        ?>
     </div>
     <div class="mt-10">
-        <div class="flex justify-between items-center text-xl font-semibold mt-7">
-            <p class="basis-[30%]">Mã đơn hàng</p>
-            <p class="basis-[30%] text-right">TBTK-<?= $id ?></p>
-        </div>
+        <?php
+        if (isset($billdonhang["id"])) {
+        ?>
+            <div class="flex justify-between items-center text-xl font-semibold mt-7">
+                <p class="basis-[30%]">Mã đơn hàng</p>
+                <p class="basis-[30%] text-right">TBTK-<?= $id ?></p>
+            </div>
+        <?php
+        }
+        ?>
 
         <div class="flex justify-between items-center text-xl font-semibold mt-7">
             <p class="basis-[30%]">Tên người nhận</p>

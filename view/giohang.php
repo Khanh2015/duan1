@@ -59,7 +59,7 @@
 
                                     <div class="flex items-center gap-1">
                                         <span id="decrease-btn-detail" onclick="changeQuantity('decrease','<?= $item[0] ?>', '<?= $item[6] ?>', '<?= $item[7] ?>')" class="bg-gray-200 rounded-[50%] w-8 h-8 flex items-center justify-center font-black text-l"><i class="fa-solid fa-caret-down text-xl cursor-pointer" style="color: #f8303a;"></i></span>
-                                        <input id="product-quantity_<?= $item[0] ?>" name="soluongmua" type="number" class="[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border-solid text-center border-[1px] border-gray-300 rounded-sm w-[80px] py-2 h-10" value="<?= $item[8] ?>" max="<?= $item[9] ?>" min="1" max="<?= $item[9] ?>" required>
+                                        <input id="product-quantity_<?= $item[0] ?>" name="soluongmua" type="number" class="[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none outline-none border-solid text-center border-[1px] border-gray-300 rounded-sm w-[80px] py-2 h-10" value="<?= $item[8] ?>" max="<?= $item[9] ?>" min="1" max="<?= $item[9] ?>" required>
                                         <span id="increase-btn-detail" onclick="changeQuantity('increase','<?= $item[0] ?>', '<?= $item[6] ?>', '<?= $item[7] ?>')" class="bg-gray-200 rounded-[50%] w-8 h-8 flex items-center justify-center font-black text-l"><i class="fa-solid fa-caret-up text-xl cursor-pointer" style="color: #f8303a;"></i></span>
                                     </div>
                                 </td>
@@ -99,13 +99,14 @@
                     <div class="info-wapper">
                         <span class="info-name">Thành tiền sau chiết khấu</span>
                         <span id="total-cart-price-ship" class="info-number">
-                            <?php
-                            if ($tonggiohang < 500000) {
-                                echo number_format($tonggiohang + 50000, 0, ",", ".");
-                            } else {
-                                echo number_format($tonggiohang, 0, ",", ".");
-                            }
-                            ?>đ
+                            <!-- <?php
+                                    if ($tonggiohang < 500000) {
+                                        echo number_format($tonggiohang + 50000, 0, ",", ".");
+                                    } else {
+                                        echo number_format($tonggiohang, 0, ",", ".");
+                                    }
+                                    ?>đ -->
+                            <?= number_format($tonggiohang, 0, ",", "."); ?>đ
                         </span>
                     </div>
                     <div id="transport-fee" class="info-wapper">
@@ -173,7 +174,8 @@
                     total.innerText = `${formatNumber(response.total)}đ`;
                     totalCost.innerText = `${formatNumber(response.totalCost)}đ`;
                     totalDiscount.innerText = `-${formatNumber(response.totalDiscount)}đ`;
-                    totalCartPriceShip.innerText = `${formatNumber(response.total < 500000 ? response.total + 50000 : response.total)}đ`;
+                    // totalCartPriceShip.innerText = `${formatNumber(response.total < 500000 ? response.total + 50000 : response.total)}đ`;
+                    totalCartPriceShip.innerText = `${formatNumber(response.total)}đ`;
 
                     if (response.total < 500000) {
                         transportFee.innerHTML = `<span class="info-name">Phí vận chuyển</span> <span class="info-number">50.000 VNĐ</span>`;

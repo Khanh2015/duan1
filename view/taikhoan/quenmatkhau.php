@@ -1,5 +1,5 @@
 <div class="sign-in-container">
-    <form action="" class="sign-in-content" method="post">
+    <form action="index.php?act=quenmatkhau" class="sign-in-content" method="post">
         <h1>QUÊN MẬT KHẨU</h1>
         <input type="email" name="email" placeholder="Nhập vào email đã đăng ký tài khoản...">
         <?php

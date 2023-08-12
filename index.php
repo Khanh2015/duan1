@@ -128,6 +128,8 @@ if (isset($_GET["act"])) {
             break;
         case 'dangnhap':
             if (isset($_POST["dangnhap"])) {
+                $_SESSION["mycart"] = [];
+                $_SESSION["soluongtronggiohang"] = 0;
                 $tentaikhoan = $_POST["tentaikhoan"];
                 $matkhau = $_POST["matkhau"];
                 $checktaikhoan = check_dangnhap($tentaikhoan, $matkhau);
@@ -268,39 +270,61 @@ if (isset($_GET["act"])) {
             include "./view/xacnhandonhang.php";
             break;
         case 'dathangthanhcong':
-            if (isset($_POST["dongydathang"])) {
-                if (isset($_SESSION["taikhoan"])) {
+            if (isset($_SESSION["taikhoan"])) {
+                if (isset($_POST["dongydathang"])) {
                     $idtaikhoan = $_SESSION["taikhoan"]["id"];
-                } else {
-                    $idtaikhoan = 0;
-                }
-                $tentaikhoan = $_POST["tentaikhoan"];
-                $email = $_POST["email"];
-                $sdt = $_POST["sdt"];
-                $diachi = $_POST["diachi"];
-                $pttt = 1;
-                $tongthanhtien = 0;
-                $tongsoluongsanpham = 0;
-                date_default_timezone_set('Asia/Ho_Chi_Minh');
-                $ngaydathang = date('h:i:sa d/m/Y');
-                foreach ($_SESSION["mycart"] as $item) {
-                    $thanhtien = $item[8] * $item[3];
-                    $tongthanhtien += $thanhtien;
-                    $tongsoluongsanpham += $item[8];
-                    $soluongmoi = $item[9] - $item[8];
-                    update_soluongsanpham($item[0], $soluongmoi);
-                }
-                if ($tongthanhtien < 500000) {
-                    $tongthanhtien += 50000;
-                }
-                $iddonhang = insert_donhang($idtaikhoan, $tentaikhoan, $diachi, $sdt, $email, $pttt, $ngaydathang, $tongthanhtien, $tongsoluongsanpham);
+                    $tentaikhoan = $_POST["tentaikhoan"];
+                    $email = $_POST["email"];
+                    $sdt = $_POST["sdt"];
+                    $diachi = $_POST["diachi"];
+                    $pttt = 1;
+                    $tongthanhtien = 0;
+                    $tongsoluongsanpham = 0;
+                    date_default_timezone_set('Asia/Ho_Chi_Minh');
+                    $ngaydathang = date('h:i:sa d/m/Y');
+                    foreach ($_SESSION["mycart"] as $item) {
+                        $thanhtien = $item[8] * $item[3];
+                        $tongthanhtien += $thanhtien;
+                        $tongsoluongsanpham += $item[8];
+                        $soluongmoi = $item[9] - $item[8];
+                        update_soluongsanpham($item[0], $soluongmoi);
+                    }
+                    if ($tongthanhtien < 500000) {
+                        $tongthanhtien += 50000;
+                    }
+                    $iddonhang = insert_donhang($idtaikhoan, $tentaikhoan, $diachi, $sdt, $email, $pttt, $ngaydathang, $tongthanhtien, $tongsoluongsanpham);
 
-                foreach ($_SESSION["mycart"] as $item) {
-                    insert_giohang($_SESSION["taikhoan"]["id"], $item[0], $item[4], $item[1], $item[2], $item[3], $item[6], $item[7], $item[8], $item[10], $iddonhang);
+                    foreach ($_SESSION["mycart"] as $item) {
+                        insert_giohang($_SESSION["taikhoan"]["id"], $item[0], $item[4], $item[1], $item[2], $item[3], $item[6], $item[7], $item[8], $item[10], $iddonhang);
+                    }
+                    $_SESSION["mycart"] = [];
+                    $_SESSION["soluongtronggiohang"] = 0;
+                    $billdonhang = loadone_bill($iddonhang);
                 }
-                $_SESSION["mycart"] = [];
-                $_SESSION["soluongtronggiohang"] = count($_SESSION["mycart"]);
-                $billdonhang = loadone_bill($iddonhang);
+            } else {
+                if (isset($_POST["dongydathang"])) {
+                    $tentaikhoan = $_POST["tentaikhoan"];
+                    $email = $_POST["email"];
+                    $sdt = $_POST["sdt"];
+                    $diachi = $_POST["diachi"];
+                    $pttt = 1;
+                    $tongtien = 0;
+                    $tongsoluongsanpham = 0;
+                    date_default_timezone_set('Asia/Ho_Chi_Minh');
+                    $ngaydathang = date('h:i:sa d/m/Y');
+                    foreach ($_SESSION["mycart"] as $item) {
+                        $thanhtien = $item[8] * $item[3];
+                        $tongtien += $thanhtien;
+                        $tongsoluongsanpham += $item[8];
+                        $soluongmoi = $item[9] - $item[8];
+                        update_soluongsanpham($item[0], $soluongmoi);
+                    }
+                    if ($tongtien < 500000) {
+                        $tongtien += 50000;
+                    }
+                    $_SESSION["mycart"] = [];
+                    $_SESSION["soluongtronggiohang"] = 0;
+                }
             }
             include "./view/dathangthanhcong.php";
             break;
