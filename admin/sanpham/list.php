@@ -1,11 +1,3 @@
-<?php
-if (isset($keyword)) {
-    echo $keyword;
-}
-if (isset($iddm)) {
-    echo $iddm;
-}
-?>
 <div class="content">
     <div class="header">
         <h1>Sản phẩm</h1>
@@ -39,6 +31,7 @@ if (isset($iddm)) {
                     <tr>
                         <th>STT</th>
                         <th>Tên</th>
+                        <th>Danh mục</th>
                         <th>Ảnh</th>
                         <th>Giá sale</th>
                         <th>Giá gốc</th>
@@ -52,7 +45,7 @@ if (isset($iddm)) {
                 <tbody>
                     <?php
                     if (isset($danhsachsanpham) && !empty($danhsachsanpham)) {
-                        $stt = 0;
+                        $stt = $sopluongbanghimoitrang * $page - $sopluongbanghimoitrang;
                         foreach ($danhsachsanpham as $sanpham) {
                             extract($sanpham);
                             $suasanpham = "index.php?act=suasanpham&id=" . $id;
@@ -62,6 +55,7 @@ if (isset($iddm)) {
                             <tr>
                                 <td><?= $stt ?></td>
                                 <td><?php echo $tensanpham ?></td>
+                                <td><?php echo $tendanhmuc ?></td>
                                 <td>
                                     <img src="../upload/<?php echo $anhsanpham ?>" alt="" />
                                 </td>
@@ -84,10 +78,10 @@ if (isset($iddm)) {
                     ?>
                 </tbody>
             </table>
-            <!-- <?php
-                    require_once "./pagination.php"
-                    ?> -->
-            <a href="index.php?act=themsanpham" class="submit-btn">Thêm mới</a>
+            <?php
+            require_once "./pagination.php"
+            ?>
+            <a href="index.php?act=themsanpham" class="submit-btn add-more-product">Thêm mới</a>
             <a href="index.php?act=danhsachsanpham"><button type="button" class="list-btn">Danh sách</button></a>
         </div>
     </div>

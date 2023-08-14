@@ -86,15 +86,25 @@ if (isset($_GET["act"])) {
             break;
         case 'danhsachsanpham':
             $danhsachdanhmuc = loadall_danhmuc();
-            $danhsachsanpham = loadall_sanpham();
+            if (!isset($_GET['page'])) {
+                $page = 1;
+            } else {
+                $page = $_GET['page'];
+            }
+            $sopluongbanghimoitrang = 5;
+            $tongsoluongbanghi = count_loadall_danhsachsanpham();
+            $totalPage = ceil($tongsoluongbanghi / $sopluongbanghimoitrang);
+            $start_limit = ($page - 1) * $sopluongbanghimoitrang;
+            $end_limit = $sopluongbanghimoitrang;
+            $danhsachsanpham = loadall_sanpham($start_limit, $end_limit);
+            $act = 'danhsachsanpham';
             include "./sanpham/list.php";
             break;
         case 'xoasanpham':
             if (isset($_GET["id"])) {
                 delete_sanpham($_GET["id"]);
             }
-            $danhsachsanpham = loadall_sanpham();
-            include "./sanpham/list.php";
+            echo '<script>window.location.href = "index.php?act=danhsachsanpham";</script>';
             break;
         case 'suasanpham':
             if (isset($_GET["id"])) {
@@ -137,21 +147,53 @@ if (isset($_GET["act"])) {
                 update_sanpham($id, $iddanhmuc, $ten, $anh, $giasale, $giagoc, $sizeString, $colorString, $soluong, $mota);
                 $thongbao = "Cập nhật sản phẩm thành công 🎉";
             }
-            $danhsachdanhmuc = loadall_danhmuc();
             include "./sanpham/update.php";
             break;
         case 'locsanpham':
-            if (isset($_POST["loc"])) {
+            if (isset($_POST["keyword"])) {
                 $keyword = $_POST["keyword"];
-                $iddanhmuc = $_POST["iddanhmuc"];
-                $danhsachsanpham = filter_sanpham($keyword, $iddanhmuc);
+            } else if (isset($_GET["keyword"])) {
+                $keyword = $_GET["keyword"];
+            } else {
+                $keyword = "";
+            }
+            if (isset($_POST["iddanhmuc"])) {
+                $iddanhmucFilter = $_POST["iddanhmuc"];
+            } else if (isset($_GET["iddanhmuc"])) {
+                $iddanhmucFilter = $_GET["iddanhmuc"];
+            } else {
+                $iddanhmucFilter = "";
             }
             $danhsachdanhmuc = loadall_danhmuc();
-            include "./sanpham/list.php";
+            if (!isset($_GET['page'])) {
+                $page = 1;
+            } else {
+                $page = $_GET['page'];
+            }
+            $sopluongbanghimoitrang = 5;
+            $tongsoluongbanghi = count_filter_sanpham($keyword, $iddanhmucFilter);
+            $totalPage = ceil($tongsoluongbanghi / $sopluongbanghimoitrang);
+            $start_limit = ($page - 1) * $sopluongbanghimoitrang;
+            $end_limit = $sopluongbanghimoitrang;
+            $danhsachsanpham = filter_sanpham($keyword, $iddanhmucFilter, $start_limit, $end_limit);
+            $act = 'locsanpham';
+            $iddonhang = "";
+            include "./sanpham/list_filter.php";
             break;
         case 'danhsachtaikhoan':
             if (isset($_SESSION["taikhoan"])) {
-                $danhsachtaikhoan = loadall_taikhoan();
+                if (!isset($_GET['page'])) {
+                    $page = 1;
+                } else {
+                    $page = $_GET['page'];
+                }
+                $sopluongbanghimoitrang = 5;
+                $tongsoluongbanghi = count_loadall_danhsachtaikhoan();
+                $totalPage = ceil($tongsoluongbanghi / $sopluongbanghimoitrang);
+                $start_limit = ($page - 1) * $sopluongbanghimoitrang;
+                $end_limit = $sopluongbanghimoitrang;
+                $danhsachtaikhoan = loadall_taikhoan($start_limit, $end_limit);
+                $act = 'danhsachtaikhoan';
             }
             include "./taikhoan/list.php";
             break;
@@ -159,8 +201,7 @@ if (isset($_GET["act"])) {
             if (isset($_GET["id"])) {
                 delete_taikhoan($_GET["id"]);
             }
-            $danhsachtaikhoan = loadall_taikhoan();
-            include "./taikhoan/list.php";
+            echo '<script>window.location.href = "index.php?act=danhsachtaikhoan";</script>';
             break;
         case 'suataikhoan':
             if (isset($_GET["id"])) {
@@ -196,15 +237,26 @@ if (isset($_GET["act"])) {
             include "./taikhoan/update.php";
             break;
         case 'danhsachbinhluan':
-            $danhsachbinhluan = loadall_binhluan();
+            if (!isset($_GET['page'])) {
+                $page = 1;
+            } else {
+                $page = $_GET['page'];
+            }
+            $sopluongbanghimoitrang = 5;
+            $tongsoluongbanghi = count_loadall_danhsachbinhluan();
+            $totalPage = ceil($tongsoluongbanghi / $sopluongbanghimoitrang);
+            $start_limit = ($page - 1) * $sopluongbanghimoitrang;
+            $end_limit = $sopluongbanghimoitrang;
+            $danhsachbinhluan = loadall_binhluan($start_limit, $end_limit);
+            $act = 'danhsachbinhluan';
             include "./binhluan/list.php";
             break;
         case 'xoabinhluan':
             if (isset($_GET["id"])) {
                 delete_binhluan($_GET["id"]);
             }
-            $danhsachbinhluan = loadall_binhluan();
-            include "./binhluan/list.php";
+            echo '<script>window.location.href = "index.php?act=danhsachbinhluan";</script>';
+
             break;
         case 'suabinhluan':
             if (isset($_GET["id"])) {
@@ -222,16 +274,20 @@ if (isset($_GET["act"])) {
             include "./binhluan/update.php";
             break;
         case 'danhsachdonhang':
-            $danhsachdonhang = loadall_donhang();
+            if (!isset($_GET['page'])) {
+                $page = 1;
+            } else {
+                $page = $_GET['page'];
+            }
+            $sopluongbanghimoitrang = 5;
+            $tongsoluongbanghi = count_loadall_danhsachdonhang();
+            $totalPage = ceil($tongsoluongbanghi / $sopluongbanghimoitrang);
+            $start_limit = ($page - 1) * $sopluongbanghimoitrang;
+            $end_limit = $sopluongbanghimoitrang;
+            $danhsachdonhang = loadall_donhang($start_limit, $end_limit);
+            $act = 'danhsachdonhang';
             include "./donhang/list.php";
             break;
-            // case 'xoadonhang':
-            //     if (isset($_GET["id"])) {
-            //         delete_donhang($_GET["id"]);
-            //     }
-            //     $danhsachdonhang = loadall_donhang();
-            //     include "./donhang/list.php";
-            //     break;
         case 'suadonhang':
             if (isset($_GET["id"])) {
                 $donhang = loadone_bill($_GET["id"]);
@@ -255,6 +311,30 @@ if (isset($_GET["act"])) {
                 $thongbao = "Cập nhật thành công, mời bạn kiểm tra lại danh sách 👏";
             }
             include "./donhang/update.php";
+            break;
+        case 'timdonhang':
+            if (isset($_POST["iddonhang"])) {
+                $iddonhang = $_POST["iddonhang"];
+            } else if (isset($_GET["iddonhang"])) {
+                $iddonhang = $_GET["iddonhang"];
+            } else {
+                $iddonhang = "";
+            }
+            if (!isset($_GET['page'])) {
+                $page = 1;
+            } else {
+                $page = $_GET['page'];
+            }
+            $sopluongbanghimoitrang = 5;
+            $tongsoluongbanghi = count_search_bill($iddonhang);
+            $totalPage = ceil($tongsoluongbanghi / $sopluongbanghimoitrang);
+            $start_limit = ($page - 1) * $sopluongbanghimoitrang;
+            $end_limit = $sopluongbanghimoitrang;
+            $danhsachdonhang = search_bill($iddonhang, $start_limit, $end_limit);
+            $act = 'timdonhang';
+            $iddanhmucFilter = "";
+            $keyword = "";
+            include "./donhang/list_search.php";
             break;
         case 'thongke':
             $danhsachthongke = load_thongke();

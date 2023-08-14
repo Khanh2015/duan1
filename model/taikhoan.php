@@ -52,9 +52,9 @@ function quenmatkhau($email)
     return $taikhoan;
 }
 
-function loadall_taikhoan()
+function loadall_taikhoan($start_limit, $end_limit)
 {
-    $sql = "SELECT * FROM `taikhoan`";
+    $sql = "SELECT * FROM `taikhoan` LIMIT $start_limit, $end_limit";
     $danhsachtaikhoan = pdo_query($sql);
     return $danhsachtaikhoan;
 }
@@ -70,4 +70,11 @@ function loadone_taikhoan($id)
     $sql = "SELECT * FROM `taikhoan` WHERE `id` = '$id'";
     $taikhoan = pdo_query_one($sql);
     return $taikhoan;
+}
+
+function count_loadall_danhsachtaikhoan()
+{
+    $sql = "SELECT COUNT(*) FROM taikhoan";
+    $result = pdo_query_value($sql);
+    return $result;
 }

@@ -9,10 +9,16 @@
     <div class="main-content">
         <h1 class="main-content-title">Danh sách đơn hàng</h1>
         <div class="table-product-wapper table-category-wapper">
-            <table class="list-product list-category">
+            <form action="index.php?act=timdonhang" class="filter-product" method="post">
+                <input <?php if (isset($iddonhang)) echo 'value="' . $iddonhang . '"' ?> type="text" name="iddonhang" placeholder="Nhập vào mã đơn hàng..." />
+                <button name="timkiem" type="submit">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+            </form>
+            <table class="list-bill list-product list-category">
                 <thead>
                     <tr>
-                        <th>STT</th>
+                        <th>Mã đơn hàng</th>
                         <th>Tên tài khoản</th>
                         <th>Địa chỉ</th>
                         <th>Email</th>
@@ -28,15 +34,15 @@
                 <tbody>
                     <?php
                     if (isset($danhsachdonhang) && !empty($danhsachdonhang)) {
-                        $stt = 0;
+                        $stt = $sopluongbanghimoitrang * $page - $sopluongbanghimoitrang;
                         foreach ($danhsachdonhang as $donhang) {
                             extract($donhang);
                             $suadonhang = "index.php?act=suadonhang&id=" . $donhang["id"];
-                            $xoadonhang = "index.php?act=xoadonhang&id=" . $donhang["id"];
+                            $chitietdonhang = "index.php?act=chitietdonhang&id=" . $donhang["id"];
                             $stt++;
                     ?>
                             <tr>
-                                <td><?php echo $stt ?></td>
+                                <td><?php echo 'TBTK-' . $donhang['id']; ?></td>
                                 <td><?php echo $tentaikhoan ?></td>
                                 <td><?php echo $diachi ?></td>
                                 <td><?php echo $email ?></td>
@@ -76,17 +82,20 @@
                                 <td><?php echo number_format($tongtien, 0, ",", ".") ?>đ</td>
                                 <td>
                                     <a href="<?php echo $suadonhang ?>" class="edit-btn"><i class="fa-regular fa-pen-to-square"></i> Sửa</a>
-                                    <!-- <a href="<?php echo $xoadonhang ?>" class="delete-btn"><i class="fa-regular fa-trash-can"></i> Xoá</a> -->
+                                    <a href="<?php echo $chitietdonhang ?>" style="margin: 0;" class="list-btn">Chi tiết</a>
                                 </td>
                             </tr>
                     <?php
                         }
                     } else {
-                        echo '<p class="added-successfully">Không có sản phẩm nào ❌</p><br>';
+                        echo '<p class="added-successfully">Không có đơn hàng nào ❌</p><br>';
                     }
                     ?>
                 </tbody>
             </table>
+            <?php
+            require_once "./pagination.php"
+            ?>
         </div>
     </div>
 </div>

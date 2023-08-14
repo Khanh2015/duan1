@@ -19,11 +19,18 @@ function loadone_binhluan($id)
     return $binhluan;
 }
 
-function loadall_binhluan()
+function loadall_binhluan($start_limit, $end_limit)
 {
-    $sql = "SELECT taikhoan.tentaikhoan, sanpham.tensanpham, binhluan.id, binhluan.noidung, binhluan.ngaybinhluan FROM taikhoan JOIN binhluan ON taikhoan.id = binhluan.idtaikhoan JOIN sanpham ON sanpham.id = binhluan.idsanpham";
+    $sql = "SELECT taikhoan.tentaikhoan, sanpham.tensanpham, binhluan.id, binhluan.noidung, binhluan.ngaybinhluan FROM taikhoan JOIN binhluan ON taikhoan.id = binhluan.idtaikhoan JOIN sanpham ON sanpham.id = binhluan.idsanpham LIMIT $start_limit, $end_limit";
     $danhsachbinhluan = pdo_query($sql);
     return $danhsachbinhluan;
+}
+
+function count_loadall_danhsachbinhluan()
+{
+    $sql = "SELECT COUNT(*) FROM binhluan";
+    $result = pdo_query_value($sql);
+    return $result;
 }
 
 function delete_binhluan($id)

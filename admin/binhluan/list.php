@@ -22,7 +22,7 @@
                 <tbody>
                     <?php
                     if (isset($danhsachbinhluan) && !empty($danhsachbinhluan)) {
-                        $stt = 0;
+                        $stt = $sopluongbanghimoitrang * $page - $sopluongbanghimoitrang;
                         foreach ($danhsachbinhluan as $binhluan) {
                             extract($binhluan);
                             $suabinhluan = "index.php?act=suabinhluan&id=" . $binhluan["id"];
@@ -48,6 +48,9 @@
                     ?>
                 </tbody>
             </table>
+            <?php
+            require_once "./pagination.php"
+            ?>
         </div>
     </div>
 </div>

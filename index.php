@@ -1,5 +1,9 @@
 <?php
 session_start();
+// Sử dụng PHPMailer để gửi email
+// use PHPMailer\PHPMailer\PHPMailer;
+// use PHPMailer\PHPMailer\Exception;
+
 include "./model/pdo.php";
 include "./model/sanpham.php";
 include "./model/danhmuc.php";
@@ -28,7 +32,6 @@ if (isset($_GET["act"])) {
             include "./view/home.php";
             break;
         case 'danhsachsanpham':
-
             if (!isset($_GET['page'])) {
                 $page = 1;
             } else {
@@ -56,7 +59,7 @@ if (isset($_GET["act"])) {
             } else {
                 $page = $_GET['page'];
             }
-            $sopluongbanghimoitrang = 8;
+            $sopluongbanghimoitrang = 2;
             $tongsoluongbanghi = count_loadall_danhsachtimkiem($keyword);
             $totalPage = ceil($tongsoluongbanghi / $sopluongbanghimoitrang);
             $start_limit = ($page - 1) * $sopluongbanghimoitrang;
@@ -95,6 +98,47 @@ if (isset($_GET["act"])) {
             $iddanhmuc = $_GET["iddanhmuc"];
             $act = 'locdanhmuc';
             include "./view/danhsachsanpham.php";
+            break;
+        case 'locsanpham':
+            if (isset($_POST["size"])  && !empty($_POST["size"])) {
+                $filterSize = $_POST["size"];
+            } else if (isset($_GET["size"]) && !empty($_GET["size"])) {
+                $filterSize = $_GET["size"];
+            } else {
+                $filterSize = "";
+            }
+
+            if (isset($_POST["color"]) && !empty($_POST["color"])) {
+                $filterColor = $_POST["color"];
+            } else if (isset($_GET["color"]) && !empty($_GET["color"])) {
+                $filterColor = $_GET["color"];
+            } else {
+                $filterColor = "";
+            }
+
+            if (isset($_POST["price"]) && !empty($_POST["price"])) {
+                $filterPrice = $_POST["price"];
+            } else if (isset($_GET["price"]) && !empty($_GET["price"])) {
+                $filterPrice = $_GET["price"];
+            } else {
+                $filterPrice = 1000000;
+            }
+
+            if (!isset($_GET['page'])) {
+                $page = 1;
+            } else {
+                $page = $_GET['page'];
+            }
+            $sopluongbanghimoitrang = 4;
+
+            $tongsoluongbanghi = count_locsanpham($filterSize, $filterColor, $filterPrice);
+            $totalPage = ceil($tongsoluongbanghi / $sopluongbanghimoitrang);
+
+            $start_limit = ($page - 1) * $sopluongbanghimoitrang;
+            $end_limit = $sopluongbanghimoitrang;
+
+            $danhsachsanpham = locsanpham($filterSize, $filterColor, $filterPrice, $start_limit, $end_limit);
+            include "./view/danhsachsanphamloc.php";
             break;
         case 'dangky':
             if (isset($_POST["dangky"])) {
@@ -169,10 +213,63 @@ if (isset($_GET["act"])) {
             }
             include "./view/taikhoan/capnhat.php";
             break;
+            // case 'quenmatkhau':
+            //     if (isset($_POST["quenmatkhau"])) {
+            //         $email = $_POST["email"];
+            //         $taikhoan = quenmatkhau($email);
+            // if (isset($taikhoan) && !empty($taikhoan)) {
+            //     ini_set('SMTP', 'smtp.gmail.com');
+            //     ini_set('smtp_port', 587);
+            //     $to = 'phamkhanh99889988@gmail.com';
+            //     $subject = 'Tiêu đề';
+            //     $message = 'Nội dung';
+            //     $headers = 'From: khanhdzai6996@gmail.com' . "\r\n";
+            //     $success = mail($to, $subject, $message, $headers);
+            //     if (!$success) {
+            //         $errorMessage = error_get_last()['message'];
+            //     }
+            // }
+            // }
+            // include "./view/taikhoan/quenmatkhau.php";
+            // break;
         case 'quenmatkhau':
             if (isset($_POST["quenmatkhau"])) {
                 $email = $_POST["email"];
                 $taikhoan = quenmatkhau($email);
+                if (isset($taikhoan) && !empty($taikhoan)) {
+                    extract($taikhoan);
+                    require './PHPMailer/src/Exception.php';
+                    require './PHPMailer/src/PHPMailer.php';
+                    require './PHPMailer/src/SMTP.php';
+
+                    // Tạo một đối tượng PHPMailer
+                    $mail = new PHPMailer(true);
+
+                    try {
+                        // Cấu hình SMTP cho Gmail
+                        $mail->isSMTP();
+                        $mail->Host = 'smtp.gmail.com';
+                        $mail->SMTPAuth = true;
+                        $mail->Username = 'khanhpcgph30175@fpt.edu.vn';
+                        $mail->Password = 'Pcgkhanh21052000';
+                        $mail->Port = 587;
+
+                        // Thiết lập thông tin người gửi và người nhận
+                        $mail->setFrom('khanhpcgph30175@fpt.edu.vn', 'Khanh');
+                        $mail->addAddress($email);
+
+                        // Thiết lập nội dung email
+                        $mail->isHTML(true);
+                        $mail->Subject = 'Cung cấp lại mật khẩu';
+                        $mail->Body = 'Mật khẩu đã đăng ký với email này là: ' . $matkhau;
+
+                        // Gửi email
+                        $mail->send();
+                        $thongbao = 'Email đã được gửi thành công';
+                    } catch (Exception $e) {
+                        $thongbao = 'Có lỗi xảy ra khi gửi email: ' . $mail->ErrorInfo;
+                    }
+                }
             }
             include "./view/taikhoan/quenmatkhau.php";
             break;

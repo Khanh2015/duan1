@@ -24,7 +24,7 @@
                 <tbody>
                     <?php
                     if (isset($danhsachtaikhoan)) {
-                        $stt = 0;
+                        $stt = $sopluongbanghimoitrang * $page - $sopluongbanghimoitrang;
                         foreach ($danhsachtaikhoan as $taikhoan) {
                             extract($taikhoan);
                             $suataikhoan = 'index.php?act=suataikhoan&id=' . $taikhoan["id"];
@@ -56,6 +56,9 @@
                     ?>
                 </tbody>
             </table>
+            <?php
+            require_once "./pagination.php"
+            ?>
         </div>
     </div>
 </div>

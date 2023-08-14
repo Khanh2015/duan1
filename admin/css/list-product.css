@@ -1,10 +1,12 @@
 .table-product-wapper {
     margin: 0;
 }
+
 .filter-product {
     text-align: center;
     margin: 20px 0;
 }
+
 .filter-product button,
 .filter-product input,
 .filter-product select {
@@ -12,6 +14,7 @@
     padding: 10px 12px;
     border: 1px solid #ccc;
 }
+
 .filter-product button {
     padding: 10px 20px;
     background-image: linear-gradient(to left bottom, #478CCC, #5545C5, #A043ED, #FF44D0);
@@ -19,26 +22,40 @@
     transition: all 0.25s ease;
     margin-left: 10px;
 }
+
 .filter-product button:hover {
     transform: scale(1.2);
 }
+
 .list-product td img {
     width: 100px;
 }
+
 .list-product .product-name,
 .list-product .product-sizes,
 .list-product .product-colors {
     max-width: 120px;
     word-wrap: break-word;
 }
-.list-product td:nth-child(3),
-.list-product td:nth-child(4),
-.list-product td:nth-child(6),
-.list-product td:nth-child(7)
- {
-    max-width: 220px;
+
+.list-bill td:nth-child(4),
+.list-bill td:nth-child(5),
+.list-product td:nth-child(2),
+.list-product td:nth-child(7),
+.list-product td:nth-child(8) {
+    max-width: 160px;
     word-wrap: break-word;
 }
+
+.list-bill td:last-child {
+    width: 130px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 6px;
+}
+
 .comeback-list {
     margin-left: 10px;
     border-radius: 5px;
@@ -49,6 +66,7 @@
     color: #fff;
     transition: all 0.25s ease;
 }
+
 .comeback-list:hover {
     transform: scale(1.1);
 }

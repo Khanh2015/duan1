@@ -1,6 +1,6 @@
 <div class="product-list-content">
     <div class="filter-container">
-        <form>
+        <form action="index.php?act=locsanpham" method="post">
             <h4>Size áo</h4>
             <input type="radio" id="size-s" name="size" value="S" />
             <label for="size-s">S</label>
@@ -82,7 +82,7 @@
                 </span>
             </div>
 
-            <input class="filter-btn mt" type="submit" value="LỌC" />
+            <input class="filter-btn mt" type="submit" name="locsanpham" value="LỌC" />
         </form>
     </div>
     <div class="product-list-wapper">

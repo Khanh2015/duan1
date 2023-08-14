@@ -5,9 +5,9 @@ function insert_sanpham($iddanhmuc, $ten, $anh, $giasale, $giagoc, $size, $color
     pdo_execute($sql);
 }
 
-function loadall_sanpham()
+function loadall_sanpham($start_limit, $end_limit)
 {
-    $sql = "SELECT * FROM `sanpham` ORDER BY id DESC";
+    $sql = "SELECT sanpham.*, danhmuc.tendanhmuc FROM sanpham JOIN danhmuc ON sanpham.iddanhmuc = danhmuc.id ORDER BY id DESC LIMIT $start_limit, $end_limit";
     $danhsachsanpham = pdo_query($sql);
     return $danhsachsanpham;
 }
@@ -49,9 +49,9 @@ function update_sanpham($id, $iddanhmuc, $ten, $anh, $giasale, $giagoc, $size, $
     pdo_execute($sql);
 }
 
-function filter_sanpham($keyword, $iddanhmuc)
+function count_filter_sanpham($keyword, $iddanhmuc)
 {
-    $sql = "SELECT * FROM sanpham WHERE ";
+    $sql = "SELECT COUNT(*) FROM sanpham WHERE ";
     if (!empty($keyword) && !empty($iddanhmuc)) {
         $sql .= "(tensanpham LIKE '%" . $keyword . "%' OR mota LIKE '%" . $keyword . "%') AND iddanhmuc = " . $iddanhmuc;
     } elseif (!empty($keyword)) {
@@ -61,6 +61,26 @@ function filter_sanpham($keyword, $iddanhmuc)
     } else {
         $sql .= "1";
     }
+    $result = pdo_query_value($sql);
+    return $result;
+}
+
+function filter_sanpham($keyword, $iddanhmuc, $start_limit, $end_limit)
+{
+    $sql = "SELECT sanpham.*, danhmuc.tendanhmuc 
+            FROM sanpham 
+            JOIN danhmuc ON sanpham.iddanhmuc = danhmuc.id 
+            WHERE ";
+    if (!empty($keyword) && !empty($iddanhmuc)) {
+        $sql .= "(sanpham.tensanpham LIKE '%" . $keyword . "%' OR sanpham.mota LIKE '%" . $keyword . "%') AND sanpham.iddanhmuc = " . $iddanhmuc;
+    } elseif (!empty($keyword)) {
+        $sql .= "sanpham.tensanpham LIKE '%" . $keyword . "%' OR sanpham.mota LIKE '%" . $keyword . "%'";
+    } elseif (!empty($iddanhmuc)) {
+        $sql .= "sanpham.iddanhmuc = " . $iddanhmuc;
+    } else {
+        $sql .= "1";
+    }
+    $sql .= " LIMIT $start_limit, $end_limit";
     $danhsachsanpham = pdo_query($sql);
     return $danhsachsanpham;
 }
@@ -120,4 +140,52 @@ function loadall_sanphamcungdanhmuc($iddanhmuc, $id)
     $sql = "SELECT * FROM sanpham WHERE iddanhmuc = '$iddanhmuc' AND id != '$id' LIMIT 5";
     $danhsachsanpham = pdo_query($sql);
     return $danhsachsanpham;
+}
+
+// function locsanpham($size, $color, $price)
+// {
+//     $sql = "SELECT * FROM sanpham WHERE 1=1";
+//     if (!empty($size)) {
+//         $sql .= " AND size LIKE '%$size%'";
+//     }
+//     if (!empty($color)) {
+//         $sql .= " AND color LIKE '%$color%'";
+//     }
+//     if (!empty($price)) {
+//         $sql .= " AND giasale <= '$price'";
+//     }
+//     $danhsachsanpham = pdo_query($sql);
+//     return $danhsachsanpham;
+// }
+function locsanpham($size, $color, $price, $start_limit, $end_limit)
+{
+    $sql = "SELECT * FROM sanpham WHERE 1=1";
+    if (!empty($size)) {
+        $sql .= " AND FIND_IN_SET('$size', size) > 0";
+    }
+    if (!empty($color)) {
+        $sql .= " AND FIND_IN_SET('$color', color) > 0";
+    }
+    if (!empty($price)) {
+        $sql .= " AND giasale <= '$price'";
+    }
+    $sql .= " LIMIT $start_limit, $end_limit";
+    $danhsachsanpham = pdo_query($sql);
+    return $danhsachsanpham;
+}
+
+function count_locsanpham($size, $color, $price)
+{
+    $sql = "SELECT COUNT(*) FROM sanpham WHERE 1=1";
+    if (!empty($size)) {
+        $sql .= " AND FIND_IN_SET('$size', size) > 0";
+    }
+    if (!empty($color)) {
+        $sql .= " AND FIND_IN_SET('$color', color) > 0";
+    }
+    if (!empty($price)) {
+        $sql .= " AND giasale <= '$price'";
+    }
+    $result = pdo_query_value($sql);
+    return $result;
 }

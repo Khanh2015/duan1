@@ -40,7 +40,7 @@
                     ?>
                 </tbody>
             </table>
-            <a href="index.php?act=themdanhmuc" class="submit-btn">Thêm mới</a>
+            <a href="index.php?act=themdanhmuc" class="submit-btn add-more-product">Thêm mới</a>
         </div>
     </div>
 </div>

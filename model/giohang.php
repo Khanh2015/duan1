@@ -38,11 +38,18 @@ function loadall_sanphamtheobill($iddonhang)
     return $danhsachsanpham;
 }
 
-function loadall_donhang()
+function loadall_donhang($start_limit, $end_limit)
 {
-    $sql = "SELECT * FROM `donhang` ORDER BY `id` DESC";
+    $sql = "SELECT * FROM `donhang` ORDER BY `id` DESC LIMIT $start_limit, $end_limit";
     $danhsachdonhang = pdo_query($sql);
     return $danhsachdonhang;
+}
+
+function count_loadall_danhsachdonhang()
+{
+    $sql = "SELECT COUNT(*) FROM donhang";
+    $result = pdo_query_value($sql);
+    return $result;
 }
 
 function delete_donhang($id)
@@ -62,4 +69,18 @@ function load_thongke()
     $sql = "SELECT danhmuc.id AS iddanhmuc, danhmuc.tendanhmuc AS tendanhmuc, COUNT(sanpham.id) AS soluong, MIN(sanpham.giasale) AS minprice, MAX(sanpham.giasale) AS maxprice, AVG(sanpham.giasale) AS avgprice FROM sanpham JOIN danhmuc ON danhmuc.id = sanpham.iddanhmuc GROUP BY danhmuc.id";
     $danhsachthongke = pdo_query($sql);
     return $danhsachthongke;
+}
+
+function search_bill($iddonhang, $start_limit, $end_limit)
+{
+    $sql = "SELECT * FROM donhang WHERE id LIKE '%$iddonhang%' LIMIT $start_limit, $end_limit";
+    $danhsachdonhang = pdo_query($sql);
+    return $danhsachdonhang;
+}
+
+function count_search_bill($iddonhang)
+{
+    $sql = "SELECT COUNT(*) FROM donhang WHERE id LIKE '%$iddonhang%'";
+    $result = pdo_query_value($sql);
+    return $result;
 }
