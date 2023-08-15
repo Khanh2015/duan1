@@ -45,6 +45,13 @@ function loadall_donhang($start_limit, $end_limit)
     return $danhsachdonhang;
 }
 
+function loadall_donhang_thongke($start_limit, $end_limit)
+{
+    $sql = "SELECT * FROM `donhang` ORDER BY `trangthai` DESC LIMIT $start_limit, $end_limit";
+    $danhsachdonhang = pdo_query($sql);
+    return $danhsachdonhang;
+}
+
 function count_loadall_danhsachdonhang()
 {
     $sql = "SELECT COUNT(*) FROM donhang";
@@ -58,9 +65,15 @@ function delete_donhang($id)
     pdo_execute("DELETE FROM donhang WHERE `donhang`.`id` = '$id'");
 }
 
-function update_donhang($id, $tentaikhoan, $sdt, $email, $diachi, $ngaydathang, $tongsoluongsanpham, $tongtien, $pttt, $trangthai)
+// function update_donhang($id, $tentaikhoan, $sdt, $email, $diachi, $ngaydathang, $tongsoluongsanpham, $tongtien, $pttt, $trangthai)
+// {
+//     $sql = "UPDATE `donhang` SET `tentaikhoan`='$tentaikhoan',`diachi`='$diachi',`sdt`='$sdt',`email`='$email',`pttt`='$pttt',`ngaydathang`='$ngaydathang',`tongtien`='$tongtien',`trangthai`='$trangthai',`tongsoluongsanpham`='$tongsoluongsanpham' WHERE `id` = '$id'";
+//     pdo_execute($sql);
+// }
+
+function update_donhang($id, $tentaikhoan, $sdt, $email, $diachi, $trangthai)
 {
-    $sql = "UPDATE `donhang` SET `tentaikhoan`='$tentaikhoan',`diachi`='$diachi',`sdt`='$sdt',`email`='$email',`pttt`='$pttt',`ngaydathang`='$ngaydathang',`tongtien`='$tongtien',`trangthai`='$trangthai',`tongsoluongsanpham`='$tongsoluongsanpham' WHERE `id` = '$id'";
+    $sql = "UPDATE `donhang` SET `tentaikhoan`='$tentaikhoan',`diachi`='$diachi',`sdt`='$sdt',`email`='$email',`trangthai`='$trangthai' WHERE `id` = '$id'";
     pdo_execute($sql);
 }
 
@@ -81,6 +94,20 @@ function search_bill($iddonhang, $start_limit, $end_limit)
 function count_search_bill($iddonhang)
 {
     $sql = "SELECT COUNT(*) FROM donhang WHERE id LIKE '%$iddonhang%'";
+    $result = pdo_query_value($sql);
+    return $result;
+}
+
+function soluongsanphamdaban()
+{
+    $sql = "SELECT SUM(tongsoluongsanpham) FROM donhang WHERE trangthai = 4";
+    $result = pdo_query_value($sql);
+    return $result;
+}
+
+function tongdoanhthu()
+{
+    $sql = "SELECT SUM(tongtien) FROM donhang WHERE trangthai = 4";
     $result = pdo_query_value($sql);
     return $result;
 }

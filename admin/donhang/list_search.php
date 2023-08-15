@@ -47,7 +47,22 @@
                                 <td><?php echo $diachi ?></td>
                                 <td><?php echo $email ?></td>
                                 <td><?php echo $sdt ?></td>
-                                <td>
+                                <td <?php
+                                    switch ($trangthai) {
+                                        case '1':
+                                            echo 'style="color: red;"';
+                                            break;
+                                        case '2':
+                                            echo 'style="color: orange;"';
+                                            break;
+                                        case '3':
+                                            echo 'style="color: blue;"';
+                                            break;
+                                        case '4':
+                                            echo 'style="color: #00CD00"';
+                                            break;
+                                    }
+                                    ?>>
                                     <?php
                                     switch ($trangthai) {
                                         case '1':

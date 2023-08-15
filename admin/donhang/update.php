@@ -26,7 +26,7 @@ if (isset($donhang)) {
             <input name="email" type="email" placeholder="Nhập vào email người nhận mới..." value="<?= $email ?>" required><br><br>
             <label for="">Địa chỉ người nhận</label><br>
             <textarea name="diachi" class="w-[80%] px-3 py-[10px] rounded-md border border-[#ccc] mt-[10px]" placeholder="Nhập vào địa chỉ người nhận mới..." required name="address" id="" cols="30" rows="4"><?= $diachi ?></textarea><br><br>
-            <label for="">Ngày đặt hàng</label><br>
+            <!-- <label for="">Ngày đặt hàng</label><br>
             <input name="ngaydathang" type="text" placeholder="Nhập vào ngày đặt hàng mới..." value="<?= $ngaydathang ?>" required><br><br>
             <label for="">Tổng số lượng hàng</label><br>
             <input name="tongsoluongsanpham" type="number" placeholder="Nhập vào tổng số lượng hàng mới..." value="<?= $tongsoluongsanpham ?>" min="1" required><br><br>
@@ -36,9 +36,9 @@ if (isset($donhang)) {
             <select name="pttt" id="">
                 <option <?php if ($pttt == 1) echo "selected"  ?> value="1">Thanh toán khi nhận hàng</option>
                 <option <?php if ($pttt == 2) echo "selected"  ?> disabled value="2">Thanh toán qua thẻ ATM</option>
-            </select><br><br>
+            </select><br><br> -->
             <label for="">Trạng thái đơn hàng</label><br>
-            <select name="trangthai" id="">
+            <select name="trangthai" id="trangthai">
                 <option <?php if ($trangthai == 1) echo "selected"  ?> value="1">Chờ xác nhận</option>
                 <option <?php if ($trangthai == 2) echo "selected"  ?> value="2">Đã xác nhận</option>
                 <option <?php if ($trangthai == 3) echo "selected"  ?> value="3">Đang giao hàng</option>
@@ -51,3 +51,22 @@ if (isset($donhang)) {
         </form>
     </div>
 </div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var selectElement = document.getElementById('trangthai');
+        var giaoHangThanhCongOption = selectElement.querySelector('option[value="4"]');
+
+        selectElement.addEventListener('change', function() {
+            if (selectElement.value !== "4") {
+                selectElement.classList.remove('disabled-select');
+            } else {
+                selectElement.classList.add('disabled-select');
+            }
+        });
+
+        // Check initial value on page load
+        if (selectElement.value === "4") {
+            selectElement.classList.add('disabled-select');
+        }
+    });
+</script>

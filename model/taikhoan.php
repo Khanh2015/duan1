@@ -61,6 +61,8 @@ function loadall_taikhoan($start_limit, $end_limit)
 
 function delete_taikhoan($id)
 {
+    $sql = "DELETE FROM binhluan WHERE `binhluan`.`idtaikhoan` = '$id'";
+    pdo_execute($sql);
     $sql = "DELETE FROM taikhoan WHERE `taikhoan`.`id` = '$id'";
     pdo_execute($sql);
 }
@@ -76,5 +78,12 @@ function count_loadall_danhsachtaikhoan()
 {
     $sql = "SELECT COUNT(*) FROM taikhoan";
     $result = pdo_query_value($sql);
+    return $result;
+}
+
+function check_account_order($id)
+{
+    $sql = "SELECT * FROM donhang WHERE idtaikhoan = '$id'";
+    $result = pdo_query($sql);
     return $result;
 }

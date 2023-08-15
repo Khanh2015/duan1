@@ -1,4 +1,4 @@
-<h1 class="text-center mt-40">Chi tiết đơn hàng</h1>
+<h1 class="text-center mt-40">Chi tiết đơn hàng TBTK-<?= $iddonhang ?></h1>
 <div class="mb-32 mx-80 mt-5 shadow-[0_0_30px_rgba(0,0,0,0.6)] p-5">
     <table class="cart-detail">
         <thead>
@@ -18,7 +18,7 @@
             if (isset($danhsachsanpham)) {
 
                 foreach ($danhsachsanpham as $sanpham) {
-                    $stt = 1;
+                    $stt++;
                     extract($sanpham);
                     $tonggiohang += $thanhtien;
             ?>

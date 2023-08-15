@@ -7,8 +7,28 @@
         </div>
     </div>
     <div class="main-content">
-        <h1 class="main-content-title">Bảng thống kê</h1>
+        <h1 class="main-content-title">Thống kê</h1>
         <div class="table-product-wapper table-category-wapper">
+            <h2 class="table-title">Bảng thống kê doanh thu và khách hàng</h2>
+            <table class="list-product list-category bangthongke">
+                <thead>
+                    <tr>
+                        <th>Tổng doanh thu</th>
+                        <th>Tổng số lượng sản phẩm đã bán</th>
+                        <th>Số lượng tài khoản thành viên</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="text-highlight"><?= number_format($tongdoanhthu, 0, ",", ".") ?></span> VNĐ <a href="index.php?act=chitiettongsanphamdaban" class="list-btn">Chi tiết</a></td>
+                        <td><span class="text-highlight"><?= $tongsoluongsanphamdaban ?></span> sản phẩm <a href="index.php?act=chitiettongsanphamdaban" class="list-btn">Chi tiết</a></td>
+                        <td><span class="text-highlight"><?= $tongsoluongtaikhoan ?></span> tài khoản <a href="index.php?act=danhsachtaikhoan" class="list-btn">Chi tiết</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div style="margin-top: 30px;" class="table-product-wapper table-category-wapper">
+            <h2 class="table-title">Bảng thống kê danh mục sản phẩm</h2>
             <table class="list-product list-category">
                 <thead>
                     <tr>

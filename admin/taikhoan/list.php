@@ -18,7 +18,7 @@
                         <th>Địa chỉ</th>
                         <th>SĐT</th>
                         <th>Chức vụ</th>
-                        <th></th>
+                        <th style="width: 230px;"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -38,7 +38,13 @@
                                 <td><?php if (isset($email)) echo $email ?></td>
                                 <td><?php if (isset($diachi)) echo $diachi ?></td>
                                 <td><?php if (isset($sdt)) echo $sdt ?></td>
-                                <td><?php if (isset($chucvu)) echo $chucvu ?></td>
+                                <td>
+                                    <?php if (isset($chucvu) && $chucvu == 0) {
+                                        echo "Khách hàng";
+                                    } else if (isset($chucvu) && $chucvu == 1)
+                                        echo "Quản trị viên";
+                                    ?>
+                                </td>
                                 <td>
                                     <a href="<?php echo $suataikhoan ?>" class="edit-btn"><i class="fa-regular fa-pen-to-square"></i> Sửa</a>
                                     <?php

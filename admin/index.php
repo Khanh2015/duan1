@@ -199,9 +199,28 @@ if (isset($_GET["act"])) {
             break;
         case 'xoataikhoan':
             if (isset($_GET["id"])) {
-                delete_taikhoan($_GET["id"]);
+                $check = check_account_order($_GET["id"]);
+                if (!empty($check)) {
+                    echo '
+                    <div class="popup-container">
+                        <div class="popup-content">
+                            <h1>Tài khoản này đang đặt hàng<br>Vui lòng không xoá tài khoản</h1><br>
+                            <span>OK</span>
+                        </div>
+                    </div>
+                    <script>
+                        const popup = document.querySelector(".popup-container");
+                        popup.addEventListener("click", () => {
+                            popup.style.display = "none";
+                            window.location.href = "index.php?act=danhsachtaikhoan";
+                        })
+                    </script>
+                    ';
+                } else {
+                    delete_taikhoan($_GET["id"]);
+                    echo '<script>window.location.href = "index.php?act=danhsachtaikhoan";</script>';
+                }
             }
-            echo '<script>window.location.href = "index.php?act=danhsachtaikhoan";</script>';
             break;
         case 'suataikhoan':
             if (isset($_GET["id"])) {
@@ -301,13 +320,10 @@ if (isset($_GET["act"])) {
                 $sdt = $_POST["sdt"];
                 $email = $_POST["email"];
                 $diachi = $_POST["diachi"];
-                $ngaydathang = $_POST["ngaydathang"];
-                $tongsoluongsanpham = $_POST["tongsoluongsanpham"];
-                $tongtien = $_POST["tongtien"];
-                $pttt = $_POST["pttt"];
                 $trangthai = $_POST["trangthai"];
 
-                update_donhang($id, $tentaikhoan, $sdt, $email, $diachi, $ngaydathang, $tongsoluongsanpham, $tongtien, $pttt, $trangthai);
+                // update_donhang($id, $tentaikhoan, $sdt, $email, $diachi, $ngaydathang, $tongsoluongsanpham, $tongtien, $pttt, $trangthai);
+                update_donhang($id, $tentaikhoan, $sdt, $email, $diachi, $trangthai);
                 $thongbao = "Cập nhật thành công, mời bạn kiểm tra lại danh sách 👏";
             }
             include "./donhang/update.php";
@@ -336,9 +352,34 @@ if (isset($_GET["act"])) {
             $keyword = "";
             include "./donhang/list_search.php";
             break;
+        case 'chitietdonhang':
+            if (isset($_GET["id"])) {
+                $iddonhang = $_GET["id"];
+                $danhsachsanpham = loadall_sanphamtheobill($iddonhang);
+            }
+            include "./donhang/chitietdonhang.php";
+            break;
         case 'thongke':
+            $tongsoluongtaikhoan = count_loadall_danhsachtaikhoan();
+            $tongsoluongsanphamdaban = soluongsanphamdaban();
+            $tongdoanhthu = tongdoanhthu();
             $danhsachthongke = load_thongke();
             include "./thongke/list.php";
+            break;
+        case 'chitiettongsanphamdaban':
+            if (!isset($_GET['page'])) {
+                $page = 1;
+            } else {
+                $page = $_GET['page'];
+            }
+            $sopluongbanghimoitrang = 5;
+            $tongsoluongbanghi = count_loadall_danhsachdonhang();
+            $totalPage = ceil($tongsoluongbanghi / $sopluongbanghimoitrang);
+            $start_limit = ($page - 1) * $sopluongbanghimoitrang;
+            $end_limit = $sopluongbanghimoitrang;
+            $danhsachdonhang = loadall_donhang_thongke($start_limit, $end_limit);
+            $act = 'chitiettongsanphamdaban';
+            include "./donhang/list.php";
             break;
         default:
             include "home.php";
