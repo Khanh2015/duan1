@@ -86,16 +86,10 @@ if (isset($_GET["act"])) {
             break;
         case 'danhsachsanpham':
             $danhsachdanhmuc = loadall_danhmuc();
-            if (!isset($_GET['page'])) {
-                $page = 1;
-            } else {
-                $page = $_GET['page'];
-            }
-            $sopluongbanghimoitrang = 5;
             $tongsoluongbanghi = count_loadall_danhsachsanpham();
-            $totalPage = ceil($tongsoluongbanghi / $sopluongbanghimoitrang);
-            $start_limit = ($page - 1) * $sopluongbanghimoitrang;
-            $end_limit = $sopluongbanghimoitrang;
+            $sopluongbanghimoitrang = 5;
+            list($start_limit, $end_limit, $totalPage) = phan_trang($tongsoluongbanghi, $sopluongbanghimoitrang);
+            $page = isset($_GET['page']) ? $_GET['page'] : 1;
             $danhsachsanpham = loadall_sanpham($start_limit, $end_limit);
             $act = 'danhsachsanpham';
             include "./sanpham/list.php";
@@ -172,9 +166,7 @@ if (isset($_GET["act"])) {
             }
             $sopluongbanghimoitrang = 5;
             $tongsoluongbanghi = count_filter_sanpham($keyword, $iddanhmucFilter);
-            $totalPage = ceil($tongsoluongbanghi / $sopluongbanghimoitrang);
-            $start_limit = ($page - 1) * $sopluongbanghimoitrang;
-            $end_limit = $sopluongbanghimoitrang;
+            list($start_limit, $end_limit, $totalPage) = phan_trang($tongsoluongbanghi, $sopluongbanghimoitrang);
             $danhsachsanpham = filter_sanpham($keyword, $iddanhmucFilter, $start_limit, $end_limit);
             $act = 'locsanpham';
             $iddonhang = "";
@@ -182,16 +174,10 @@ if (isset($_GET["act"])) {
             break;
         case 'danhsachtaikhoan':
             if (isset($_SESSION["taikhoan"])) {
-                if (!isset($_GET['page'])) {
-                    $page = 1;
-                } else {
-                    $page = $_GET['page'];
-                }
-                $sopluongbanghimoitrang = 5;
                 $tongsoluongbanghi = count_loadall_danhsachtaikhoan();
-                $totalPage = ceil($tongsoluongbanghi / $sopluongbanghimoitrang);
-                $start_limit = ($page - 1) * $sopluongbanghimoitrang;
-                $end_limit = $sopluongbanghimoitrang;
+                $sopluongbanghimoitrang = 5;
+                list($start_limit, $end_limit, $totalPage) = phan_trang($tongsoluongbanghi, $sopluongbanghimoitrang);
+                $page = isset($_GET['page']) ? $_GET['page'] : 1;
                 $danhsachtaikhoan = loadall_taikhoan($start_limit, $end_limit);
                 $act = 'danhsachtaikhoan';
             }
@@ -256,16 +242,10 @@ if (isset($_GET["act"])) {
             include "./taikhoan/update.php";
             break;
         case 'danhsachbinhluan':
-            if (!isset($_GET['page'])) {
-                $page = 1;
-            } else {
-                $page = $_GET['page'];
-            }
-            $sopluongbanghimoitrang = 5;
             $tongsoluongbanghi = count_loadall_danhsachbinhluan();
-            $totalPage = ceil($tongsoluongbanghi / $sopluongbanghimoitrang);
-            $start_limit = ($page - 1) * $sopluongbanghimoitrang;
-            $end_limit = $sopluongbanghimoitrang;
+            $sopluongbanghimoitrang = 5;
+            list($start_limit, $end_limit, $totalPage) = phan_trang($tongsoluongbanghi, $sopluongbanghimoitrang);
+            $page = isset($_GET['page']) ? $_GET['page'] : 1;
             $danhsachbinhluan = loadall_binhluan($start_limit, $end_limit);
             $act = 'danhsachbinhluan';
             include "./binhluan/list.php";
@@ -293,16 +273,10 @@ if (isset($_GET["act"])) {
             include "./binhluan/update.php";
             break;
         case 'danhsachdonhang':
-            if (!isset($_GET['page'])) {
-                $page = 1;
-            } else {
-                $page = $_GET['page'];
-            }
-            $sopluongbanghimoitrang = 5;
             $tongsoluongbanghi = count_loadall_danhsachdonhang();
-            $totalPage = ceil($tongsoluongbanghi / $sopluongbanghimoitrang);
-            $start_limit = ($page - 1) * $sopluongbanghimoitrang;
-            $end_limit = $sopluongbanghimoitrang;
+            $sopluongbanghimoitrang = 5;
+            list($start_limit, $end_limit, $totalPage) = phan_trang($tongsoluongbanghi, $sopluongbanghimoitrang);
+            $page = isset($_GET['page']) ? $_GET['page'] : 1;
             $danhsachdonhang = loadall_donhang($start_limit, $end_limit);
             $act = 'danhsachdonhang';
             include "./donhang/list.php";
@@ -321,8 +295,6 @@ if (isset($_GET["act"])) {
                 $email = $_POST["email"];
                 $diachi = $_POST["diachi"];
                 $trangthai = $_POST["trangthai"];
-
-                // update_donhang($id, $tentaikhoan, $sdt, $email, $diachi, $ngaydathang, $tongsoluongsanpham, $tongtien, $pttt, $trangthai);
                 update_donhang($id, $tentaikhoan, $sdt, $email, $diachi, $trangthai);
                 $thongbao = "Cập nhật thành công, mời bạn kiểm tra lại danh sách 👏";
             }
@@ -343,9 +315,7 @@ if (isset($_GET["act"])) {
             }
             $sopluongbanghimoitrang = 5;
             $tongsoluongbanghi = count_search_bill($iddonhang);
-            $totalPage = ceil($tongsoluongbanghi / $sopluongbanghimoitrang);
-            $start_limit = ($page - 1) * $sopluongbanghimoitrang;
-            $end_limit = $sopluongbanghimoitrang;
+            list($start_limit, $end_limit, $totalPage) = phan_trang($tongsoluongbanghi, $sopluongbanghimoitrang);
             $danhsachdonhang = search_bill($iddonhang, $start_limit, $end_limit);
             $act = 'timdonhang';
             $iddanhmucFilter = "";
@@ -367,16 +337,10 @@ if (isset($_GET["act"])) {
             include "./thongke/list.php";
             break;
         case 'chitiettongsanphamdaban':
-            if (!isset($_GET['page'])) {
-                $page = 1;
-            } else {
-                $page = $_GET['page'];
-            }
-            $sopluongbanghimoitrang = 5;
             $tongsoluongbanghi = count_loadall_danhsachdonhang();
-            $totalPage = ceil($tongsoluongbanghi / $sopluongbanghimoitrang);
-            $start_limit = ($page - 1) * $sopluongbanghimoitrang;
-            $end_limit = $sopluongbanghimoitrang;
+            $sopluongbanghimoitrang = 5;
+            list($start_limit, $end_limit, $totalPage) = phan_trang($tongsoluongbanghi, $sopluongbanghimoitrang);
+            $page = isset($_GET['page']) ? $_GET['page'] : 1;
             $danhsachdonhang = loadall_donhang_thongke($start_limit, $end_limit);
             $act = 'chitiettongsanphamdaban';
             include "./donhang/list.php";

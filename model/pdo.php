@@ -113,3 +113,17 @@ function pdo_query_value($sql)
         unset($conn);
     }
 }
+
+// Hàm xử lý phân trang
+function phan_trang($tongsoluongbanghi, $sopluongbanghimoitrang = 8)
+{
+    if (!isset($_GET['page'])) {
+        $page = 1;
+    } else {
+        $page = $_GET['page'];
+    }
+    $totalPage = ceil($tongsoluongbanghi / $sopluongbanghimoitrang);
+    $start_limit = ($page - 1) * $sopluongbanghimoitrang;
+    $end_limit = $sopluongbanghimoitrang;
+    return array($start_limit, $end_limit, $totalPage);
+}

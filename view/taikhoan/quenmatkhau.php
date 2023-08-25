@@ -10,20 +10,6 @@
             if (!empty($taikhoan)) {
                 extract($taikhoan);
         ?>
-                <!-- <h3>Mật khẩu của email: <?php echo '<span class="text-red">' . $email . '</span>' ?></h3>
-                <table class="forgot-password-table">
-                    <thead>
-                        <tr>
-                            <th>Tên tài khoản</th>
-                            <th>Mật khẩu</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><?php echo $tentaikhoan ?></td>
-                            <td><?php echo $matkhau ?></td>
-                        </tr> -->
-
                 <p style="color: red;">Mật khẩu đã được gửi đến email của bạn, mời bạn kiểm tra email</p>
         <?php
             } else {

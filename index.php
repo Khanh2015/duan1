@@ -1,15 +1,15 @@
 <?php
 session_start();
-// Sử dụng PHPMailer để gửi email
-// use PHPMailer\PHPMailer\PHPMailer;
-// use PHPMailer\PHPMailer\Exception;
-
 include "./model/pdo.php";
 include "./model/sanpham.php";
 include "./model/danhmuc.php";
 include "./model/taikhoan.php";
 include "./model/giohang.php";
-// $_SESSION["mycart"] = [];
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
 if (!isset($_SESSION["mycart"])) {
     $_SESSION["mycart"] = [];
 }
@@ -19,7 +19,6 @@ $danhsachsanpham = loadall_sanpham_home();
 $danhsachdanhmuc = loadall_danhmuc();
 include "./view/header.php";
 if (isset($_GET["act"])) {
-    // extract($_REQUEST);
     $act = $_GET["act"];
     switch ($act) {
         case 'gioithieu':
@@ -32,16 +31,9 @@ if (isset($_GET["act"])) {
             include "./view/home.php";
             break;
         case 'danhsachsanpham':
-            if (!isset($_GET['page'])) {
-                $page = 1;
-            } else {
-                $page = $_GET['page'];
-            }
-            $sopluongbanghimoitrang = 12;
             $tongsoluongbanghi = count_loadall_danhsachsanpham();
-            $totalPage = ceil($tongsoluongbanghi / $sopluongbanghimoitrang);
-            $start_limit = ($page - 1) * $sopluongbanghimoitrang;
-            $end_limit = $sopluongbanghimoitrang;
+            list($start_limit, $end_limit, $totalPage) = phan_trang($tongsoluongbanghi);
+            $page = isset($_GET['page']) ? $_GET['page'] : 1;
             $danhsachsanpham = loadall_danhsachsanpham($start_limit, $end_limit);
 
             $iddanhmuc = null;
@@ -54,16 +46,9 @@ if (isset($_GET["act"])) {
             } else if ($_GET["keyword"]) {
                 $keyword = $_GET["keyword"];
             }
-            if (!isset($_GET['page'])) {
-                $page = 1;
-            } else {
-                $page = $_GET['page'];
-            }
-            $sopluongbanghimoitrang = 2;
             $tongsoluongbanghi = count_loadall_danhsachtimkiem($keyword);
-            $totalPage = ceil($tongsoluongbanghi / $sopluongbanghimoitrang);
-            $start_limit = ($page - 1) * $sopluongbanghimoitrang;
-            $end_limit = $sopluongbanghimoitrang;
+            list($start_limit, $end_limit, $totalPage) = phan_trang($tongsoluongbanghi);
+            $page = isset($_GET['page']) ? $_GET['page'] : 1;
             $danhsachsanpham = timkiemsanpham($keyword, $start_limit, $end_limit);
             $title = "TÌM KIẾM";
 
@@ -72,16 +57,9 @@ if (isset($_GET["act"])) {
             include "./view/danhsachsanpham.php";
             break;
         case 'locdanhmuc':
-            if (!isset($_GET['page'])) {
-                $page = 1;
-            } else {
-                $page = $_GET['page'];
-            }
-            $sopluongbanghimoitrang = 8;
             $tongsoluongbanghi = count_loadall_sanpham_danhmuc($_GET["iddanhmuc"]);
-            $totalPage = ceil($tongsoluongbanghi / $sopluongbanghimoitrang);
-            $start_limit = ($page - 1) * $sopluongbanghimoitrang;
-            $end_limit = $sopluongbanghimoitrang;
+            list($start_limit, $end_limit, $totalPage) = phan_trang($tongsoluongbanghi);
+            $page = isset($_GET['page']) ? $_GET['page'] : 1;
 
             switch ($_GET["iddanhmuc"]) {
                 case 1:
@@ -213,62 +191,28 @@ if (isset($_GET["act"])) {
             }
             include "./view/taikhoan/capnhat.php";
             break;
-            // case 'quenmatkhau':
-            //     if (isset($_POST["quenmatkhau"])) {
-            //         $email = $_POST["email"];
-            //         $taikhoan = quenmatkhau($email);
-            // if (isset($taikhoan) && !empty($taikhoan)) {
-            //     ini_set('SMTP', 'smtp.gmail.com');
-            //     ini_set('smtp_port', 587);
-            //     $to = 'phamkhanh99889988@gmail.com';
-            //     $subject = 'Tiêu đề';
-            //     $message = 'Nội dung';
-            //     $headers = 'From: khanhdzai6996@gmail.com' . "\r\n";
-            //     $success = mail($to, $subject, $message, $headers);
-            //     if (!$success) {
-            //         $errorMessage = error_get_last()['message'];
-            //     }
-            // }
-            // }
-            // include "./view/taikhoan/quenmatkhau.php";
-            // break;
         case 'quenmatkhau':
             if (isset($_POST["quenmatkhau"])) {
                 $email = $_POST["email"];
                 $taikhoan = quenmatkhau($email);
                 if (isset($taikhoan) && !empty($taikhoan)) {
                     extract($taikhoan);
-                    require './PHPMailer/src/Exception.php';
-                    require './PHPMailer/src/PHPMailer.php';
-                    require './PHPMailer/src/SMTP.php';
-
-                    // Tạo một đối tượng PHPMailer
+                    require 'vendor/autoload.php';
                     $mail = new PHPMailer(true);
-
-                    try {
-                        // Cấu hình SMTP cho Gmail
-                        $mail->isSMTP();
-                        $mail->Host = 'smtp.gmail.com';
-                        $mail->SMTPAuth = true;
-                        $mail->Username = 'khanhpcgph30175@fpt.edu.vn';
-                        $mail->Password = 'Pcgkhanh21052000';
-                        $mail->Port = 587;
-
-                        // Thiết lập thông tin người gửi và người nhận
-                        $mail->setFrom('khanhpcgph30175@fpt.edu.vn', 'Khanh');
-                        $mail->addAddress($email);
-
-                        // Thiết lập nội dung email
-                        $mail->isHTML(true);
-                        $mail->Subject = 'Cung cấp lại mật khẩu';
-                        $mail->Body = 'Mật khẩu đã đăng ký với email này là: ' . $matkhau;
-
-                        // Gửi email
-                        $mail->send();
-                        $thongbao = 'Email đã được gửi thành công';
-                    } catch (Exception $e) {
-                        $thongbao = 'Có lỗi xảy ra khi gửi email: ' . $mail->ErrorInfo;
-                    }
+                    $mail->isSMTP();
+                    $mail->Host       = 'smtp.gmail.com';
+                    $mail->SMTPAuth   = true;
+                    $mail->Username   = 'khanhdzai6996@gmail.com';
+                    $mail->Password   = 'fguthzeydaxaswbb';
+                    $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+                    $mail->Port       = 465;
+                    $mail->setFrom('khanhdzai6996@gmail.com', 'Admin Sporter Website');
+                    $mail->addAddress('' . $email . '', 'User');
+                    $mail->isHTML(true);
+                    $mail->Subject = 'Providing Password Reset for Customers - Do Not Share Your Email with Anyone';
+                    $mail->Body    = 'Email ' . $email . ' có tên tài khoản: <b>' . $tentaikhoan . '</b> và mật khẩu: <b>' . $matkhau . '</b>';
+                    $mail->AltBody = 'Email ' . $email . ' có tên tài khoản: <b>' . $tentaikhoan . '</b> và mật khẩu: <b>' . $matkhau . '</b>';
+                    $mail->send();
                 }
             }
             include "./view/taikhoan/quenmatkhau.php";

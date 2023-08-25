@@ -172,7 +172,7 @@ if (isset($sanpham)) {
                         <input type="hidden" name="soluongkho" value="<?= $soluong ?>">
                         <!-- Add to cart       -->
                         <input <?php if ($soluong === 0) echo 'disabled'; ?> class=" duration-[0.2s] text-xl bg-[#ff324d] px-2 py-5 ml-2 rounded-md text-white hover:bg-white hover:text-[#ff324d] border-solid border-[#ff324d] border-[2px]" type="submit" name="themvaogiohang" value="Thêm vào giỏ hàng">
-                        <input class=" duration-[0.2s] text-xl bg-[#fff] px-12 py-5 ml-2 rounded-md text-[#ff324d] hover:bg-[#ff324d] hover:text-[#fff] border-solid border-[#ff324d] border-[2px]" type="submit" name="muangay" value="Mua ngay">
+                        <!-- <input class=" duration-[0.2s] text-xl bg-[#fff] px-12 py-5 ml-2 rounded-md text-[#ff324d] hover:bg-[#ff324d] hover:text-[#fff] border-solid border-[#ff324d] border-[2px]" type="submit" name="muangay" value="Mua ngay"> -->
                     </div>
 
                 </form>

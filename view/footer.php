@@ -3,9 +3,9 @@
         <div class="contact-info">
             <h3 class="footer-title-margin">THÔNG TIN LIÊN HỆ</h3>
             <div class="info">
-                <p><i style="color: #fff;" class="fa-solid fa-location-dot icon-margin-right"></i> 123 Street, Old Trafford, NewYork, USA</p>
-                <p><i style="color: #fff;" class="fa-regular fa-envelope icon-margin-right"></i> info@sitename.com</p>
-                <p><i style="color: #fff;" class="fa-solid fa-phone icon-margin-right"></i> + 457 789 789 65</p>
+                <p><i style="color: #fff;" class="fa-solid fa-location-dot icon-margin-right"></i> Tòa nhà FPT Polytechnic, Phố Trịnh Văn Bô, Nam Từ Liêm, Hà Nội</p>
+                <p><i style="color: #fff;" class="fa-regular fa-envelope icon-margin-right"></i> caodangfpt@fpt.edu.vn</p>
+                <p><i style="color: #fff;" class="fa-solid fa-phone icon-margin-right"></i> + 123 456 789</p>
             </div>
             <div class="social-list">
                 <a href=""><img src="./view/img/fblogo.png" alt="" /></a>

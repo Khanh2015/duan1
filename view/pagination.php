@@ -1,11 +1,3 @@
-<?php
-#iddanhmuc 
-#action: gui action den controller
-#page: so thu tu trang
-#totalPage: Tong so trang
-#keyword : tu khoa tim kiem
-?>
-
 <div class="pagination flex justify-center mt-8">
 
   <ul class="flex list-none m-0 p-0 gap-2">
