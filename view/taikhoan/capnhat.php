@@ -29,18 +29,3 @@ if (isset($_SESSION["taikhoan"]) && is_array($_SESSION["taikhoan"])) {
         <button type="submit" name="capnhat" class="sign-in-submit">Cập nhật tài khoản</button>
     </form>
 </div>
-<script>
-    if (document.querySelector("#thongbaothanhcong")) {
-        let timeLeft = 8;
-        const countdownElement = document.querySelector("#countdown");
-        countdownElement.textContent = `Chuyển đến trang chủ trong ${timeLeft} giây`;
-        const countdownInterval = setInterval(() => {
-            timeLeft--;
-            countdownElement.textContent = `Chuyển đến trang chủ trong ${timeLeft} giây`;
-            if (timeLeft === 0) {
-                clearInterval(countdownInterval);
-                window.location.href = "index.php";
-            }
-        }, 1000);
-    }
-</script>

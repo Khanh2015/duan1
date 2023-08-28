@@ -33,9 +33,9 @@ function check_trung_tentaikhoan($tentaikhoan, $currentUserId)
     return $taikhoan;
 }
 
-function update_taikhoan($id, $tentaikhoan, $matkhau, $email, $diachi, $sdt)
+function update_taikhoan($id, $matkhau, $diachi, $sdt)
 {
-    $sql = "UPDATE `taikhoan` SET `tentaikhoan`='$tentaikhoan',`matkhau`='$matkhau',`email`='$email',`diachi`='$diachi',`sdt`='$sdt' WHERE `id` = '$id'";
+    $sql = "UPDATE `taikhoan` SET `matkhau`='$matkhau',`diachi`='$diachi',`sdt`='$sdt' WHERE `id` = '$id'";
     pdo_execute($sql);
 }
 

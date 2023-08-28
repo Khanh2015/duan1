@@ -13,6 +13,9 @@ use PHPMailer\PHPMailer\Exception;
 if (!isset($_SESSION["mycart"])) {
     $_SESSION["mycart"] = [];
 }
+if (!isset($_SESSION["muangay"])) {
+    $_SESSION["muangay"] = [];
+}
 $keyword = null;
 $top10 = top10_sanpham();
 $danhsachsanpham = loadall_sanpham_home();
@@ -167,14 +170,13 @@ if (isset($_GET["act"])) {
         case 'edit_taikhoan':
             if (isset($_POST["capnhat"])) {
                 $check = true;
-                $email = $_POST["email"];
                 $diachi = $_POST["diachi"];
                 $sdt = $_POST["sdt"];
                 $matkhau = $_POST["matkhau"];
                 $matkhau2 = $_POST["matkhau2"];
-                $tentaikhoan = $_POST["tentaikhoan"];
+                $tentaikhoan =  $_SESSION['taikhoan']['tentaikhoan'];
                 $currentUserId = $_SESSION['taikhoan']['id'];
-                $checktaikhoan = check_trung_tentaikhoan($tentaikhoan, $currentUserId);
+                // $checktaikhoan = check_trung_tentaikhoan($tentaikhoan, $currentUserId);
                 if (!empty($checktaikhoan)) {
                     $check = false;
                     $thongbaotentaikhoan = "Tên tài khoản đã tồn tại ❌, mời chọn tên tài khoản mới hoặc sử dụng lại tên cũ";
@@ -184,7 +186,7 @@ if (isset($_GET["act"])) {
                     $thongbaomatkhau = "Mật khẩu khẩu không khớp ❌";
                 }
                 if ($check) {
-                    update_taikhoan($currentUserId, $tentaikhoan, $matkhau, $email, $diachi, $sdt);
+                    update_taikhoan($currentUserId, $matkhau, $diachi, $sdt);
                     $thongbaothanhcong = "Bạn đã cập nhật tài khoản thành công 🎉";
                     $_SESSION['taikhoan'] = check_dangnhap($tentaikhoan, $matkhau);
                 }
@@ -275,7 +277,7 @@ if (isset($_GET["act"])) {
                     echo '<script>
                             setTimeout(function() {
                                 window.location.href = "index.php?act=xemgiohang";
-                            }, 1000);
+                            }, 500);
                           </script>';
                 } else {
                     echo '<div class="fixed z-10 inset-0 flex items-center justify-center bg-black bg-opacity-50">
@@ -288,9 +290,39 @@ if (isset($_GET["act"])) {
                     echo '<script>
                             setTimeout(function() {
                                 window.location.href = "index.php?act=xemgiohang";
-                            }, 1000);
+                            }, 500);
                           </script>';
                 }
+            } else if (isset($_POST["muangay"])) {
+                $id = $_POST["idsanpham"];
+                $tensanpham = $_POST["tensanpham"];
+                $giagoc = $_POST["giagoc"];
+                $giasale = $_POST["giasale"];
+                $anhsanpham = $_POST["anhsanpham"];
+                $mota = $_POST["mota"];
+                $size = $_POST["size"];
+                $color = $_POST["color"];
+                $soluongmua = $_POST["soluongmua"];
+                $soluongkho = $_POST["soluongkho"];
+                $thanhtien = $soluongmua * $giasale;
+                $tongtiengiam = $soluongmua * $giagoc - $soluongmua * $giasale;
+                $tongtiengoc = $soluongmua * $giagoc;
+                $_SESSION["muangay"] = [
+                    "id" => $id,
+                    "tensanpham" => $tensanpham,
+                    "giagoc" => $giagoc,
+                    "giasale" => $giasale,
+                    "anhsanpham" => $anhsanpham,
+                    "mota" => $mota,
+                    "size" => $size,
+                    "color" => $color,
+                    "soluongmua" => $soluongmua,
+                    "soluongkho" => $soluongkho,
+                    "thanhtien" => $thanhtien,
+                    "tongtiengiam" => $tongtiengiam,
+                    "tongtiengoc" => $tongtiengoc
+                ];
+                include "./view/xacnhandonhangmuangay.php";
             } else {
                 echo '<script>window.location.href = "index.php?act=xemgiohang";</script>';
             }
@@ -323,48 +355,95 @@ if (isset($_GET["act"])) {
                     $tongsoluongsanpham = 0;
                     date_default_timezone_set('Asia/Ho_Chi_Minh');
                     $ngaydathang = date('h:i:sa d/m/Y');
-                    foreach ($_SESSION["mycart"] as $item) {
-                        $thanhtien = $item[8] * $item[3];
-                        $tongthanhtien += $thanhtien;
-                        $tongsoluongsanpham += $item[8];
-                        $soluongmoi = $item[9] - $item[8];
-                        update_soluongsanpham($item[0], $soluongmoi);
-                    }
-                    if ($tongthanhtien < 500000) {
-                        $tongthanhtien += 50000;
-                    }
-                    $iddonhang = insert_donhang($idtaikhoan, $tentaikhoan, $diachi, $sdt, $email, $pttt, $ngaydathang, $tongthanhtien, $tongsoluongsanpham);
 
-                    foreach ($_SESSION["mycart"] as $item) {
-                        insert_giohang($_SESSION["taikhoan"]["id"], $item[0], $item[4], $item[1], $item[2], $item[3], $item[6], $item[7], $item[8], $item[10], $iddonhang);
+                    if ($_SESSION["muangay"] == []) {
+                        foreach ($_SESSION["mycart"] as $item) {
+                            $thanhtien = $item[8] * $item[3];
+                            $tongthanhtien += $thanhtien;
+                            $tongsoluongsanpham += $item[8];
+                            $soluongmoi = $item[9] - $item[8];
+                            update_soluongsanpham($item[0], $soluongmoi);
+                        }
+                        if ($tongthanhtien < 500000) {
+                            $tongthanhtien += 50000;
+                        }
+                        $iddonhang = insert_donhang($idtaikhoan, $tentaikhoan, $diachi, $sdt, $email, $pttt, $ngaydathang, $tongthanhtien, $tongsoluongsanpham);
+
+                        foreach ($_SESSION["mycart"] as $item) {
+                            insert_giohang($_SESSION["taikhoan"]["id"], $item[0], $item[4], $item[1], $item[2], $item[3], $item[6], $item[7], $item[8], $item[10], $iddonhang);
+                        }
+                        $_SESSION["mycart"] = [];
+                        $_SESSION["soluongtronggiohang"] = 0;
+                        $billdonhang = loadone_bill($iddonhang);
+                    } else {
+                        extract($_SESSION["muangay"]);
+                        $soluongmoi = $soluongkho - $soluongmua;
+                        update_soluongsanpham($id, $soluongmoi);
+                        if ($thanhtien < 500000) {
+                            $thanhtien += 50000;
+                        }
+                        $iddonhang = insert_donhang($idtaikhoan, $tentaikhoan, $diachi, $sdt, $email, $pttt, $ngaydathang, $thanhtien, $soluongmua);
+                        insert_giohang($_SESSION["taikhoan"]["id"], $id, $anhsanpham, $tensanpham, $giagoc, $giasale, $size, $color,  $soluongmua, $thanhtien, $iddonhang);
+                        $billdonhang = loadone_bill($iddonhang);
                     }
-                    $_SESSION["mycart"] = [];
-                    $_SESSION["soluongtronggiohang"] = 0;
-                    $billdonhang = loadone_bill($iddonhang);
                 }
             } else {
                 if (isset($_POST["dongydathang"])) {
+                    $khongcotaikhoan = true;
                     $tentaikhoan = $_POST["tentaikhoan"];
                     $email = $_POST["email"];
                     $sdt = $_POST["sdt"];
                     $diachi = $_POST["diachi"];
                     $pttt = 1;
-                    $tongtien = 0;
+                    $tongthanhtien = 0;
                     $tongsoluongsanpham = 0;
                     date_default_timezone_set('Asia/Ho_Chi_Minh');
                     $ngaydathang = date('h:i:sa d/m/Y');
-                    foreach ($_SESSION["mycart"] as $item) {
-                        $thanhtien = $item[8] * $item[3];
-                        $tongtien += $thanhtien;
-                        $tongsoluongsanpham += $item[8];
-                        $soluongmoi = $item[9] - $item[8];
-                        update_soluongsanpham($item[0], $soluongmoi);
+
+                    $checkemail = check_email($email);
+                    if (!empty($checkemail)) {
+                        $thongbaotaikhoantontai = "Email đã được đăng ký cho 1 tài khoản khác, vui lòng đăng nhập hoặc chọn email khác ❌";
+                        if ($_SESSION["muangay"] == []) {
+                            include "./view/xacnhandonhang.php";
+                        } else {
+                            include "./view/xacnhandonhangmuangay.php";
+                        }
+                        break;
+                    } else {
+                        insert_taikhoan($email, $email, $email);
+                        $checktaikhoan = check_dangnhap($email, $email);
+                        $_SESSION['taikhoan'] = $checktaikhoan;
+                        if ($_SESSION["muangay"] == []) {
+                            foreach ($_SESSION["mycart"] as $item) {
+                                $thanhtien = $item[8] * $item[3];
+                                $tongthanhtien += $thanhtien;
+                                $tongsoluongsanpham += $item[8];
+                                $soluongmoi = $item[9] - $item[8];
+                                update_soluongsanpham($item[0], $soluongmoi);
+                            }
+                            if ($tongthanhtien < 500000) {
+                                $tongthanhtien += 50000;
+                            }
+                            $iddonhang = insert_donhang($_SESSION["taikhoan"]["id"], $tentaikhoan, $diachi, $sdt, $email, $pttt, $ngaydathang, $tongthanhtien, $tongsoluongsanpham);
+
+                            foreach ($_SESSION["mycart"] as $item) {
+                                insert_giohang($_SESSION["taikhoan"]["id"], $item[0], $item[4], $item[1], $item[2], $item[3], $item[6], $item[7], $item[8], $item[10], $iddonhang);
+                            }
+                            $_SESSION["mycart"] = [];
+                            $_SESSION["soluongtronggiohang"] = 0;
+                            $billdonhang = loadone_bill($iddonhang);
+                        } else {
+                            extract($_SESSION["muangay"]);
+                            $soluongmoi = $soluongkho - $soluongmua;
+                            update_soluongsanpham($id, $soluongmoi);
+                            if ($thanhtien < 500000) {
+                                $thanhtien += 50000;
+                            }
+                            $iddonhang = insert_donhang($_SESSION["taikhoan"]["id"], $tentaikhoan, $diachi, $sdt, $email, $pttt, $ngaydathang, $thanhtien, $soluongmua);
+                            insert_giohang($_SESSION["taikhoan"]["id"], $id, $anhsanpham, $tensanpham, $giagoc, $giasale, $size, $color,  $soluongmua, $thanhtien, $iddonhang);
+                            $billdonhang = loadone_bill($iddonhang);
+                        }
                     }
-                    if ($tongtien < 500000) {
-                        $tongtien += 50000;
-                    }
-                    $_SESSION["mycart"] = [];
-                    $_SESSION["soluongtronggiohang"] = 0;
                 }
             }
             include "./view/dathangthanhcong.php";

@@ -10,6 +10,7 @@ if (isset($_SESSION["taikhoan"])) {
     $diachi = "";
     $email = "";
 }
+extract($_SESSION["muangay"]);
 ?>
 
 <div class="view-cart relative">
@@ -82,7 +83,6 @@ if (isset($_SESSION["taikhoan"])) {
         <table class="cart-detail">
             <thead>
                 <tr>
-                    <th>STT</th>
                     <th>ẢNH</th>
                     <th>THÔNG TIN</th>
                     <th>GIẢM GIÁ</th>
@@ -91,41 +91,21 @@ if (isset($_SESSION["taikhoan"])) {
                 </tr>
             </thead>
             <tbody>
-                <?php
-                $tonggiohang = 0;
-                $soluongtronggiohang = 0;
-                $tongtiengoc = 0;
-                $tongsosanpham = 0;
-                foreach ($_SESSION["mycart"] as $item) {
-                    $tonggiohang += $item[10];
-                    $tongtiengoc += $item[12];
-                    $tongsosanpham += $item[8];
-                ?>
-                    <tr>
-                        <td><?= $soluongtronggiohang + 1 ?></td>
-                        <td><img src="./upload/<?= $item[4] ?>" alt=""></td>
-                        <td class="product-info">
-                            <p class="product-name"><?= $item[1] ?></p>
-                            <span class="color-product">Màu: <?= $item[7] ?></span><br>
-                            <span class="size-product">Size: <?= $item[6] ?></span>
-                        </td>
-                        <td>-<?= number_format($item[11], 0, ",", ".") ?>đ</td>
-                        <td> <?= $item[8] ?> </td>
-                        <td class="total-price"><?php echo number_format($item[10], 0, ",", ".") ?>đ</td>
-                    </tr>
-                <?php
-                    $soluongtronggiohang++;
-                }
-                echo '
-                    <tr class="font-bold text-2xl">
-                    <td colspan="5">Tổng giá trị đơn hàng</td>
-                    <td class="text-red-500">' . number_format($tonggiohang, 0, ",", ".") . 'đ</td>
-                    </tr>
-                    ';
-                ?>
-                <?php
-                $_SESSION["soluongtronggiohang"] = $soluongtronggiohang;
-                ?>
+                <tr>
+                    <td><img src="./upload/<?= $anhsanpham ?>" alt=""></td>
+                    <td class="product-info">
+                        <p class="product-name"><?= $tensanpham ?></p>
+                        <span class="color-product">Màu: <?= $color ?></span><br>
+                        <span class="size-product">Size: <?= $size ?></span>
+                    </td>
+                    <td>-<?= number_format($tongtiengiam, 0, ",", ".") ?>đ</td>
+                    <td> <?= $soluongmua ?> </td>
+                    <td class="total-price"><?= number_format($thanhtien, 0, ",", ".") ?>đ</td>
+                </tr>
+                <tr class="font-bold text-2xl">
+                    <td colspan="4">Tổng giá trị đơn hàng</td>
+                    <td class="text-red-500"><?= number_format($thanhtien, 0, ",", ".") ?>đ</td>
+                </tr>
             </tbody>
         </table>
         <a href="index.php?act=danhsachsanpham" class="mt-10 inline-block bg-green-500 text-white font-semibold text-lg px-5 py-4 rounded-md duration-200 hover:opacity-80 ">Tiếp tục mua hàng</a>
@@ -135,17 +115,17 @@ if (isset($_SESSION["taikhoan"])) {
             <h2 class="cart-total-title">Tổng tiền giỏ hàng</h2>
             <div class="cart-total-info">
                 <div class="info-wapper">
-                    <span class="info-name">Tổng sản phẩm</span> <span class="info-number"><?= $tongsosanpham ?></span>
+                    <span class="info-name">Tổng sản phẩm</span> <span class="info-number"><?= $soluongmua ?></span>
                 </div>
                 <div class="info-wapper">
                     <span class="info-name">Tổng tiền gốc</span> <span class="info-number"><?= number_format($tongtiengoc, 0, ",", ".") ?>đ</span>
                 </div>
                 <div class="info-wapper">
-                    <span class="info-name">Thành tiền sau chiết khấu</span> <span class="info-number"><?= number_format($tonggiohang, 0, ",", ".") ?>đ</span>
+                    <span class="info-name">Thành tiền sau chiết khấu</span> <span class="info-number"><?= number_format($thanhtien, 0, ",", ".") ?>đ</span>
                 </div>
                 <div class="info-wapper">
                     <?php
-                    if ($tonggiohang >= 500000) {
+                    if ($thanhtien >= 500000) {
                         echo '<span class="info-name">Phí vận chuyển</span> <span class="info-number">0 VNĐ</span>';
                     } else {
                         echo '<span class="info-name">Phí vận chuyển</span> <span class="info-number">50.000 VNĐ</span>';
@@ -156,16 +136,16 @@ if (isset($_SESSION["taikhoan"])) {
                     <span class="info-name">Thành tiền</span>
                     <span class="info-number text-red-500">
                         <?php
-                        if ($tonggiohang >= 500000) {
-                            echo number_format($tonggiohang, 0, ",", ".") . "đ";
+                        if ($thanhtien >= 500000) {
+                            echo number_format($thanhtien, 0, ",", ".") . "đ";
                         } else {
-                            echo number_format($tonggiohang + 50000, 0, ",", ".") . "đ";
+                            echo number_format($thanhtien + 50000, 0, ",", ".") . "đ";
                         }
                         ?>
                     </span>
                 </div>
                 <?php
-                if ($tonggiohang >= 500000) {
+                if ($thanhtien >= 500000) {
                     echo '<p class="free-ship"><i class="fa-solid fa-circle-check"></i> Đơn hàng của bạn được miễn phí ship</p>';
                 } else {
                     echo '<p class="no-ship"><i class="fa-solid fa-triangle-exclamation"></i> Miễn phí ship với đơn hàng trên 500.000 VNĐ</p>';

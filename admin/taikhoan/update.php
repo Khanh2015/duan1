@@ -30,7 +30,7 @@ if (isset($taikhoan)) {
             <input id="account-address" name="diachi" type="text" placeholder="Nhập vào địa chỉ" value="<?php if (isset($diachi)) echo $diachi ?>" />
             <br /><br />
             <label for="account-phone">Số điện thoại</label> <br />
-            <input id="account-phone" name="sdt" type="number" placeholder="Nhập vào tên tài khoản mới" value="<?php if (isset($tentaikhoan)) echo $tentaikhoan ?>" min="0" />
+            <input id="account-phone" name="sdt" type="number" placeholder="Nhập vào số điện thoại mới" value="<?php if (isset($sdt)) echo $sdt ?>" min="0" />
             <br /><br />
             <label for="account-role">Chức vụ</label> <br />
             <select name="chucvu" id="account-role">

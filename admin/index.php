@@ -141,6 +141,7 @@ if (isset($_GET["act"])) {
                 update_sanpham($id, $iddanhmuc, $ten, $anh, $giasale, $giagoc, $sizeString, $colorString, $soluong, $mota);
                 $thongbao = "Cập nhật sản phẩm thành công 🎉";
             }
+            $danhsachdanhmuc = loadall_danhmuc();
             include "./sanpham/update.php";
             break;
         case 'locsanpham':
