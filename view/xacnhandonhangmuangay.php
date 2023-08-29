@@ -95,6 +95,7 @@ extract($_SESSION["muangay"]);
                     <td><img src="./upload/<?= $anhsanpham ?>" alt=""></td>
                     <td class="product-info">
                         <p class="product-name"><?= $tensanpham ?></p>
+                        <span class="color-product">Đơn giá: <?= number_format($item[3], 0, ",", ".") ?>đ</span><br>
                         <span class="color-product">Màu: <?= $color ?></span><br>
                         <span class="size-product">Size: <?= $size ?></span>
                     </td>

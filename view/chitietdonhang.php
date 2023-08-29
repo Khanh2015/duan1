@@ -27,6 +27,7 @@
                         <td><img src="./upload/<?php if (isset($anhsanpham)) echo $anhsanpham ?>" alt=""></td>
                         <td class="product-info">
                             <p class="product-name"><?php if (isset($tensanpham)) echo $tensanpham ?></p>
+                            <span class="color-product">Đơn giá: <?php if (isset($giasale)) echo number_format($giasale, 0, ",", ".") ?>đ</span><br>
                             <span class="color-product">Màu: <?php if (isset($color)) echo $color ?></span><br>
                             <span class="size-product">Size: <?php if (isset($size)) echo $size ?></span>
                         </td>

@@ -106,6 +106,7 @@ if (isset($_SESSION["taikhoan"])) {
                         <td><img src="./upload/<?= $item[4] ?>" alt=""></td>
                         <td class="product-info">
                             <p class="product-name"><?= $item[1] ?></p>
+                            <span class="color-product">Đơn giá: <?= number_format($item[3], 0, ",", ".") ?>đ</span><br>
                             <span class="color-product">Màu: <?= $item[7] ?></span><br>
                             <span class="size-product">Size: <?= $item[6] ?></span>
                         </td>
